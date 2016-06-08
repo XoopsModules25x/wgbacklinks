@@ -22,16 +22,16 @@
  */
 include dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
 include_once dirname(__DIR__) . '/include/common.php';
-$sysPathIcon16  = '../' . $GLOBALS['xoopsModule']->getInfo('sysicons16');
-$sysPathIcon32  = '../' . $GLOBALS['xoopsModule']->getInfo('sysicons32');
+$sysPathIcon16    = '../' . $GLOBALS['xoopsModule']->getInfo('sysicons16');
+$sysPathIcon32    = '../' . $GLOBALS['xoopsModule']->getInfo('sysicons32');
 $pathModuleAdmin  = $GLOBALS['xoopsModule']->getInfo('dirmoduleadmin');
-$modPathIcon16  = $GLOBALS['xoopsModule']->getInfo('modicons16');
-$modPathIcon32  = $GLOBALS['xoopsModule']->getInfo('modicons32');
+$modPathIcon16    = $GLOBALS['xoopsModule']->getInfo('modicons16');
+$modPathIcon32    = $GLOBALS['xoopsModule']->getInfo('modicons32');
 // Get instance of module
-$wgbacklinks = WgbacklinksHelper::getInstance();
-$providersHandler =& $wgbacklinks->getHandler('providers');
-$sitesHandler =& $wgbacklinks->getHandler('sites');
-$clientsHandler =& $wgbacklinks->getHandler('clients');
+$wgbacklinks      = WgbacklinksHelper::getInstance();
+$providersHandler = $wgbacklinks->getHandler('providers');
+$sitesHandler     = $wgbacklinks->getHandler('sites');
+$clientsHandler   = $wgbacklinks->getHandler('clients');
 $myts = MyTextSanitizer::getInstance();
 // 
 if(!isset($xoopsTpl) || !is_object($xoopsTpl)) {

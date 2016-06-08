@@ -71,7 +71,7 @@ switch($op) {
                         }
                         $shared[]['result'] = $image_success . $result_text;
                         
-                        $sitesObj =& $sitesHandler->get($site['site_id']);
+                        $sitesObj = $sitesHandler->get($site['site_id']);
                         // Set Vars
                         $sitesObj->setVar('site_shared', '1');
                         // Insert Data
@@ -136,8 +136,8 @@ switch($op) {
 		$adminMenu->addItemButton(_AM_WGBACKLINKS_SITES_LIST, 'sites.php', 'list');
 		$GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
 		// Get Form
-		$sitesObj =& $sitesHandler->create();
-		$form =& $sitesObj->getFormSites();
+		$sitesObj = $sitesHandler->create();
+		$form = $sitesObj->getFormSites();
 		$GLOBALS['xoopsTpl']->assign('form', $form->render());
 
 	break;
@@ -147,9 +147,9 @@ switch($op) {
 			redirect_header('sites.php', 3, implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
 		}
 		if(isset($siteId)) {
-			$sitesObj =& $sitesHandler->get($siteId);
+			$sitesObj = $sitesHandler->get($siteId);
 		} else {
-			$sitesObj =& $sitesHandler->create();
+			$sitesObj = $sitesHandler->create();
 		}
 		// Set Vars
 		$sitesObj->setVar('site_name', $_POST['site_name']);
@@ -167,13 +167,12 @@ switch($op) {
 		}
 		// Get Form
 		$GLOBALS['xoopsTpl']->assign('error', $sitesObj->getHtmlErrors());
-		$form =& $sitesObj->getFormSites();
+		$form = $sitesObj->getFormSites();
 		$GLOBALS['xoopsTpl']->assign('form', $form->render());
 
 	break;
     case 'activate':
-        echo "<br/>activate";
-		$sitesObj =& $sitesHandler->get($siteId);
+		$sitesObj = $sitesHandler->get($siteId);
         $sitesObj->setVar('site_active', $_REQUEST['new_site_active']);
 		$sitesObj->setVar('site_shared', '0');
 		// Insert Data
@@ -189,13 +188,13 @@ switch($op) {
 		$adminMenu->addItemButton(_AM_WGBACKLINKS_SITES_LIST, 'sites.php', 'list');
 		$GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
 		// Get Form
-		$sitesObj =& $sitesHandler->get($siteId);
-		$form =& $sitesObj->getFormSites();
+		$sitesObj = $sitesHandler->get($siteId);
+		$form = $sitesObj->getFormSites();
 		$GLOBALS['xoopsTpl']->assign('form', $form->render());
 
 	break;
 	case 'delete':
-		$sitesObj =& $sitesHandler->get($siteId);
+		$sitesObj = $sitesHandler->get($siteId);
 		if(isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
 			if(!$GLOBALS['xoopsSecurity']->check()) {
 				redirect_header('sites.php', 3, implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));

@@ -75,8 +75,8 @@ switch($op) {
 		$adminMenu->addItemButton(_AM_WGBACKLINKS_PROVIDERS_LIST, 'providers.php', 'list');
 		$GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
 		// Get Form
-		$providersObj =& $providersHandler->create();
-		$form =& $providersObj->getFormProviders();
+		$providersObj = $providersHandler->create();
+		$form = $providersObj->getFormProviders();
 		$GLOBALS['xoopsTpl']->assign('form', $form->render());
 
 	break;
@@ -86,9 +86,9 @@ switch($op) {
 			redirect_header('providers.php', 3, implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
 		}
 		if(isset($providerId)) {
-			$providersObj =& $providersHandler->get($providerId);
+			$providersObj = $providersHandler->get($providerId);
 		} else {
-			$providersObj =& $providersHandler->create();
+			$providersObj = $providersHandler->create();
 		}
 		// Set Vars
 		$providersObj->setVar('provider_name', $_POST['provider_name']);
@@ -118,7 +118,7 @@ switch($op) {
 		} else {
             // Get Form
             $GLOBALS['xoopsTpl']->assign('error', $providersObj->getHtmlErrors());
-            $form =& $providersObj->getFormProviders();
+            $form = $providersObj->getFormProviders();
             $GLOBALS['xoopsTpl']->assign('form', $form->render());
         }
 
@@ -130,13 +130,13 @@ switch($op) {
 		$adminMenu->addItemButton(_AM_WGBACKLINKS_PROVIDERS_LIST, 'providers.php', 'list');
 		$GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
 		// Get Form
-		$providersObj =& $providersHandler->get($providerId);
-		$form =& $providersObj->getFormProviders();
+		$providersObj = $providersHandler->get($providerId);
+		$form = $providersObj->getFormProviders();
 		$GLOBALS['xoopsTpl']->assign('form', $form->render());
 
 	break;
 	case 'delete':
-		$providersObj =& $providersHandler->get($providerId);
+		$providersObj = $providersHandler->get($providerId);
 		if(isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
 			if(!$GLOBALS['xoopsSecurity']->check()) {
 				redirect_header('providers.php', 3, implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
@@ -173,7 +173,7 @@ switch($op) {
     case 'test':
         
         $providerId = 1;
-        $providersObj =& $providersHandler->get($providerId);
+        $providersObj = $providersHandler->get($providerId);
         $url = $providersObj->getVar('provider_url');
         $key = $providersObj->getVar('provider_key');
         echo '<br/>url:$url - key:$key';

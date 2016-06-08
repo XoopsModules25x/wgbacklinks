@@ -39,7 +39,7 @@ function wgbacklinks_block_addCatSelect($cats) {
 function wgbacklinksMetaKeywords($content)
 {
     global $xoopsTpl, $xoTheme;
-    $myts =& MyTextSanitizer::getInstance();
+    $myts = MyTextSanitizer::getInstance();
     $content= $myts->undoHtmlSpecialChars($myts->displayTarea($content));
     if(isset($xoTheme) && is_object($xoTheme)) {
         $xoTheme->addMeta( 'meta', 'keywords', strip_tags($content));
@@ -51,7 +51,7 @@ function wgbacklinksMetaKeywords($content)
 function wgbacklinksMetaDescription($content)
 {
     global $xoopsTpl, $xoTheme;
-    $myts =& MyTextSanitizer::getInstance();
+    $myts = MyTextSanitizer::getInstance();
     $content = $myts->undoHtmlSpecialChars($myts->displayTarea($content));
     if(isset($xoTheme) && is_object($xoTheme)) {
         $xoTheme->addMeta( 'meta', 'description', strip_tags($content));

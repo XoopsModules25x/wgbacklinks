@@ -59,7 +59,7 @@ if ($ptype == 'add-provider') {
         $providersCount = $providersHandler->getCount($crit_provider);
         if ($providersCount == 0) {
             // add this provider to table provider
-            $providersObj =& $providersHandler->create();
+            $providersObj = $providersHandler->create();
             $providersObj->setVar('provider_name', $_REQUEST['provider_name']);
             $providersObj->setVar('provider_url', $_REQUEST['provider_url']);
             $providersObj->setVar('provider_key', $_REQUEST['provider_key']);
@@ -102,7 +102,7 @@ if ($ptype == 'delete-provider') {
             }
 
             if ($providerId > 0) {
-                $providersObj =& $providersHandler->get($providerId);
+                $providersObj = $providersHandler->get($providerId);
                 if($providersHandler->delete($providersObj)) {
                     echo 'success-' . $ptype;
                 } else {
@@ -138,7 +138,7 @@ if ($ptype == 'add-client') {
         $clientsCount = $clientsHandler->getCount($crit_client);
         if ($clientsCount == 0) {
             // add this client to table client
-            $clientsObj =& $clientsHandler->create();
+            $clientsObj = $clientsHandler->create();
             
             // Set Vars
             $clientsObj->setVar('client_url', $client_url);
@@ -183,7 +183,7 @@ if ($ptype == 'delete-client') {
             }
 
             if ($clientId > 0) {
-                $clientsObj =& $clientsHandler->get($clientId);
+                $clientsObj = $clientsHandler->get($clientId);
                 if($clientsHandler->delete($clientsObj)) {
                     echo 'success-' . $ptype;
                 } else {
@@ -237,13 +237,13 @@ if ($ptype == 'share-site') {
         if ($site_id > 0) {
             // existing site, update
             $result =  'updated ' . $client_key;
-            $sitesObj =& $sitesHandler->get($site_id);
+            $sitesObj = $sitesHandler->get($site_id);
         } else {
             // new site
             if ($psite_active > 0) {
                 // site is active, add new site
                 $result = 'added ' . $client_key;
-                $sitesObj =& $sitesHandler->create();
+                $sitesObj = $sitesHandler->create();
             }
         }
         if ($psite_active == 0) {

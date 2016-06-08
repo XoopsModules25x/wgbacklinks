@@ -80,8 +80,8 @@ switch($op) {
 		$adminMenu->addItemButton(_AM_WGBACKLINKS_CLIENTS_LIST, 'clients.php', 'list');
 		$GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
 		// Get Form
-		$clientsObj =& $clientsHandler->create();
-		$form =& $clientsObj->getFormClients();
+		$clientsObj = $clientsHandler->create();
+		$form = $clientsObj->getFormClients();
 		$GLOBALS['xoopsTpl']->assign('form', $form->render());
 
 	break;
@@ -91,9 +91,9 @@ switch($op) {
 			redirect_header('clients.php', 3, implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
 		}
 		if(isset($clientId)) {
-			$clientsObj =& $clientsHandler->get($clientId);
+			$clientsObj = $clientsHandler->get($clientId);
 		} else {
-			$clientsObj =& $clientsHandler->create();
+			$clientsObj = $clientsHandler->create();
 		}
 		// Set Vars
         $clientsObj->setVar('client_url', $_POST['client_url']);
@@ -123,7 +123,7 @@ switch($op) {
 		} else {
             $GLOBALS['xoopsTpl']->assign('error', $clientsObj->getHtmlErrors());
             // Get Form
-            $form =& $clientsObj->getFormClients();
+            $form = $clientsObj->getFormClients();
             $GLOBALS['xoopsTpl']->assign('form', $form->render());
         }
 
@@ -135,13 +135,13 @@ switch($op) {
 		$adminMenu->addItemButton(_AM_WGBACKLINKS_CLIENTS_LIST, 'clients.php', 'list');
 		$GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
 		// Get Form
-		$clientsObj =& $clientsHandler->get($clientId);
-		$form =& $clientsObj->getFormClients();
+		$clientsObj = $clientsHandler->get($clientId);
+		$form = $clientsObj->getFormClients();
 		$GLOBALS['xoopsTpl']->assign('form', $form->render());
 
 	break;
 	case 'delete':
-		$clientsObj =& $clientsHandler->get($clientId);
+		$clientsObj = $clientsHandler->get($clientId);
 		if(isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
 			if(!$GLOBALS['xoopsSecurity']->check()) {
 				redirect_header('clients.php', 3, implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
