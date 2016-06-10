@@ -126,11 +126,14 @@ if ($ptype == 'delete-provider') {
 // called by: admin/provider.php (class/provider.php) from client website
 if ($ptype == 'add-client') {
     
-    $provider_url = $_REQUEST['provider_url'];
-    $provider_key = $_REQUEST['provider_key'];
-    $client_url        = $_REQUEST['client_url'];
-    $client_key        = $_REQUEST['client_key'];
-    $pcsubmitter  = $_REQUEST['pcsubmitter'];
+    $provider_url    = $_REQUEST['provider_url'];
+    $provider_key    = $_REQUEST['provider_key'];
+    $client_url      = $_REQUEST['client_url'];
+    $client_key      = $_REQUEST['client_key'];
+    $client_addsite  = $_REQUEST['client_addsite'];
+    $client_sitename = $_REQUEST['client_sitename'];
+    $client_slogan   = $_REQUEST['client_slogan'];
+    $pcsubmitter     = $_REQUEST['pcsubmitter'];
     
     if ($provider_key == $wgbacklinks->getConfig('wgbacklinks_modkey')) {
         $crit_client = new CriteriaCompo();
@@ -147,7 +150,29 @@ if ($ptype == 'add-client') {
             $clientsObj->setVar('client_date_created', time());
             // Insert Data
             if($clientsHandler->insert($clientsObj)) {
-                echo 'success-' . $ptype;
+                
+                if ($client_addsite > 0) {
+                    $sitesObj = $sitesHandler->create();
+                    // Set Vars
+                    $sitesObj->setVar('site_name', $client_sitename);
+                    $sitesObj->setVar('site_descr', $client_slogan);
+                    $sitesObj->setVar('site_url', $client_url);
+                    $sitesObj->setVar('site_uniqueid', md5(substr(str_shuffle("!$%&/=?_-;:,.0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 50)));
+                    $sitesObj->setVar('site_active', '1');
+                    $sitesObj->setVar('site_shared', '0');
+                    $sitesObj->setVar('site_submitter', $pcsubmitter);
+                    $sitesObj->setVar('site_date_created', time());
+                    
+                    // Insert Data
+                    if($sitesHandler->insert($sitesObj)) {
+                        echo 'success-' . $ptype;
+                    } else {
+                        $result_text = str_replace('%p', $provider_url, _MA_WGBACKLINKS_EXCHANGE_ERR_PROV_ADD_SITE);
+                        $result_text = str_replace('%c', $client_url, $result_text);
+                        $result_text = str_replace('%e', $clientsObj->getHtmlErrors(), $result_text);
+                        echo $result_text;
+                    }
+                }
             } else {
                 $result_text = str_replace('%p', $provider_url, _MA_WGBACKLINKS_EXCHANGE_ERR_ADD_CLIENT);
                 $result_text = str_replace('%c', $client_url, $result_text);
@@ -216,11 +241,11 @@ if ($ptype == 'share-site') {
     if ($client_key == $wgbacklinks->getConfig('wgbacklinks_modkey')) {
         // valid key given by provider
 
-        $psite_name = $_REQUEST['site_name'];
-        $psite_descr = $_REQUEST['site_descr'];
-        $psite_url = $_REQUEST['site_url'];
-        $psite_uniqueid = $_REQUEST['site_uniqueid'];
-        $psite_active = $_REQUEST['site_active'];
+        $psite_name      = $_REQUEST['site_name'];
+        $psite_descr     = $_REQUEST['site_descr'];
+        $psite_url       = $_REQUEST['site_url'];
+        $psite_uniqueid  = $_REQUEST['site_uniqueid'];
+        $psite_active    = $_REQUEST['site_active'];
         $psite_submitter = $_REQUEST['site_submitter'];
 
         $site_id = 0;

@@ -43,5 +43,6 @@ define('_MA_WGBACKLINKS_EXCHANGE_ERR_ADD_PROVIDER', "Fehler beim Hinzufügen Pro
 define('_MA_WGBACKLINKS_EXCHANGE_ERR_DEL_PROVIDER', "Fehler beim Löschen Provider '%p' vom Client '%c'.<br/>Fehler: %e");
 define('_MA_WGBACKLINKS_EXCHANGE_ERR_ADD_CLIENT', "Fehler beim Hinzufügen Client '%c' bei Provider '%p'.<br/>Fehler: %e");
 define('_MA_WGBACKLINKS_EXCHANGE_ERR_DEL_CLIENT', "Fehler beim Löschen Client '%c' vom Provider '%p'.<br/>Fehler: %e");
+define('_MA_WGBACKLINKS_EXCHANGE_ERR_PROV_ADD_SITE', "Fehler beim Hinzufügen des Clients '%c' in Seiten-Tabelle von Provider '%p'.<br/>Fehler: %e");
 
 // ---------------- End ----------------

@@ -35,13 +35,14 @@ define('_MA_WGBACKLINKS_SITE_DESCR', "Additional information");
 define('_MA_WGBACKLINKS_ADMIN', "Admin");
 
 // Elements of exchange-data
-define('_MA_WGBACKLINKS_EXCHANGE_ERR_ADD_SITE', "Error: adding site '%s' to table site failed");
-define('_MA_WGBACKLINKS_EXCHANGE_ERR_DELETE_SITE', "Error: deleting site '%s' from table site failed");
+define('_MA_WGBACKLINKS_EXCHANGE_ERR_ADD_SITE', "Error: adding site '%s' to table sites failed");
+define('_MA_WGBACKLINKS_EXCHANGE_ERR_DELETE_SITE', "Error: deleting site '%s' from table sites failed");
 define('_MA_WGBACKLINKS_EXCHANGE_ERR_INVALID_CKEY', "Error: invalid client key");
 define('_MA_WGBACKLINKS_EXCHANGE_ERR_INVALID_PKEY', "Error: invalid provider key");
 define('_MA_WGBACKLINKS_EXCHANGE_ERR_ADD_PROVIDER', "Error when adding provider '%p' to client '%c'.<br/>Error: %e");
 define('_MA_WGBACKLINKS_EXCHANGE_ERR_DEL_PROVIDER', "Error when deleting provider '%p' from client '%c'.<br/>Error: %e");
 define('_MA_WGBACKLINKS_EXCHANGE_ERR_ADD_CLIENT', "Error when adding client '%c' to provider '%p'.<br/>Error: %e");
 define('_MA_WGBACKLINKS_EXCHANGE_ERR_DEL_CLIENT', "Error when deleting client '%c' from provider '%p'.<br/>Error: %e");
+define('_MA_WGBACKLINKS_EXCHANGE_ERR_PROV_ADD_SITE', "Error when adding client '%c' to table sites of provider '%p'.<br/>Error: %e");
 
 // ---------------- End ----------------

@@ -62,6 +62,7 @@ define('_AM_WGBACKLINKS_PROVIDER_KEY_CHECK', "Provider-Schlüssel überprüfen")
 define('_AM_WGBACKLINKS_PROVIDER_SUBMITTER', "Einsender");
 define('_AM_WGBACKLINKS_PROVIDER_DATE_CREATED', "erstellt am");
 define('_AM_WGBACKLINKS_PROVIDER_ADD_ERROR', "Die Daten wurden erfolgreich in der Client-Tabelle dieser Webseite gespeichert, aber das automatische Hinzufügen der Daten in der Provider-Tabelle auf der Client-Webseite ist fehlgeschlagen. Bitte überprüfen Sie die Liste der Provider auf der Client-Webseite.");
+define('_AM_WGBACKLINKS_PROVIDER_ADD_TO_SITE', "Meine Webseite zum Seitenverzeichnis beim Provider hinzufügen");
 // Site add/edit
 define('_AM_WGBACKLINKS_SITE_ADD', "Seite hinzufügen");
 define('_AM_WGBACKLINKS_SITE_EDIT', "Seite bearbeiten");

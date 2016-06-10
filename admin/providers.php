@@ -100,8 +100,16 @@ switch($op) {
 		if($providersHandler->insert($providersObj)) {
             //add client to providers website
             $client = array();
-            $client['client_url'] = XOOPS_URL;
-            $client['client_key'] = $wgbacklinks->getConfig('wgbacklinks_modkey');
+            $client['client_url']      = XOOPS_URL;
+            $client['client_key']      = $wgbacklinks->getConfig('wgbacklinks_modkey');
+            $client['client_addsite']  = 0;
+            $client['client_sitename'] = '';
+            $client['client_slogan']   = '';
+            if (isset($_POST['provider_add_site']) && $_POST['provider_add_site'] > 0) {
+                $client['client_addsite']  = $_POST['provider_add_site'];
+                $client['client_sitename'] = $GLOBALS['xoopsConfig']['sitename'];
+                $client['client_slogan']   = $GLOBALS['xoopsConfig']['slogan'];
+            }
             $provider = array();
             $provider['provider_url'] = $_POST['provider_url'];
             $provider['provider_key'] = $_POST['provider_key'];

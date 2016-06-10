@@ -122,7 +122,7 @@ $modversion['config'][$c]['title']       = '_MI_WGBACKLINKS_MODKEY';
 $modversion['config'][$c]['description'] = '_MI_WGBACKLINKS_MODKEY_DESC';
 $modversion['config'][$c]['formtype']    = 'textbox';
 $modversion['config'][$c]['valuetype']   = 'text';
-$modversion['config'][$c]['default']     = md5(XOOPS_URL . time());
+$modversion['config'][$c]['default']     = md5(substr(str_shuffle("!$%&/=?_-;:,.0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 50));
 ++$c;
 // Maintained by
 $modversion['config'][$c]['name']        = 'maintainedby';

@@ -93,6 +93,10 @@ class WgbacklinksProviders extends XoopsObject
 		$form->addElement(new XoopsFormText( _AM_WGBACKLINKS_PROVIDER_URL, 'provider_url', 50, 255, $provider_url ), true);
 		// Form Text ProviderKey
 		$form->addElement(new XoopsFormText( _AM_WGBACKLINKS_PROVIDER_KEY, 'provider_key', 50, 255, $this->getVar('provider_key') ));
+        if ($this->isNew()) {
+            // Form Text Add to site table
+            $form->addElement(new XoopsFormRadioYN( _AM_WGBACKLINKS_PROVIDER_ADD_TO_SITE, 'provider_add_site', 1));
+        }
 		// Form Select User
 		$form->addElement(new XoopsFormSelectUser( _AM_WGBACKLINKS_PROVIDER_SUBMITTER, 'provider_submitter', false, $this->getVar('provider_submitter') ));
 		// Form Text Date Select
@@ -217,15 +221,18 @@ class WgbacklinksProvidersHandler extends XoopsPersistableObjectHandler
     public function addClientToProvider($provider, $client) {
         // check whether the client is registered at the provider, and add, if not exist
         global $xoopsUser;
-        
+
         $postdata = http_build_query(
             array(
-                'ptype' => 'add-client',
-                'provider_url' => $provider['provider_url'],
-                'provider_key' => $provider['provider_key'],
-                'client_url'   => $client['client_url'],
-                'client_key'   => $client['client_key'],
-                'pcsubmitter'  => ($xoopsUser->getVar('uname') . ' - ' . XOOPS_URL)
+                'ptype'           => 'add-client',
+                'provider_url'    => $provider['provider_url'],
+                'provider_key'    => $provider['provider_key'],
+                'client_url'      => $client['client_url'],
+                'client_key'      => $client['client_key'],
+                'client_addsite'  => $client['client_addsite'],
+                'client_sitename' => $client['client_sitename'],
+                'client_slogan'   => $client['client_slogan'],
+                'pcsubmitter'     => ($xoopsUser->getVar('uname') . ' - ' . XOOPS_URL)
             )
         );
         
@@ -249,7 +256,6 @@ class WgbacklinksProvidersHandler extends XoopsPersistableObjectHandler
     
     public function deleteClientFromProvider($provider, $client) {
         // delete the provider from tables in client website
-        global $xoopsUser;
 
         $postdata = http_build_query(
             array(
@@ -283,7 +289,6 @@ class WgbacklinksProvidersHandler extends XoopsPersistableObjectHandler
     
     public function checkProviderKey($provider) {
         // check whether the provider key is valid on provider website
-        global $xoopsUser;
            
         $postdata = http_build_query(
             array(
@@ -307,7 +312,14 @@ class WgbacklinksProvidersHandler extends XoopsPersistableObjectHandler
         );
         
         $context  = stream_context_create($opts);
-        $result = file_get_contents($val_url, false, $context);
+        try {
+            /*contains all page logic
+            and throws error if needed*/
+            $result = file_get_contents($val_url, false, $context);
+        } catch (Exception $e) {
+            $result = $e->getMessage();
+        }
+        
         return $result;   
         
     }

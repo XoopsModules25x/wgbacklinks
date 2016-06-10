@@ -62,6 +62,8 @@ define('_AM_WGBACKLINKS_PROVIDER_KEY_CHECK', "Provider key check");
 define('_AM_WGBACKLINKS_PROVIDER_SUBMITTER', "Submitter");
 define('_AM_WGBACKLINKS_PROVIDER_DATE_CREATED', "Date created");
 define('_AM_WGBACKLINKS_PROVIDER_ADD_ERROR', "The data have been successfully saved in the client table of this website, but the automatically adding of the data of this website as provider on the client website table has failed. Please check the poviders list under client website.");
+define('_AM_WGBACKLINKS_PROVIDER_ADD_TO_SITE', "Add my website to site list of provider");
+
 // Site add/edit
 define('_AM_WGBACKLINKS_SITE_ADD', "Add Site");
 define('_AM_WGBACKLINKS_SITE_EDIT', "Edit Site");

@@ -155,7 +155,7 @@ switch($op) {
 		$sitesObj->setVar('site_name', $_POST['site_name']);
         $sitesObj->setVar('site_descr', $_POST['site_descr']);
 		$sitesObj->setVar('site_url', $_POST['site_url']);
-        $sitesObj->setVar('site_uniqueid', isset($_POST['site_uniqueid']) ? $_POST['site_uniqueid'] : md5($_POST['site_name'] . $_POST['site_url']));
+        $sitesObj->setVar('site_uniqueid', isset($_POST['site_uniqueid']) ? $_POST['site_uniqueid'] : md5(substr(str_shuffle("!$%&/=?_-;:,.0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 50)));
 		$sitesObj->setVar('site_active', ((1 == $_REQUEST['site_active']) ? '1' : '0'));
         $sitesObj->setVar('site_shared', '0');
         $sitesObj->setVar('site_submitter', $_POST['site_submitter']);
