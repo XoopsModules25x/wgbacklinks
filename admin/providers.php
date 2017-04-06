@@ -120,8 +120,7 @@ switch($op) {
                 redirect_header('providers.php?op=list', 2, _AM_WGBACKLINKS_FORM_OK);
             } else {
                 // an error occured
-                echo $result;
-                $GLOBALS['xoopsTpl']->assign('error', $result);
+                redirect_header('providers.php?op=list', 5, _AM_WGBACKLINKS_CLIENT_ERROR_ADD);
             }
 		} else {
             // Get Form

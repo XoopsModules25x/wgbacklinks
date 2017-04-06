@@ -172,4 +172,52 @@ class WgbacklinksHelper
             }
         }
     }
+       
+    public function execExchangeData($url, $postdata)
+    {
+        $valid_url = rtrim($url, '/');
+        
+        if (substr($valid_url, -17) != 'exchange-data.php') {
+            $valid_url .= '/modules/wgbacklinks/exchange-data.php';
+        }
+        $error = "";
+        
+        if (function_exists('curl_init')) {   
+            //open connection
+            $ch = curl_init();
+
+            //set the url, number of POST vars, POST data
+            curl_setopt($ch, CURLOPT_URL, $valid_url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 25);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 25);
+            curl_setopt($ch, CURLOPT_VERBOSE, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $postdata);
+
+            //execute post
+            $result = curl_exec($ch);
+            // print_r(curl_getinfo($ch));
+            if ($result === FALSE)  {
+                $error = "unexpected curl_error:".curl_error($ch)."<br>";
+            } 
+            
+            curl_close($ch);
+        } else {
+            $opts = array('http' =>
+                        array(
+                            'method'  => 'POST',
+                            'header'  => 'Content-type: application/x-www-form-urlencoded',
+                            'content' => $postdata
+                        )
+                    );
+        
+            $context  = stream_context_create($opts);
+            $result = file_get_contents($valid_url, false, $context);
+        }
+        // echo "<br>result:" . $result; echo "<br>error:" . $error;
+        return $result . $error;
+    }
 }

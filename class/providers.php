@@ -218,8 +218,14 @@ class WgbacklinksProvidersHandler extends XoopsPersistableObjectHandler
 		return $criteriaProviders;
 	}
 
+    /**
+	 * check whether the client is registered at the provider website, and add, if not exist
+	 *
+	 * @param array $provider, array $client
+	 * @return result of execExchangeData
+	 */
     public function addClientToProvider($provider, $client) {
-        // check whether the client is registered at the provider, and add, if not exist
+
         global $xoopsUser;
 
         $postdata = http_build_query(
@@ -236,26 +242,19 @@ class WgbacklinksProvidersHandler extends XoopsPersistableObjectHandler
             )
         );
         
-        $val_url = rtrim($provider['provider_url'], '/');
-        if (substr($val_url, -17) != 'exchange-data.php') {
-            $val_url .= '/modules/wgbacklinks/exchange-data.php';
-        }
+        $wgbacklinks = WgbacklinksHelper::getInstance();
+        $result = $wgbacklinks->execExchangeData($provider['provider_url'], $postdata); 
         
-        $opts = array('http' =>
-            array(
-                'method'  => 'POST',
-                'header'  => 'Content-type: application/x-www-form-urlencoded',
-                'content' => $postdata
-            )
-        );
-        
-        $context  = stream_context_create($opts);
-        $result = file_get_contents($val_url, false, $context);
         return $result;
     } 
     
+    /**
+	 * delete the provider from table 'provider' in client website
+	 *
+	 * @param array $provider, array $client
+	 * @return result of execExchangeData
+	 */
     public function deleteClientFromProvider($provider, $client) {
-        // delete the provider from tables in client website
 
         $postdata = http_build_query(
             array(
@@ -267,60 +266,33 @@ class WgbacklinksProvidersHandler extends XoopsPersistableObjectHandler
             )
         );
         
-        $val_url = rtrim($provider['provider_url'], '/');
-        if (substr($val_url, -17) != 'exchange-data.php') {
-            $val_url .= '/modules/wgbacklinks/exchange-data.php';
-        }
-
-        $opts = array('http' =>
-            array(
-                'method'  => 'POST',
-                'header'  => 'Content-type: application/x-www-form-urlencoded',
-                'content' => $postdata
-            )
-        );
+        $wgbacklinks = WgbacklinksHelper::getInstance();
+        $result = $wgbacklinks->execExchangeData($provider['provider_url'], $postdata); 
         
-        $context  = stream_context_create($opts);
-        $result = file_get_contents($val_url, false, $context);
-        
-        return $result;   
+        return $result;
         
     }
     
+    /**
+	 * validate whether the given website and key are valid for provider website
+	 *
+	 * @param array $provider
+	 * @return result of execExchangeData
+	 */
     public function checkProviderKey($provider) {
-        // check whether the provider key is valid on provider website
-           
+
         $postdata = http_build_query(
             array(
                 'ptype'        => 'check-provider-key',
                 'provider_url' => $provider['provider_url'],
-                'provider_key' => $provider['provider_key']      
+                'provider_key' => $provider['provider_key']
             )
         );
         
-        $val_url = rtrim($provider['provider_url'], '/');
-        if (substr($val_url, -17) != 'exchange-data.php') {
-            $val_url .= '/modules/wgbacklinks/exchange-data.php';
-        }
-        
-        $opts = array('http' =>
-            array(
-                'method'  => 'POST',
-                'header'  => 'Content-type: application/x-www-form-urlencoded',
-                'content' => $postdata
-            )
-        );
-        
-        $context  = stream_context_create($opts);
-        try {
-            /*contains all page logic
-            and throws error if needed*/
-            $result = file_get_contents($val_url, false, $context);
-        } catch (Exception $e) {
-            $result = $e->getMessage();
-        }
-        
-        return $result;   
+        $wgbacklinks = WgbacklinksHelper::getInstance();
+        $result = $wgbacklinks->execExchangeData($provider['provider_url'], $postdata); 
+
+        return $result;
         
     }
 }

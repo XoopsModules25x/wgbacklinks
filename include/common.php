@@ -35,8 +35,8 @@ define('WGBACKLINKS_ADMIN', WGBACKLINKS_URL . '/admin/index.php');
 $local_logo = WGBACKLINKS_IMAGE_URL . '/wedega.png';
 
 // constants for module type
-define('WGBACKLINKS_MODTYPE_1', 1);
-define('WGBACKLINKS_MODTYPE_2', 2);
+define('WGBACKLINKS_MODTYPE_1', 1); //provider
+define('WGBACKLINKS_MODTYPE_2', 2); //client
 
 // module information
 $copyright = "<a href='http://wedega.com' title='Wedega - Webdesign Gabor' target='_blank'>

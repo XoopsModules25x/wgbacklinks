@@ -32,13 +32,13 @@ define('_MI_WGBACKLINKS_ABOUT', "About");
 // ---------------- Admin Nav ----------------
 define('_MI_WGBACKLINKS_ADMIN_PAGER', "Admin pager");
 define('_MI_WGBACKLINKS_ADMIN_PAGER_DESC', "Admin per page list");
+define('_MI_WGBACKLINKS_USER_PAGER', 'User pager');
+define('_MI_WGBACKLINKS_USER_PAGER_DESC', 'User per page list');
 // User
 // Blocks
 // Config
 define('_MI_WGBACKLINKS_KEYWORDS', "Keywords");
 define('_MI_WGBACKLINKS_KEYWORDS_DESC', "Insert here the keywords (separate by comma)");
-define('_MI_WGBACKLINKS_MAINTAINEDBY', "Maintained By");
-define('_MI_WGBACKLINKS_MAINTAINEDBY_DESC', "Allow url of support site or community");
 define('_MI_WGBACKLINKS_MODTYPE', "Module type");
 define('_MI_WGBACKLINKS_MODTYPE_DESC', "Please decide, whether this module should be used as provider or as client");
 define('_MI_WGBACKLINKS_MODTYPE_1', "Provider");

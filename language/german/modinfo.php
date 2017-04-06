@@ -32,13 +32,13 @@ define('_MI_WGBACKLINKS_ABOUT', "Über");
 // ---------------- Admin Nav ----------------
 define('_MI_WGBACKLINKS_ADMIN_PAGER', "Anzahl Listeneinträge Admin-Seiten");
 define('_MI_WGBACKLINKS_ADMIN_PAGER_DESC', "Definieren Sie, wieviele Einträge in den Lister auf den Admin-Seiten angezeigt werden sollen");
+define('_MI_WGBACKLINKS_USER_PAGER', 'User Listenzeilen');
+define('_MI_WGBACKLINKS_USER_PAGER_DESC', 'Anzahl der Zeilen für Listen auf Userseite');
 // User
 // Blocks
 // Config
 define('_MI_WGBACKLINKS_KEYWORDS', "Keywords");
 define('_MI_WGBACKLINKS_KEYWORDS_DESC', "Bitte hier Ihre Schlüsselwörter eintragen (getrennt durch einen Beistrich)");
-define('_MI_WGBACKLINKS_MAINTAINEDBY', "Unterstützt durch");
-define('_MI_WGBACKLINKS_MAINTAINEDBY_DESC', "Bitte Url der Supportseite oder Community angeben");
 define('_MI_WGBACKLINKS_MODTYPE', "Modul-Typ");
 define('_MI_WGBACKLINKS_MODTYPE_DESC', "Bitte legen Sie fest, ob Sie das Modul als Provider oder Client nutzen wollen");
 define('_MI_WGBACKLINKS_MODTYPE_1', "Provider");

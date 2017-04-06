@@ -212,9 +212,15 @@ class WgbacklinksClientsHandler extends XoopsPersistableObjectHandler
 		$criteriaClients->setOrder( $order );
 		return $criteriaClients;
 	}
-     
+    
+    /**
+	 * add the provider to tables in client website
+	 *
+	 * @param array $provider, array $client
+	 * @return result of execExchangeData
+	 */
     public function addProviderToClient($provider, $client) {
-        // add the provider to tables in client website
+
         global $xoopsUser;
            
         $postdata = http_build_query(
@@ -229,27 +235,21 @@ class WgbacklinksClientsHandler extends XoopsPersistableObjectHandler
             )
         );
         
-        $val_url = rtrim($client['client_url'], '/');
-        if (substr($val_url, -17) != 'exchange-data.php') {
-            $val_url .= '/modules/wgbacklinks/exchange-data.php';
-        }
+        $wgbacklinks = WgbacklinksHelper::getInstance();
+        $result = $wgbacklinks->execExchangeData($client['client_url'], $postdata);
         
-        $opts = array('http' =>
-            array(
-                'method'  => 'POST',
-                'header'  => 'Content-type: application/x-www-form-urlencoded',
-                'content' => $postdata
-            )
-        );
-        
-        $context  = stream_context_create($opts);
-        $result = file_get_contents($val_url, false, $context);
-        return $result;   
+        return $result;
         
     }
     
+    /**
+	 * delete the provider from tables in client website
+	 *
+	 * @param array $provider, array $client
+	 * @return result of execExchangeData
+	 */
     public function deleteProviderFromClient($provider, $client) {
-        // delete the provider from tables in client website
+        
         global $xoopsUser;
            
         $postdata = http_build_query(
@@ -261,27 +261,21 @@ class WgbacklinksClientsHandler extends XoopsPersistableObjectHandler
             )
         );
         
-        $val_url = rtrim($client['client_url'], '/');
-        if (substr($val_url, -17) != 'exchange-data.php') {
-            $val_url .= '/modules/wgbacklinks/exchange-data.php';
-        }
+        $wgbacklinks = WgbacklinksHelper::getInstance();
+        $result = $wgbacklinks->execExchangeData($client['client_url'], $postdata);
         
-        $opts = array('http' =>
-            array(
-                'method'  => 'POST',
-                'header'  => 'Content-type: application/x-www-form-urlencoded',
-                'content' => $postdata
-            )
-        );
-        
-        $context  = stream_context_create($opts);
-        $result = file_get_contents($val_url, false, $context);
-        return $result;   
+        return $result;
         
     }
     
+    /**
+	 * check whether the client key is valid on client website
+	 *
+	 * @param array $client
+	 * @return result of execExchangeData
+	 */
     public function checkClientKey($client) {
-        // check whether the client key is valid on client website
+        
         global $xoopsUser;
            
         $postdata = http_build_query(
@@ -292,22 +286,10 @@ class WgbacklinksClientsHandler extends XoopsPersistableObjectHandler
             )
         );
         
-        $val_url = rtrim($client['client_url'], '/');
-        if (substr($val_url, -17) != 'exchange-data.php') {
-            $val_url .= '/modules/wgbacklinks/exchange-data.php';
-        }
-
-        $opts = array('http' =>
-            array(
-                'method'  => 'POST',
-                'header'  => 'Content-type: application/x-www-form-urlencoded',
-                'content' => $postdata
-            )
-        );
+        $wgbacklinks = WgbacklinksHelper::getInstance();
+        $result = $wgbacklinks->execExchangeData($client['client_url'], $postdata);
         
-        $context  = stream_context_create($opts);
-        $result = file_get_contents($val_url, false, $context);
-        return $result;   
+        return $result;
         
     }
 }

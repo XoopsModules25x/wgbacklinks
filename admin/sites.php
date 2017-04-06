@@ -67,7 +67,7 @@ switch($op) {
                             $image_success = '<img src="' . WGBACKLINKS_ICONS_URL . '/16/ok.png" alt="' . $result_text . '">';
                         } else {
                             $result_text = _AM_WGBACKLINKS_SHARE_RESULT_FAILED . ': ' . $result;
-                            $image_success = '<img src="' . WGBACKLINKS_ICONS_URL . "/16/failed.png' alt='" . $result_text . '">';
+                            $image_success = '<img src="' . WGBACKLINKS_ICONS_URL . '/16/failed.png" alt="' . $result_text . '">';
                         }
                         $shared[]['result'] = $image_success . $result_text;
                         
@@ -87,7 +87,7 @@ switch($op) {
 				unset($client);
 			}
 		} else {
-			$GLOBALS['xoopsTpl']->assign('error', _AM_WGBACKLINKS_THEREARENT_CLIENTS);
+			$GLOBALS['xoopsTpl']->assign('error', _AM_WGBACKLINKS_THEREARENT_SITES);
 		}
 
         break;
@@ -112,6 +112,7 @@ switch($op) {
 		$GLOBALS['xoopsTpl']->assign('sites_count', $sitesCount);
 		$GLOBALS['xoopsTpl']->assign('wgbacklinks_url', WGBACKLINKS_URL);
 		$GLOBALS['xoopsTpl']->assign('wgbacklinks_upload_url', WGBACKLINKS_UPLOAD_URL);
+        $GLOBALS['xoopsTpl']->assign('moduletype', $wgbacklinks->getConfig('wgbacklinks_modtype'));
 		// Table view sites
 		if($sitesCount > 0) {
 			foreach(array_keys($sitesAll) as $i) {
@@ -125,6 +126,7 @@ switch($op) {
 				$pagenav = new XoopsPageNav($sitesCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
 				$GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
 			}
+            
 		} else {
 			$GLOBALS['xoopsTpl']->assign('error', _AM_WGBACKLINKS_THEREARENT_SITES);
 		}
