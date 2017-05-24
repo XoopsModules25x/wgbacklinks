@@ -93,6 +93,10 @@ class WgbacklinksProviders extends XoopsObject
 		$form->addElement(new XoopsFormText( _AM_WGBACKLINKS_PROVIDER_URL, 'provider_url', 50, 255, $provider_url ), true);
 		// Form Text ProviderKey
 		$form->addElement(new XoopsFormText( _AM_WGBACKLINKS_PROVIDER_KEY, 'provider_key', 50, 255, $this->getVar('provider_key') ));
+        if ($this->isNew()) {
+            // Form Text Add to site table
+            $form->addElement(new XoopsFormRadioYN( _AM_WGBACKLINKS_PROVIDER_ADD_TO_SITE, 'provider_add_site', 1));
+        }
 		// Form Select User
 		$form->addElement(new XoopsFormSelectUser( _AM_WGBACKLINKS_PROVIDER_SUBMITTER, 'provider_submitter', false, $this->getVar('provider_submitter') ));
 		// Form Text Date Select
@@ -214,42 +218,43 @@ class WgbacklinksProvidersHandler extends XoopsPersistableObjectHandler
 		return $criteriaProviders;
 	}
 
+    /**
+	 * check whether the client is registered at the provider website, and add, if not exist
+	 *
+	 * @param array $provider, array $client
+	 * @return result of execExchangeData
+	 */
     public function addClientToProvider($provider, $client) {
-        // check whether the client is registered at the provider, and add, if not exist
+
         global $xoopsUser;
-        
+
         $postdata = http_build_query(
             array(
-                'ptype' => 'add-client',
-                'provider_url' => $provider['provider_url'],
-                'provider_key' => $provider['provider_key'],
-                'client_url'   => $client['client_url'],
-                'client_key'   => $client['client_key'],
-                'pcsubmitter'  => ($xoopsUser->getVar('uname') . ' - ' . XOOPS_URL)
+                'ptype'           => 'add-client',
+                'provider_url'    => $provider['provider_url'],
+                'provider_key'    => $provider['provider_key'],
+                'client_url'      => $client['client_url'],
+                'client_key'      => $client['client_key'],
+                'client_addsite'  => $client['client_addsite'],
+                'client_sitename' => $client['client_sitename'],
+                'client_slogan'   => $client['client_slogan'],
+                'pcsubmitter'     => ($xoopsUser->getVar('uname') . ' - ' . XOOPS_URL)
             )
         );
         
-        $val_url = rtrim($provider['provider_url'], '/');
-        if (substr($val_url, -17) != 'exchange-data.php') {
-            $val_url .= '/modules/wgbacklinks/exchange-data.php';
-        }
+        $wgbacklinks = WgbacklinksHelper::getInstance();
+        $result = $wgbacklinks->execExchangeData($provider['provider_url'], $postdata); 
         
-        $opts = array('http' =>
-            array(
-                'method'  => 'POST',
-                'header'  => 'Content-type: application/x-www-form-urlencoded',
-                'content' => $postdata
-            )
-        );
-        
-        $context  = stream_context_create($opts);
-        $result = file_get_contents($val_url, false, $context);
         return $result;
     } 
     
+    /**
+	 * delete the provider from table 'provider' in client website
+	 *
+	 * @param array $provider, array $client
+	 * @return result of execExchangeData
+	 */
     public function deleteClientFromProvider($provider, $client) {
-        // delete the provider from tables in client website
-        global $xoopsUser;
 
         $postdata = http_build_query(
             array(
@@ -261,54 +266,33 @@ class WgbacklinksProvidersHandler extends XoopsPersistableObjectHandler
             )
         );
         
-        $val_url = rtrim($provider['provider_url'], '/');
-        if (substr($val_url, -17) != 'exchange-data.php') {
-            $val_url .= '/modules/wgbacklinks/exchange-data.php';
-        }
-
-        $opts = array('http' =>
-            array(
-                'method'  => 'POST',
-                'header'  => 'Content-type: application/x-www-form-urlencoded',
-                'content' => $postdata
-            )
-        );
+        $wgbacklinks = WgbacklinksHelper::getInstance();
+        $result = $wgbacklinks->execExchangeData($provider['provider_url'], $postdata); 
         
-        $context  = stream_context_create($opts);
-        $result = file_get_contents($val_url, false, $context);
-        
-        return $result;   
+        return $result;
         
     }
     
+    /**
+	 * validate whether the given website and key are valid for provider website
+	 *
+	 * @param array $provider
+	 * @return result of execExchangeData
+	 */
     public function checkProviderKey($provider) {
-        // check whether the provider key is valid on provider website
-        global $xoopsUser;
-           
+
         $postdata = http_build_query(
             array(
                 'ptype'        => 'check-provider-key',
                 'provider_url' => $provider['provider_url'],
-                'provider_key' => $provider['provider_key']      
+                'provider_key' => $provider['provider_key']
             )
         );
         
-        $val_url = rtrim($provider['provider_url'], '/');
-        if (substr($val_url, -17) != 'exchange-data.php') {
-            $val_url .= '/modules/wgbacklinks/exchange-data.php';
-        }
-        
-        $opts = array('http' =>
-            array(
-                'method'  => 'POST',
-                'header'  => 'Content-type: application/x-www-form-urlencoded',
-                'content' => $postdata
-            )
-        );
-        
-        $context  = stream_context_create($opts);
-        $result = file_get_contents($val_url, false, $context);
-        return $result;   
+        $wgbacklinks = WgbacklinksHelper::getInstance();
+        $result = $wgbacklinks->execExchangeData($provider['provider_url'], $postdata); 
+
+        return $result;
         
     }
 }

@@ -58,7 +58,7 @@ function update_wgbacklinks_v10(&$module)
         $tplids[] = $tplid;
     }
     if (count($tplids) > 0) {
-        $tplfile_handler =& xoops_getHandler('tplfile');
+        $tplfile_handler = xoops_getHandler('tplfile');
         $duplicate_files = $tplfile_handler->getObjects(
             new Criteria('tpl_id', "(" . implode(',', $tplids) . ")", "IN")
         );

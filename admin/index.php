@@ -23,10 +23,10 @@
 include __DIR__ . '/header.php';
 // Count elements
 $countProviders = $providersHandler->getCount();
-$countSites = $sitesHandler->getCount();
-$countClients = $clientsHandler->getCount();
+$countSites     = $sitesHandler->getCount();
+$countClients   = $clientsHandler->getCount();
 // Template Index
-$templateMain = 'wgbacklinks_admin_index.tpl';
+$templateMain   = 'wgbacklinks_admin_index.tpl';
 // InfoBox Statistics
 $adminMenu->addInfoBox(_AM_WGBACKLINKS_STATISTICS);
 // Info elements
@@ -49,8 +49,8 @@ $GLOBALS['xoopsTpl']->assign('index', $adminMenu->renderIndex());
 
 // check module_read permission for anonymous
 // this permission is necessary for exchange-data.php
-$mid = $xoopsModule->getVar('mid');
-$gpermHandler =& xoops_gethandler('groupperm');
+$mid            = $xoopsModule->getVar('mid');
+$gpermHandler   = xoops_gethandler('groupperm');
 $permModuleRead = $gpermHandler->checkRight('module_read', $mid, XOOPS_GROUP_ANONYMOUS) ? 1 : 0;
 if ($permModuleRead == 0) {
     $sql = "INSERT INTO `" . $xoopsDB->prefix('group_permission') . "` (`gperm_id`, `gperm_groupid`, `gperm_itemid`, `gperm_modid`, `gperm_name`) VALUES 

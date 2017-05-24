@@ -61,7 +61,9 @@ define('_AM_WGBACKLINKS_PROVIDER_KEY', "Schlüssel");
 define('_AM_WGBACKLINKS_PROVIDER_KEY_CHECK', "Provider-Schlüssel überprüfen");
 define('_AM_WGBACKLINKS_PROVIDER_SUBMITTER', "Einsender");
 define('_AM_WGBACKLINKS_PROVIDER_DATE_CREATED', "erstellt am");
-define('_AM_WGBACKLINKS_PROVIDER_ADD_ERROR', "Die Daten wurden erfolgreich in der Client-Tabelle dieser Webseite gespeichert, aber das automatische Hinzufügen der Daten in der Provider-Tabelle auf der Client-Webseite ist fehlgeschlagen. Bitte überprüfen Sie die Liste der Provider auf der Client-Webseite.");
+define('_AM_WGBACKLINKS_PROVIDER_ERROR_ADD', "Die Daten wurden erfolgreich in der Client-Tabelle dieser Webseite gespeichert, aber das automatische Hinzufügen der Daten in der Provider-Tabelle auf der Client-Webseite ist fehlgeschlagen. Bitte überprüfen Sie die Liste der Provider auf der Client-Webseite.");
+define('_AM_WGBACKLINKS_PROVIDER_ERROR_DELETE', "Die Daten wurden erfolgreich aus der Client-Tabelle dieser Webseite gelöscht, aber das automatische Entfernen der Daten in der Provider-Tabelle auf der Client-Webseite ist fehlgeschlagen. Bitte überprüfen Sie die Liste der Provider auf der Client-Webseite.");
+define('_AM_WGBACKLINKS_PROVIDER_ADD_TO_SITE', "Meine Webseite zum Seitenverzeichnis beim Provider hinzufügen");
 // Site add/edit
 define('_AM_WGBACKLINKS_SITE_ADD', "Seite hinzufügen");
 define('_AM_WGBACKLINKS_SITE_EDIT', "Seite bearbeiten");
@@ -74,6 +76,7 @@ define('_AM_WGBACKLINKS_SITE_UNIQUEID', "Seiten-Id");
 define('_AM_WGBACKLINKS_SITE_SUBMITTER', "Einsender");
 define('_AM_WGBACKLINKS_SITE_DATE_CREATED', "erstellt am");
 define('_AM_WGBACKLINKS_SITE_ACTIVE', "Aktiv");
+define('_AM_WGBACKLINKS_SITE_SHARED', "Verteilt");
 define('_AM_WGBACKLINKS_SITE_DESCR', "Beschreibung");
 // Elements of site sharing
 define('_AM_WGBACKLINKS_SHARE_RESULTS', "Ergebnis der Verteilung");
@@ -95,7 +98,8 @@ define('_AM_WGBACKLINKS_CLIENT_PROVIDER', "Provider");
 define('_AM_WGBACKLINKS_CLIENT_SUBMITTER', "Einsender");
 define('_AM_WGBACKLINKS_CLIENT_DATE_CREATED', "erstellt am");
 define('_AM_WGBACKLINKS_CLIENT_KEY_CHECK', "Überprüfung Client-Schlüssel");
-define('_AM_WGBACKLINKS_CLIENT_ADD_ERROR', "Die Daten wurden erfolgreich in der Provider-Tabelle dieser Webseite gespeichert, aber das automatische Hinzufügen der Daten in der Client-Tabelle auf der Provider-Webseite ist fehlgeschlagen. Bitte überprüfen Sie die Liste der Client auf der Provider-Webseite.");
+define('_AM_WGBACKLINKS_CLIENT_ERROR_ADD', "Die Daten wurden erfolgreich in der Provider-Tabelle dieser Webseite gespeichert, aber das automatische Hinzufügen der Daten in der Client-Tabelle auf der Provider-Webseite ist fehlgeschlagen. Bitte überprüfen Sie die Liste der Client auf der Provider-Webseite.");
+define('_AM_WGBACKLINKS_CLIENT_ERROR_DELETE', "Die Daten wurden erfolgreich in der Provider-Tabelle dieser Webseite gelöscht, aber das automatische Entfernen der Daten in der Client-Tabelle auf der Provider-Webseite ist fehlgeschlagen. Bitte überprüfen Sie die Liste der Client auf der Provider-Webseite.");
 // General
 define('_AM_WGBACKLINKS_FORM_ACTION', "Aktion");
 define('_AM_WGBACKLINKS_FORM_EDIT', "Bearbeiten");

@@ -21,7 +21,5 @@
  * @version        $Id: 1.0 footer.php 1 Thu 2016-05-05 08:16:09Z Wedega - Webdesign Gabor $
  */
 if(isset($templateMain)) {
-	$GLOBALS['xoopsTpl']->assign('maintainedby', $wgbacklinks->getConfig('maintainedby'));
 	$GLOBALS['xoopsTpl']->display("db:{$templateMain}");}
-
 xoops_cp_footer();

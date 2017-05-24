@@ -28,12 +28,12 @@ $xoBreadcrumbs = array();
 $xoBreadcrumbs[] = array('title' => $GLOBALS['xoopsModule']->getVar('name'), 'link' => WGBACKLINKS_URL . '/');
 // Get instance of module
 $wgbacklinks = WgbacklinksHelper::getInstance();
-$providersHandler =& $wgbacklinks->getHandler('providers');
-$sitesHandler =& $wgbacklinks->getHandler('sites');
-$clientsHandler =& $wgbacklinks->getHandler('clients');
+$providersHandler = $wgbacklinks->getHandler('providers');
+$sitesHandler     = $wgbacklinks->getHandler('sites');
+$clientsHandler   = $wgbacklinks->getHandler('clients');
 // Permission
 include_once XOOPS_ROOT_PATH . '/class/xoopsform/grouppermform.php';
-$gpermHandler =& xoops_gethandler('groupperm');
+$gpermHandler = xoops_gethandler('groupperm');
 if(is_object($xoopsUser)) {
 	$groups  = $xoopsUser->getGroups();
 } else {

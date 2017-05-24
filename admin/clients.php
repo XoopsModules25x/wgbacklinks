@@ -22,9 +22,17 @@
  */
 include __DIR__ . '/header.php';
 // It recovered the value of argument op in URL$
-$op = XoopsRequest::getString('op', 'list');
-// Request client_id
+$op       = XoopsRequest::getString('op', 'list');
 $clientId = XoopsRequest::getInt('client_id');
+$error    = XoopsRequest::getString('error', 'none');
+
+
+xoops_loadLanguage('main', 'wgbacklinks');
+
+if ($error != 'none') {
+    $GLOBALS['xoopsTpl']->assign('error', $error);
+}
+
 
 global $xoopsUser;
 
@@ -57,9 +65,7 @@ switch($op) {
                     $image_valid = '<img src="' . WGBACKLINKS_ICONS_URL . '/16/alert.png" alt="' . _AM_WGBACKLINKS_CHECK_URL_INVALID . '">' . _AM_WGBACKLINKS_CHECK_URL_INVALID;
                 }
                 $client['validkey'] = $image_valid;
-                
-                
-                
+
 				$GLOBALS['xoopsTpl']->append('clients_list', $client);
 				unset($client);
 			}
@@ -80,8 +86,8 @@ switch($op) {
 		$adminMenu->addItemButton(_AM_WGBACKLINKS_CLIENTS_LIST, 'clients.php', 'list');
 		$GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
 		// Get Form
-		$clientsObj =& $clientsHandler->create();
-		$form =& $clientsObj->getFormClients();
+		$clientsObj = $clientsHandler->create();
+		$form = $clientsObj->getFormClients();
 		$GLOBALS['xoopsTpl']->assign('form', $form->render());
 
 	break;
@@ -91,9 +97,9 @@ switch($op) {
 			redirect_header('clients.php', 3, implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
 		}
 		if(isset($clientId)) {
-			$clientsObj =& $clientsHandler->get($clientId);
+			$clientsObj = $clientsHandler->get($clientId);
 		} else {
-			$clientsObj =& $clientsHandler->create();
+			$clientsObj = $clientsHandler->create();
 		}
 		// Set Vars
         $clientsObj->setVar('client_url', $_POST['client_url']);
@@ -118,12 +124,12 @@ switch($op) {
             } else {
                 // an error occured
                 echo $result;
-                $GLOBALS['xoopsTpl']->assign('error', $result);
+                redirect_header('clients.php?op=list&amp;error='._AM_WGBACKLINKS_PROVIDER_ERROR_ADD, 5, _AM_WGBACKLINKS_PROVIDER_ERROR_ADD);
             }
 		} else {
             $GLOBALS['xoopsTpl']->assign('error', $clientsObj->getHtmlErrors());
             // Get Form
-            $form =& $clientsObj->getFormClients();
+            $form = $clientsObj->getFormClients();
             $GLOBALS['xoopsTpl']->assign('form', $form->render());
         }
 
@@ -135,13 +141,13 @@ switch($op) {
 		$adminMenu->addItemButton(_AM_WGBACKLINKS_CLIENTS_LIST, 'clients.php', 'list');
 		$GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
 		// Get Form
-		$clientsObj =& $clientsHandler->get($clientId);
-		$form =& $clientsObj->getFormClients();
+		$clientsObj = $clientsHandler->get($clientId);
+		$form = $clientsObj->getFormClients();
 		$GLOBALS['xoopsTpl']->assign('form', $form->render());
 
 	break;
 	case 'delete':
-		$clientsObj =& $clientsHandler->get($clientId);
+		$clientsObj = $clientsHandler->get($clientId);
 		if(isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
 			if(!$GLOBALS['xoopsSecurity']->check()) {
 				redirect_header('clients.php', 3, implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
@@ -160,6 +166,8 @@ switch($op) {
                 if ($result == 'success-delete-provider' || $result == 'delete-provider:provider-not-exists'){
                     // creating provider successful or provider already existing
                     redirect_header('clients.php', 3, _AM_WGBACKLINKS_FORM_DELETE_OK);
+                } else if ( $result == _MA_WGBACKLINKS_EXCHANGE_ERR_INVALID_CKEY ) {
+                    redirect_header('clients.php?op=list&amp;error='. _AM_WGBACKLINKS_PROVIDER_ERROR_DELETE . "<br>" . _MA_WGBACKLINKS_EXCHANGE_ERR_INVALID_CKEY, 10, _AM_WGBACKLINKS_PROVIDER_ERROR_DELETE);
                 } else {
                     // an error occured
                     $GLOBALS['xoopsTpl']->assign('error', $result);

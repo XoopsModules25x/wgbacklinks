@@ -67,11 +67,11 @@ switch($op) {
                             $image_success = '<img src="' . WGBACKLINKS_ICONS_URL . '/16/ok.png" alt="' . $result_text . '">';
                         } else {
                             $result_text = _AM_WGBACKLINKS_SHARE_RESULT_FAILED . ': ' . $result;
-                            $image_success = '<img src="' . WGBACKLINKS_ICONS_URL . "/16/failed.png' alt='" . $result_text . '">';
+                            $image_success = '<img src="' . WGBACKLINKS_ICONS_URL . '/16/failed.png" alt="' . $result_text . '">';
                         }
                         $shared[]['result'] = $image_success . $result_text;
                         
-                        $sitesObj =& $sitesHandler->get($site['site_id']);
+                        $sitesObj = $sitesHandler->get($site['site_id']);
                         // Set Vars
                         $sitesObj->setVar('site_shared', '1');
                         // Insert Data
@@ -87,7 +87,7 @@ switch($op) {
 				unset($client);
 			}
 		} else {
-			$GLOBALS['xoopsTpl']->assign('error', _AM_WGBACKLINKS_THEREARENT_CLIENTS);
+			$GLOBALS['xoopsTpl']->assign('error', _AM_WGBACKLINKS_THEREARENT_SITES);
 		}
 
         break;
@@ -112,6 +112,7 @@ switch($op) {
 		$GLOBALS['xoopsTpl']->assign('sites_count', $sitesCount);
 		$GLOBALS['xoopsTpl']->assign('wgbacklinks_url', WGBACKLINKS_URL);
 		$GLOBALS['xoopsTpl']->assign('wgbacklinks_upload_url', WGBACKLINKS_UPLOAD_URL);
+        $GLOBALS['xoopsTpl']->assign('moduletype', $wgbacklinks->getConfig('wgbacklinks_modtype'));
 		// Table view sites
 		if($sitesCount > 0) {
 			foreach(array_keys($sitesAll) as $i) {
@@ -125,6 +126,7 @@ switch($op) {
 				$pagenav = new XoopsPageNav($sitesCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
 				$GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
 			}
+            
 		} else {
 			$GLOBALS['xoopsTpl']->assign('error', _AM_WGBACKLINKS_THEREARENT_SITES);
 		}
@@ -136,8 +138,8 @@ switch($op) {
 		$adminMenu->addItemButton(_AM_WGBACKLINKS_SITES_LIST, 'sites.php', 'list');
 		$GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
 		// Get Form
-		$sitesObj =& $sitesHandler->create();
-		$form =& $sitesObj->getFormSites();
+		$sitesObj = $sitesHandler->create();
+		$form = $sitesObj->getFormSites();
 		$GLOBALS['xoopsTpl']->assign('form', $form->render());
 
 	break;
@@ -147,15 +149,15 @@ switch($op) {
 			redirect_header('sites.php', 3, implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
 		}
 		if(isset($siteId)) {
-			$sitesObj =& $sitesHandler->get($siteId);
+			$sitesObj = $sitesHandler->get($siteId);
 		} else {
-			$sitesObj =& $sitesHandler->create();
+			$sitesObj = $sitesHandler->create();
 		}
 		// Set Vars
 		$sitesObj->setVar('site_name', $_POST['site_name']);
         $sitesObj->setVar('site_descr', $_POST['site_descr']);
 		$sitesObj->setVar('site_url', $_POST['site_url']);
-        $sitesObj->setVar('site_uniqueid', isset($_POST['site_uniqueid']) ? $_POST['site_uniqueid'] : md5($_POST['site_name'] . $_POST['site_url']));
+        $sitesObj->setVar('site_uniqueid', isset($_POST['site_uniqueid']) ? $_POST['site_uniqueid'] : md5(substr(str_shuffle("!$%&/=?_-;:,.0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 50)));
 		$sitesObj->setVar('site_active', ((1 == $_REQUEST['site_active']) ? '1' : '0'));
         $sitesObj->setVar('site_shared', '0');
         $sitesObj->setVar('site_submitter', $_POST['site_submitter']);
@@ -167,13 +169,12 @@ switch($op) {
 		}
 		// Get Form
 		$GLOBALS['xoopsTpl']->assign('error', $sitesObj->getHtmlErrors());
-		$form =& $sitesObj->getFormSites();
+		$form = $sitesObj->getFormSites();
 		$GLOBALS['xoopsTpl']->assign('form', $form->render());
 
 	break;
     case 'activate':
-        echo "<br/>activate";
-		$sitesObj =& $sitesHandler->get($siteId);
+		$sitesObj = $sitesHandler->get($siteId);
         $sitesObj->setVar('site_active', $_REQUEST['new_site_active']);
 		$sitesObj->setVar('site_shared', '0');
 		// Insert Data
@@ -189,13 +190,13 @@ switch($op) {
 		$adminMenu->addItemButton(_AM_WGBACKLINKS_SITES_LIST, 'sites.php', 'list');
 		$GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
 		// Get Form
-		$sitesObj =& $sitesHandler->get($siteId);
-		$form =& $sitesObj->getFormSites();
+		$sitesObj = $sitesHandler->get($siteId);
+		$form = $sitesObj->getFormSites();
 		$GLOBALS['xoopsTpl']->assign('form', $form->render());
 
 	break;
 	case 'delete':
-		$sitesObj =& $sitesHandler->get($siteId);
+		$sitesObj = $sitesHandler->get($siteId);
 		if(isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
 			if(!$GLOBALS['xoopsSecurity']->check()) {
 				redirect_header('sites.php', 3, implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));

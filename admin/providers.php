@@ -75,8 +75,8 @@ switch($op) {
 		$adminMenu->addItemButton(_AM_WGBACKLINKS_PROVIDERS_LIST, 'providers.php', 'list');
 		$GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
 		// Get Form
-		$providersObj =& $providersHandler->create();
-		$form =& $providersObj->getFormProviders();
+		$providersObj = $providersHandler->create();
+		$form = $providersObj->getFormProviders();
 		$GLOBALS['xoopsTpl']->assign('form', $form->render());
 
 	break;
@@ -86,9 +86,9 @@ switch($op) {
 			redirect_header('providers.php', 3, implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
 		}
 		if(isset($providerId)) {
-			$providersObj =& $providersHandler->get($providerId);
+			$providersObj = $providersHandler->get($providerId);
 		} else {
-			$providersObj =& $providersHandler->create();
+			$providersObj = $providersHandler->create();
 		}
 		// Set Vars
 		$providersObj->setVar('provider_name', $_POST['provider_name']);
@@ -100,8 +100,16 @@ switch($op) {
 		if($providersHandler->insert($providersObj)) {
             //add client to providers website
             $client = array();
-            $client['client_url'] = XOOPS_URL;
-            $client['client_key'] = $wgbacklinks->getConfig('wgbacklinks_modkey');
+            $client['client_url']      = XOOPS_URL;
+            $client['client_key']      = $wgbacklinks->getConfig('wgbacklinks_modkey');
+            $client['client_addsite']  = 0;
+            $client['client_sitename'] = '';
+            $client['client_slogan']   = '';
+            if (isset($_POST['provider_add_site']) && $_POST['provider_add_site'] > 0) {
+                $client['client_addsite']  = $_POST['provider_add_site'];
+                $client['client_sitename'] = $GLOBALS['xoopsConfig']['sitename'];
+                $client['client_slogan']   = $GLOBALS['xoopsConfig']['slogan'];
+            }
             $provider = array();
             $provider['provider_url'] = $_POST['provider_url'];
             $provider['provider_key'] = $_POST['provider_key'];
@@ -112,13 +120,12 @@ switch($op) {
                 redirect_header('providers.php?op=list', 2, _AM_WGBACKLINKS_FORM_OK);
             } else {
                 // an error occured
-                echo $result;
-                $GLOBALS['xoopsTpl']->assign('error', $result);
+                redirect_header('providers.php?op=list', 5, _AM_WGBACKLINKS_CLIENT_ERROR_ADD);
             }
 		} else {
             // Get Form
             $GLOBALS['xoopsTpl']->assign('error', $providersObj->getHtmlErrors());
-            $form =& $providersObj->getFormProviders();
+            $form = $providersObj->getFormProviders();
             $GLOBALS['xoopsTpl']->assign('form', $form->render());
         }
 
@@ -130,13 +137,13 @@ switch($op) {
 		$adminMenu->addItemButton(_AM_WGBACKLINKS_PROVIDERS_LIST, 'providers.php', 'list');
 		$GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
 		// Get Form
-		$providersObj =& $providersHandler->get($providerId);
-		$form =& $providersObj->getFormProviders();
+		$providersObj = $providersHandler->get($providerId);
+		$form = $providersObj->getFormProviders();
 		$GLOBALS['xoopsTpl']->assign('form', $form->render());
 
 	break;
 	case 'delete':
-		$providersObj =& $providersHandler->get($providerId);
+		$providersObj = $providersHandler->get($providerId);
 		if(isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
 			if(!$GLOBALS['xoopsSecurity']->check()) {
 				redirect_header('providers.php', 3, implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
@@ -173,7 +180,7 @@ switch($op) {
     case 'test':
         
         $providerId = 1;
-        $providersObj =& $providersHandler->get($providerId);
+        $providersObj = $providersHandler->get($providerId);
         $url = $providersObj->getVar('provider_url');
         $key = $providersObj->getVar('provider_key');
         echo '<br/>url:$url - key:$key';

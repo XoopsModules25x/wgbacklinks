@@ -25,7 +25,7 @@
 $dirname  = basename(__DIR__);
 // ------------------- Informations ------------------- //
 $modversion['name']                 = _MI_WGBACKLINKS_NAME;
-$modversion['version']              = '1.00';
+$modversion['version']              = '1.03';
 $modversion['description']          = _MI_WGBACKLINKS_DESC;
 $modversion['author']               = 'Goffy - Wedega.com';
 $modversion['author_mail']          = 'webmaster@wedega.com';
@@ -113,7 +113,7 @@ $modversion['config'][$c]['title']       = '_MI_WGBACKLINKS_MODTYPE';
 $modversion['config'][$c]['description'] = '_MI_WGBACKLINKS_MODTYPE_DESC';
 $modversion['config'][$c]['formtype']    = 'select';
 $modversion['config'][$c]['valuetype']   = 'int';
-$modversion['config'][$c]['default']     = 1;
+$modversion['config'][$c]['default']     = 2;
 $modversion['config'][$c]['options']     = array('_MI_WGBACKLINKS_MODTYPE_1' => WGBACKLINKS_MODTYPE_1, '_MI_WGBACKLINKS_MODTYPE_2' => WGBACKLINKS_MODTYPE_2);
 ++$c;
 // Unique Key for this module
@@ -122,13 +122,5 @@ $modversion['config'][$c]['title']       = '_MI_WGBACKLINKS_MODKEY';
 $modversion['config'][$c]['description'] = '_MI_WGBACKLINKS_MODKEY_DESC';
 $modversion['config'][$c]['formtype']    = 'textbox';
 $modversion['config'][$c]['valuetype']   = 'text';
-$modversion['config'][$c]['default']     = md5(XOOPS_URL . time());
+$modversion['config'][$c]['default']     = md5(substr(str_shuffle("!$%&/=?_-;:,.0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 50));
 ++$c;
-// Maintained by
-$modversion['config'][$c]['name']        = 'maintainedby';
-$modversion['config'][$c]['title']       = '_MI_WGBACKLINKS_MAINTAINEDBY';
-$modversion['config'][$c]['description'] = '_MI_WGBACKLINKS_MAINTAINEDBY_DESC';
-$modversion['config'][$c]['formtype']    = 'textbox';
-$modversion['config'][$c]['valuetype']   = 'text';
-$modversion['config'][$c]['default']     = 'http://xoops.wedega.com';
-unset($c);

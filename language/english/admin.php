@@ -61,7 +61,10 @@ define('_AM_WGBACKLINKS_PROVIDER_KEY', "Key");
 define('_AM_WGBACKLINKS_PROVIDER_KEY_CHECK', "Provider key check");
 define('_AM_WGBACKLINKS_PROVIDER_SUBMITTER', "Submitter");
 define('_AM_WGBACKLINKS_PROVIDER_DATE_CREATED', "Date created");
-define('_AM_WGBACKLINKS_PROVIDER_ADD_ERROR', "The data have been successfully saved in the client table of this website, but the automatically adding of the data of this website as provider on the client website table has failed. Please check the poviders list under client website.");
+define('_AM_WGBACKLINKS_PROVIDER_ERROR_ADD', "The data have been successfully saved in the client table of this website, but the automatically adding of the data of this website as provider on the client website table has failed. Please check the poviders list under client website.");
+define('_AM_WGBACKLINKS_PROVIDER_ERROR_DELETE', "The data have been successfully deleted in the client table of this website, but the automatically deleting of the data of this website as provider on the client website table has failed. Please check the poviders list under client website.");
+define('_AM_WGBACKLINKS_PROVIDER_ADD_TO_SITE', "Add my website to site list of provider");
+
 // Site add/edit
 define('_AM_WGBACKLINKS_SITE_ADD', "Add Site");
 define('_AM_WGBACKLINKS_SITE_EDIT', "Edit Site");
@@ -74,6 +77,7 @@ define('_AM_WGBACKLINKS_SITE_UNIQUEID', "Site-Id");
 define('_AM_WGBACKLINKS_SITE_SUBMITTER', "Submitter");
 define('_AM_WGBACKLINKS_SITE_DATE_CREATED', "Date created");
 define('_AM_WGBACKLINKS_SITE_ACTIVE', "Active");
+define('_AM_WGBACKLINKS_SITE_SHARED', "Shared");
 define('_AM_WGBACKLINKS_SITE_DESCR', "Description");
 // Elements of site sharing
 define('_AM_WGBACKLINKS_SHARE_RESULTS', "Results of sharing");
@@ -95,7 +99,8 @@ define('_AM_WGBACKLINKS_CLIENT_PROVIDER', "Provider");
 define('_AM_WGBACKLINKS_CLIENT_SUBMITTER', "Submitter");
 define('_AM_WGBACKLINKS_CLIENT_DATE_CREATED', "Date created");
 define('_AM_WGBACKLINKS_CLIENT_KEY_CHECK', "Client key check");
-define('_AM_WGBACKLINKS_CLIENT_ADD_ERROR', "The data have been successfully saved in the provider table of this website, but the automatically adding of the data of this website as client to providers website table has failed. Please check the client list under poviders website.");
+define('_AM_WGBACKLINKS_CLIENT_ERROR_ADD', "The data have been successfully saved in the provider table of this website, but the automatically adding of the data of this website as client to providers website table has failed. Please check the client list under poviders website.");
+define('_AM_WGBACKLINKS_CLIENT_ERROR_DELETE', "The data have been successfully deleted in the provider table of this website, but the automatically deleting of the data of this website as client to providers website table has failed. Please check the client list under poviders website.");
 // General
 define('_AM_WGBACKLINKS_FORM_ACTION', "Action");
 define('_AM_WGBACKLINKS_FORM_EDIT', "Modification");

@@ -131,14 +131,22 @@ class WgbacklinksSites extends XoopsObject
 		$ret['uniqueid']     = $this->getVar('site_uniqueid');
 		$ret['submitter']    = $this->getVar('site_submitter');
 		$ret['date_created'] = formatTimeStamp($this->getVar('site_date_created'), 's');
+        $ret['active']       = $this->getVar('site_active');
         if ($this->getVar('site_active') == 1) {
             $image_active = '<a href="sites.php?op=activate&new_site_active=0&site_id=' . $this->getVar('site_id') . '"><img src="' . WGBACKLINKS_ICONS_URL . '/16/ok.png" alt="' . _YES . '"></a>';
         } else {
             $image_active = '<a href="sites.php?op=activate&new_site_active=1&site_id=' . $this->getVar('site_id') . '"><img src="' . WGBACKLINKS_ICONS_URL . '/16/off.png" alt="' . _NO . '"></a>';
         }
         $ret['active_img']   = $image_active;
-        $ret['active']       = $this->getVar('site_active');
+        
         $ret['shared']       = $this->getVar('site_shared');
+        if ($this->getVar('site_shared') == 1) {
+            $image_shared = '<img src="' . WGBACKLINKS_ICONS_URL . '/16/ok.png" alt="' . _YES . '">';
+        } else {
+            $image_shared = '<img src="' . WGBACKLINKS_ICONS_URL . '/16/off.png" alt="' . _NO . '">';
+        }
+        $ret['shared_img']   = $image_shared;
+        
 		return $ret;
 	}
 
@@ -237,12 +245,17 @@ class WgbacklinksSitesHandler extends XoopsPersistableObjectHandler
 		$criteriaSites->setOrder( $order );
 		return $criteriaSites;
 	}
+    
+    /**
+	 * submit site data to all client websites
+	 *
+	 * @param array $site, array $client
+	 * @return result of http post
+	 */
     public function shareSite($site, $client) {
-        
-        
+
         global $xoopsUser;
         
-        // submit site data to client website
         $postdata = http_build_query(
             array(
                 'ptype' => 'share-site',
@@ -257,21 +270,9 @@ class WgbacklinksSitesHandler extends XoopsPersistableObjectHandler
             )
         );
 
-        $val_url = rtrim($client['client_url'], '/');
-        if (substr($val_url, -17) != 'exchange-data.php') {
-            $val_url .= '/modules/wgbacklinks/exchange-data.php';
-        }
+        $wgbacklinks = WgbacklinksHelper::getInstance();
+        $result = $wgbacklinks->execExchangeData($client['client_url'], $postdata);
         
-        $opts = array('http' =>
-            array(
-                'method'  => 'POST',
-                'header'  => 'Content-type: application/x-www-form-urlencoded',
-                'content' => $postdata
-            )
-        );
-        
-        $context  = stream_context_create($opts);
-        $result = file_get_contents($val_url, false, $context);
-        return $result;     
+        return $result;
     }
 }

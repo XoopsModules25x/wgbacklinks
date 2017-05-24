@@ -11,6 +11,9 @@
             <th class="center"><{$smarty.const._AM_WGBACKLINKS_SITE_URL}></th>
             <th class="center"><{$smarty.const._AM_WGBACKLINKS_SITE_UNIQUEID}></th>
             <th class="center"><{$smarty.const._AM_WGBACKLINKS_SITE_ACTIVE}></th>
+            <{if $moduletype == 1}>
+            <th class="center"><{$smarty.const._AM_WGBACKLINKS_SITE_SHARED}></th>
+            <{/if}>
             <th class="center"><{$smarty.const._AM_WGBACKLINKS_SITE_SUBMITTER}></th>
             <th class="center"><{$smarty.const._AM_WGBACKLINKS_SITE_DATE_CREATED}></th>
             <th class="center width5"><{$smarty.const._AM_WGBACKLINKS_FORM_ACTION}></th>
@@ -27,6 +30,9 @@
             <td class="center"><{$site.url}></td>
             <td class="center"><{$site.uniqueid}></td>
             <td class="center"><{$site.active_img}></td>
+            <{if $moduletype == 1}>
+            <td class="center"><{$site.shared_img}></td>
+            <{/if}>
             <td class="center"><{$site.submitter}></td>
             <td class="center"><{$site.date_created}></td>
             <td class="center  width5">
