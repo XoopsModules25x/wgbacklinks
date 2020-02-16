@@ -49,8 +49,8 @@ switch($op) {
                 // Table view sites
                 if($sitesCount > 0) {
                     $shared = array();
-                    foreach(array_keys($sitesAll) as $i) {
-                        $site = $sitesAll[$i]->getValuesSites();
+                    foreach(array_keys($sitesAll) as $j) {
+                        $site = $sitesAll[$j]->getValuesSites();
                         // execute data exchange
                         $result = $sitesHandler->shareSite($site, $client);
                         if ($result == 'updated ' . $client['client_key']) {

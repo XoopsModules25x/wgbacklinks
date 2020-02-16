@@ -27,10 +27,8 @@
                 <td class="center"><{$provider.submitter}></td>
                 <td class="center"><{$provider.date_created}></td>
                 <td class="center  width5">
-                    <a href="providers.php?op=edit&amp;provider_id=<{$provider.id}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 edit.png}>" alt="providers"></img>
-                    </a>
-                    <a href="providers.php?op=delete&amp;provider_id=<{$provider.id}>" title="<{$smarty.const._DELETE}>"><img src="<{xoModuleIcons16 delete.png}>" alt="providers"></img>
-                    </a>
+                    <a href="providers.php?op=edit&amp;provider_id=<{$provider.id}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 edit.png}>" alt="providers"></a>
+                    <a href="providers.php?op=delete&amp;provider_id=<{$provider.id}>" title="<{$smarty.const._DELETE}>"><img src="<{xoModuleIcons16 delete.png}>" alt="providers"></a>
                 </td>
             </tr>
         <{/foreach}>
@@ -63,7 +61,7 @@
 
 <{/if}>
 
-<br></br>
+<br>
 
 <!-- Footer -->
 <{include file='db:wgbacklinks_admin_footer.tpl'}>

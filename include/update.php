@@ -71,7 +71,7 @@ function update_wgbacklinks_v10(&$module)
     }
     $sql = "SHOW INDEX FROM " . $xoopsDB->prefix('tplfile') . " WHERE KEY_NAME = 'tpl_refid_module_set_file_type'";
     if (!$result = $xoopsDB->queryF($sql)) {
-        xoops_error($this->db->error() . '<br />' . $sql);
+        xoops_error($xoopsDB->error() . '<br />' . $sql);
 
         return false;
     }

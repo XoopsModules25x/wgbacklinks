@@ -36,9 +36,9 @@
             <td class="center"><{$site.submitter}></td>
             <td class="center"><{$site.date_created}></td>
             <td class="center  width5">
-                <a href="sites.php?op=edit&amp;site_id=<{$site.id}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 edit.png}>" alt="sites"></img></a>
+                <a href="sites.php?op=edit&amp;site_id=<{$site.id}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 edit.png}>" alt="sites"></a>
                 <{if $site.shared == 1 && $site.active == 0}>
-                <a href="sites.php?op=delete&amp;site_id=<{$site.id}>" title="<{$smarty.const._DELETE}>"><img src="<{xoModuleIcons16 delete.png}>" alt="sites"></img></a>
+                <a href="sites.php?op=delete&amp;site_id=<{$site.id}>" title="<{$smarty.const._DELETE}>"><img src="<{xoModuleIcons16 delete.png}>" alt="sites"></a>
                 <{/if}>
                 
             </td>
@@ -66,7 +66,7 @@
 	<div class="errorMsg"><strong><{$error}></strong></div>
 <{/if}>
 
-<br></br>
+<br>
 
 <!-- Footer -->
 <{include file='db:wgbacklinks_admin_footer.tpl'}>

@@ -70,11 +70,12 @@ class WgbacklinksProviders extends XoopsObject
 		return $newInsertedId;
 	}
 
-	/**
-	 * Get form
-	 *
-	 * @param mixed $action
-	 */
+    /**
+     * Get form
+     *
+     * @param mixed $action
+     * @return XoopsThemeForm
+     */
 	public function getFormProviders($action = false)
 	{
 		if($action === false) {
@@ -101,16 +102,20 @@ class WgbacklinksProviders extends XoopsObject
 		$form->addElement(new XoopsFormSelectUser( _AM_WGBACKLINKS_PROVIDER_SUBMITTER, 'provider_submitter', false, $this->getVar('provider_submitter') ));
 		// Form Text Date Select
 		$providerDate_created = $this->isNew() ? 0 : $this->getVar('provider_date_created');
-		$form->addElement(new XoopsFormTextDateSelect( _AM_WGBACKLINKS_PROVIDER_DATE_CREATED, 'provider_date_created', '', $this->getVar('provider_date_created') ));
+		$form->addElement(new XoopsFormTextDateSelect( _AM_WGBACKLINKS_PROVIDER_DATE_CREATED, 'provider_date_created', '', $providerDate_created ));
 		// To Save
 		$form->addElement(new XoopsFormHidden('op', 'save'));
         $form->addElement(new XoopsFormButtonTray('', _SUBMIT, 'submit', '', false));
 		return $form;
 	}
 
-	/**
-	 * Get Values
-	 */
+    /**
+     * Get Values
+     * @param null $keys
+     * @param null $format
+     * @param null $maxDepth
+     * @return array
+     */
 	public function getValuesProviders($keys = null, $format = null, $maxDepth = null)
 	{
 		$ret                 = $this->getValues($keys, $format, $maxDepth);
@@ -164,12 +169,13 @@ class WgbacklinksProvidersHandler extends XoopsPersistableObjectHandler
 		return parent::create($isNew);
 	}
 
-	/**
-	 * retrieve a field
-	 *
-	 * @param int $i field id
-	 * @return mixed reference to the {@link Get} object
-	 */
+    /**
+     * retrieve a field
+     *
+     * @param int $i field id
+     * @param null $fields
+     * @return mixed reference to the {@link Get} object
+     */
 	public function get($i = null, $fields = null)
 	{
 		return parent::get($i, $fields);
@@ -186,9 +192,14 @@ class WgbacklinksProvidersHandler extends XoopsPersistableObjectHandler
 		return $this->db->getInsertId();
 	}
 
-	/**
-	 * Get Count Providers in the database
-	 */
+    /**
+     * Get Count Providers in the database
+     * @param int $start
+     * @param int $limit
+     * @param string $sort
+     * @param string $order
+     * @return int
+     */
 	public function getCountProviders($start = 0, $limit = 0, $sort = 'provider_id ASC, provider_date_created', $order = 'ASC')
 	{
 		$criteriaCountProviders = new CriteriaCompo();
@@ -196,19 +207,30 @@ class WgbacklinksProvidersHandler extends XoopsPersistableObjectHandler
 		return parent::getCount($criteriaCountProviders);
 	}
 
-	/**
-	 * Get All Providers in the database
-	 */
+    /**
+     * Get All Providers in the database
+     * @param int $start
+     * @param int $limit
+     * @param string $sort
+     * @param string $order
+     * @return array
+     */
 	public function getAllProviders($start = 0, $limit = 0, $sort = 'provider_id ASC, provider_date_created', $order = 'ASC')
 	{
 		$criteriaAllProviders = new CriteriaCompo();
-		$criteriaAllProviders = $this->getProvidersCriteria($criteriaAllProviders, $start, $limit, $sort = 'provider_id ASC, provider_date_created', $order = 'ASC');
+		$criteriaAllProviders = $this->getProvidersCriteria($criteriaAllProviders, $start, $limit, $sort, $order);
 		return parent::getAll($criteriaAllProviders);
 	}
 
-	/**
-	 * Get Criteria Providers
-	 */
+    /**
+     * Get Criteria Providers
+     * @param $criteriaProviders
+     * @param $start
+     * @param $limit
+     * @param $sort
+     * @param $order
+     * @return
+     */
 	private function getProvidersCriteria($criteriaProviders, $start, $limit, $sort, $order)
 	{
 		$criteriaProviders->setStart( $start );
@@ -219,11 +241,12 @@ class WgbacklinksProvidersHandler extends XoopsPersistableObjectHandler
 	}
 
     /**
-	 * check whether the client is registered at the provider website, and add, if not exist
-	 *
-	 * @param array $provider, array $client
-	 * @return result of execExchangeData
-	 */
+     * check whether the client is registered at the provider website, and add, if not exist
+     *
+     * @param array $provider , array $client
+     * @param $client
+     * @return result|string
+     */
     public function addClientToProvider($provider, $client) {
 
         global $xoopsUser;
@@ -246,14 +269,15 @@ class WgbacklinksProvidersHandler extends XoopsPersistableObjectHandler
         $result = $wgbacklinks->execExchangeData($provider['provider_url'], $postdata); 
         
         return $result;
-    } 
-    
+    }
+
     /**
-	 * delete the provider from table 'provider' in client website
-	 *
-	 * @param array $provider, array $client
-	 * @return result of execExchangeData
-	 */
+     * delete the provider from table 'provider' in client website
+     *
+     * @param array $provider , array $client
+     * @param $client
+     * @return result|string
+     */
     public function deleteClientFromProvider($provider, $client) {
 
         $postdata = http_build_query(
@@ -277,7 +301,7 @@ class WgbacklinksProvidersHandler extends XoopsPersistableObjectHandler
 	 * validate whether the given website and key are valid for provider website
 	 *
 	 * @param array $provider
-	 * @return result of execExchangeData
+	 * @return result|string
 	 */
     public function checkProviderKey($provider) {
 

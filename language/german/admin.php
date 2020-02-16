@@ -105,5 +105,5 @@ define('_AM_WGBACKLINKS_FORM_ACTION', "Aktion");
 define('_AM_WGBACKLINKS_FORM_EDIT', "Bearbeiten");
 define('_AM_WGBACKLINKS_FORM_DELETE', "Löschen");
 // ---------------- Admin Others ----------------
-define('_AM_WGBACKLINKS_MAINTAINEDBY', " wird unterstützt durch <a href='http://wedega.com'>http://wedega.com</a> und <a href='http://xoops.wedega.com'>http://xoops.wedega.com</a>");
+define('_AM_WGBACKLINKS_MAINTAINEDBY', " wird unterstützt durch <a href='http://wedega.com'>http://wedega.com</a> und <a href='https://xoops.wedega.com'>https://xoops.wedega.com</a>");
 // ---------------- End ----------------

@@ -69,11 +69,12 @@ class WgbacklinksClients extends XoopsObject
 		return $newInsertedId;
 	}
 
-	/**
-	 * Get form
-	 *
-	 * @param mixed $action
-	 */
+    /**
+     * Get form
+     *
+     * @param mixed $action
+     * @return XoopsThemeForm
+     */
 	public function getFormClients($action = false)
 	{
 		global $xoopsUser;
@@ -103,9 +104,13 @@ class WgbacklinksClients extends XoopsObject
 		return $form;
 	}
 
-	/**
-	 * Get Values
-	 */
+    /**
+     * Get Values
+     * @param null $keys
+     * @param null $format
+     * @param null $maxDepth
+     * @return array
+     */
 	public function getValuesClients($keys = null, $format = null, $maxDepth = null)
 	{
 		$ret                 = $this->getValues($keys, $format, $maxDepth);
@@ -159,12 +164,13 @@ class WgbacklinksClientsHandler extends XoopsPersistableObjectHandler
 		return parent::create($isNew);
 	}
 
-	/**
-	 * retrieve a field
-	 *
-	 * @param int $i field id
-	 * @return mixed reference to the {@link Get} object
-	 */
+    /**
+     * retrieve a field
+     *
+     * @param int $i field id
+     * @param null $fields
+     * @return mixed reference to the {@link Get} object
+     */
 	public function get($i = null, $fields = null)
 	{
 		return parent::get($i, $fields);
@@ -181,9 +187,14 @@ class WgbacklinksClientsHandler extends XoopsPersistableObjectHandler
 		return $this->db->getInsertId();
 	}
 
-	/**
-	 * Get Count Clients in the database
-	 */
+    /**
+     * Get Count Clients in the database
+     * @param int $start
+     * @param int $limit
+     * @param string $sort
+     * @param string $order
+     * @return int
+     */
 	public function getCountClients($start = 0, $limit = 0, $sort = 'client_id ASC, client_key', $order = 'ASC')
 	{
 		$criteriaCountClients = new CriteriaCompo();
@@ -191,19 +202,30 @@ class WgbacklinksClientsHandler extends XoopsPersistableObjectHandler
 		return parent::getCount($criteriaCountClients);
 	}
 
-	/**
-	 * Get All Clients in the database
-	 */
+    /**
+     * Get All Clients in the database
+     * @param int $start
+     * @param int $limit
+     * @param string $sort
+     * @param string $order
+     * @return array
+     */
 	public function getAllClients($start = 0, $limit = 0, $sort = 'client_id ASC, client_key', $order = 'ASC')
 	{
 		$criteriaAllClients = new CriteriaCompo();
-		$criteriaAllClients = $this->getClientsCriteria($criteriaAllClients, $start, $limit, $sort = 'client_id ASC, client_key', $order = 'ASC');
+		$criteriaAllClients = $this->getClientsCriteria($criteriaAllClients, $start, $limit, $sort, $order);
 		return parent::getAll($criteriaAllClients);
 	}
 
-	/**
-	 * Get Criteria Clients
-	 */
+    /**
+     * Get Criteria Clients
+     * @param $criteriaClients
+     * @param $start
+     * @param $limit
+     * @param $sort
+     * @param $order
+     * @return
+     */
 	private function getClientsCriteria($criteriaClients, $start, $limit, $sort, $order)
 	{
 		$criteriaClients->setStart( $start );
@@ -212,13 +234,14 @@ class WgbacklinksClientsHandler extends XoopsPersistableObjectHandler
 		$criteriaClients->setOrder( $order );
 		return $criteriaClients;
 	}
-    
+
     /**
-	 * add the provider to tables in client website
-	 *
-	 * @param array $provider, array $client
-	 * @return result of execExchangeData
-	 */
+     * add the provider to tables in client website
+     *
+     * @param array $provider , array $client
+     * @param $client
+     * @return result|string
+     */
     public function addProviderToClient($provider, $client) {
 
         global $xoopsUser;
@@ -241,17 +264,16 @@ class WgbacklinksClientsHandler extends XoopsPersistableObjectHandler
         return $result;
         
     }
-    
+
     /**
-	 * delete the provider from tables in client website
-	 *
-	 * @param array $provider, array $client
-	 * @return result of execExchangeData
-	 */
+     * delete the provider from tables in client website
+     *
+     * @param array $provider , array $client
+     * @param $client
+     * @return result|string
+     */
     public function deleteProviderFromClient($provider, $client) {
         
-        global $xoopsUser;
-           
         $postdata = http_build_query(
             array(
                 'ptype'        => 'delete-provider',
@@ -272,12 +294,10 @@ class WgbacklinksClientsHandler extends XoopsPersistableObjectHandler
 	 * check whether the client key is valid on client website
 	 *
 	 * @param array $client
-	 * @return result of execExchangeData
+	 * @return result|string
 	 */
     public function checkClientKey($client) {
-        
-        global $xoopsUser;
-           
+
         $postdata = http_build_query(
             array(
                 'ptype'      => 'check-client-key',

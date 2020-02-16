@@ -74,11 +74,12 @@ class WgbacklinksSites extends XoopsObject
 		return $newInsertedId;
 	}
 
-	/**
-	 * Get form
-	 *
-	 * @param mixed $action
-	 */
+    /**
+     * Get form
+     *
+     * @param mixed $action
+     * @return XoopsThemeForm
+     */
 	public function getFormSites($action = false)
 	{
         global $xoopsUser;
@@ -110,16 +111,20 @@ class WgbacklinksSites extends XoopsObject
 		$form->addElement(new XoopsFormText( _AM_WGBACKLINKS_SITE_SUBMITTER, 'site_submitter', 50, 255, $site_submitter));
 		// Form Text Date Select
 		$siteDate_created = $this->isNew() ? 0 : $this->getVar('site_date_created');
-		$form->addElement(new XoopsFormTextDateSelect( _AM_WGBACKLINKS_SITE_DATE_CREATED, 'site_date_created', '', $this->getVar('site_date_created') ));
+		$form->addElement(new XoopsFormTextDateSelect( _AM_WGBACKLINKS_SITE_DATE_CREATED, 'site_date_created', '', $siteDate_created ));
 		// To Save
 		$form->addElement(new XoopsFormHidden('op', 'save'));
         $form->addElement(new XoopsFormButtonTray('', _SUBMIT, 'submit', '', false));
 		return $form;
 	}
 
-	/**
-	 * Get Values
-	 */
+    /**
+     * Get Values
+     * @param null $keys
+     * @param null $format
+     * @param null $maxDepth
+     * @return array
+     */
 	public function getValuesSites($keys = null, $format = null, $maxDepth = null)
 	{
 		$ret                 = $this->getValues($keys, $format, $maxDepth);
@@ -191,12 +196,13 @@ class WgbacklinksSitesHandler extends XoopsPersistableObjectHandler
 		return parent::create($isNew);
 	}
 
-	/**
-	 * retrieve a field
-	 *
-	 * @param int $i field id
-	 * @return mixed reference to the {@link Get} object
-	 */
+    /**
+     * retrieve a field
+     *
+     * @param int $i field id
+     * @param null $fields
+     * @return mixed reference to the {@link Get} object
+     */
 	public function get($i = null, $fields = null)
 	{
 		return parent::get($i, $fields);
@@ -213,9 +219,14 @@ class WgbacklinksSitesHandler extends XoopsPersistableObjectHandler
 		return $this->db->getInsertId();
 	}
 
-	/**
-	 * Get Count Sites in the database
-	 */
+    /**
+     * Get Count Sites in the database
+     * @param int $start
+     * @param int $limit
+     * @param string $sort
+     * @param string $order
+     * @return int
+     */
 	public function getCountSites($start = 0, $limit = 0, $sort = 'site_id ASC, site_name', $order = 'ASC')
 	{
 		$criteriaCountSites = new CriteriaCompo();
@@ -223,20 +234,31 @@ class WgbacklinksSitesHandler extends XoopsPersistableObjectHandler
 		return parent::getCount($criteriaCountSites);
 	}
 
-	/**
-	 * Get All Sites in the database
-	 */
+    /**
+     * Get All Sites in the database
+     * @param int $start
+     * @param int $limit
+     * @param string $sort
+     * @param string $order
+     * @return array
+     */
 	public function getAllSites($start = 0, $limit = 0, $sort = 'site_id ASC, site_name', $order = 'ASC')
 	{
 		$criteriaAllSites = new CriteriaCompo();
-		$criteriaAllSites = $this->getSitesCriteria($criteriaAllSites, $start, $limit, $sort = 'site_id ASC, site_name', $order = 'ASC');
+		$criteriaAllSites = $this->getSitesCriteria($criteriaAllSites, $start, $limit, $sort, $order);
 		return parent::getAll($criteriaAllSites);
 	}
 
 
-	/**
-	 * Get Criteria Sites
-	 */
+    /**
+     * Get Criteria Sites
+     * @param $criteriaSites
+     * @param $start
+     * @param $limit
+     * @param $sort
+     * @param $order
+     * @return
+     */
 	private function getSitesCriteria($criteriaSites, $start, $limit, $sort, $order)
 	{
 		$criteriaSites->setStart( $start );
@@ -245,13 +267,14 @@ class WgbacklinksSitesHandler extends XoopsPersistableObjectHandler
 		$criteriaSites->setOrder( $order );
 		return $criteriaSites;
 	}
-    
+
     /**
-	 * submit site data to all client websites
-	 *
-	 * @param array $site, array $client
-	 * @return result of http post
-	 */
+     * submit site data to all client websites
+     *
+     * @param array $site , array $client
+     * @param $client
+     * @return result|string
+     */
     public function shareSite($site, $client) {
 
         global $xoopsUser;

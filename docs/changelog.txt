@@ -2,3 +2,5 @@
 Change Log for wgBacklinks - 2016/05/05 8:16:11 Version 1.00
 ==============================================================
  - Original release wgbacklinks (Goffy - Wedega.com)
+ - code cleaning (goffy)
+ 

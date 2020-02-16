@@ -21,7 +21,10 @@
  * @version        $Id: 1.0 functions.php 1 Thu 2016-05-05 08:16:10Z Wedega - Webdesign Gabor $
  */
 
-/***************Blocks***************/
+/***************Blocks**************
+ * @param $cats
+ * @return string
+ */
 function wgbacklinks_block_addCatSelect($cats) {
     if(is_array($cats))
     {
@@ -65,13 +68,15 @@ function wgbacklinksMetaDescription($content)
  *
  * @String  $module  module name
  * @String  $array   array
- * @return  $type    string replacement for any blank case
+ * @param $module
+ * @param $array
+ * @param string $type
+ * @return string $type    string replacement for any blank case
  */
 function wgbacklinks_RewriteUrl($module, $array, $type = 'content')
 {
     $comment = '';
     $wgbacklinks = WgbacklinksHelper::getInstance();
-    $clients = $wgbacklinks->getHandler('clients');
     $lenght_id = $wgbacklinks->getConfig('lenght_id');
     $rewrite_url = $wgbacklinks->getConfig('rewrite_url');
 
@@ -143,19 +148,22 @@ function wgbacklinks_RewriteUrl($module, $array, $type = 'content')
             return XOOPS_URL . $rewrite_base . $module_name . $type . $topic_name . $page . $rewrite_ext;
             break;
     }
+    return '';
 }
+
 /**
  * Replace all escape, character, ... for display a correct url
  *
  * @String  $url    string to transform
  * @String  $type   string replacement for any blank case
- * @return  $url
+ * @param $url
+ * @param string $type
+ * @return string|string[]|null $url
  */
-function wgbacklinks_Filter($url, $type = '', $module = 'wgbacklinks') {
+function wgbacklinks_Filter($url, $type = '') {
 
     // Get regular expression from module setting. default setting is : `[^a-z0-9]`i
     $wgbacklinks = WgbacklinksHelper::getInstance();
-    $clients = $wgbacklinks->getHandler('clients');
     $regular_expression = $wgbacklinks->getConfig('regular_expression');
 
     $url = strip_tags($url);
