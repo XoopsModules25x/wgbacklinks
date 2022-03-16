@@ -1,6 +1,7 @@
-==============================================================
-Change Log for wgBacklinks - 2016/05/05 8:16:11 Version 1.00
-==============================================================
+<h5>1.0.3 Alpha   [NOT RELEASED]</h5>  Dev: XOOPS 2.5.11, PHP 7.4.25, PHP 8.0.1
+ - added default values for smarty (goffy)
+
+<h5>1.0.0 [2016/05/05]</h5> Dev: XOOPS 2.5.11, PHP 7.4.25, PHP 8.0.1
  - Original release wgbacklinks (Goffy - Wedega.com)
  - code cleaning (goffy)
  
