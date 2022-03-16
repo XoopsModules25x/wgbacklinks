@@ -37,7 +37,7 @@ $modversion['license_url']          = 'www.gnu.org/licenses/gpl-2.0.html/';
 $modversion['help']                 = 'page=help';
 $modversion['release_info']         = 'release_info';
 $modversion['release_file']         = XOOPS_URL . '/modules/wgbacklinks/docs/release_info file';
-$modversion['release_date']         = '05.05.2016';
+$modversion['release_date']         = '2016/05/05';
 $modversion['manual']               = 'link to manual file';
 $modversion['manual_file']          = XOOPS_URL . '/modules/wgbacklinks/docs/install.txt';
 $modversion['min_php']              = '5.3';
