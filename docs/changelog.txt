@@ -1,7 +1,18 @@
-<h5>1.0.3 Alpha   [NOT RELEASED]</h5>  Dev: XOOPS 2.5.11, PHP 7.4.25, PHP 8.0.1
+==============================================================
+1.1.0 [2022/10/02] Dev: XOOPS 2.5.11, PHP 7.4.25, PHP 8.0.1
+==============================================================
+- added namespaces (goffy)
+- implemented Xmf\Request (goffy)
+- replaced index.html by index.php (goffy)
+
+==============================================================
+1.0.3 Alpha   [NOT RELEASED] Dev: XOOPS 2.5.11, PHP 7.4.25, PHP 8.0.1
+==============================================================
  - added default values for smarty (goffy)
 
-<h5>1.0.0 [2016/05/05]</h5> Dev: XOOPS 2.5.11, PHP 7.4.25, PHP 8.0.1
+==============================================================
+1.0.0 [2016/05/05] Dev: XOOPS 2.5.11, PHP 7.4.25, PHP 8.0.1
+==============================================================
  - Original release wgbacklinks (Goffy - Wedega.com)
  - code cleaning (goffy)
  

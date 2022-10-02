@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
@@ -15,35 +17,35 @@
  * @copyright      module for xoops
  * @license        GPL 2.0 or later
  * @package        wgbacklinks
- * @since          1.0
- * @min_xoops      2.5.7
  * @author         Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<http://wedega.com>
- * @version        $Id: 1.0 header.php 1 Thu 2016-05-05 08:16:10Z Wedega - Webdesign Gabor $
  */
-include dirname(dirname(__DIR__)) . '/mainfile.php';
+
+use XoopsModules\Wgbacklinks\Helper;
+
+include dirname(__DIR__, 2) . '/mainfile.php';
 include __DIR__ . '/include/common.php';
-$dirname  = basename(__DIR__);
+$dirname  = \basename(__DIR__);
 // Breadcrumbs
 $xoBreadcrumbs = array();
-$xoBreadcrumbs[] = array('title' => $GLOBALS['xoopsModule']->getVar('name'), 'link' => WGBACKLINKS_URL . '/');
+$xoBreadcrumbs[] = array('title' => $GLOBALS['xoopsModule']->getVar('name'), 'link' => \WGBACKLINKS_URL . '/');
 // Get instance of module
-$wgbacklinks = WgbacklinksHelper::getInstance();
-$providersHandler = $wgbacklinks->getHandler('providers');
-$sitesHandler     = $wgbacklinks->getHandler('sites');
-$clientsHandler   = $wgbacklinks->getHandler('clients');
+$helper = Helper::getInstance();
+$providersHandler = $helper->getHandler('Providers');
+$sitesHandler     = $helper->getHandler('Sites');
+$clientsHandler   = $helper->getHandler('Clients');
 // Permission
-include_once XOOPS_ROOT_PATH . '/class/xoopsform/grouppermform.php';
+include_once \XOOPS_ROOT_PATH . '/class/xoopsform/grouppermform.php';
 $gpermHandler = xoops_gethandler('groupperm');
-if(is_object($xoopsUser)) {
+if(\is_object($xoopsUser)) {
 	$groups  = $xoopsUser->getGroups();
 } else {
-	$groups  = XOOPS_GROUP_ANONYMOUS;
+	$groups  = \XOOPS_GROUP_ANONYMOUS;
 }
 // 
 $myts = MyTextSanitizer::getInstance();
 // Default Css Style
-$style = WGBACKLINKS_URL . '/assets/css/style.css';
-if(!file_exists($style)) {
+$style = \WGBACKLINKS_URL . '/assets/css/style.css';
+if(!\file_exists($style)) {
 	return false;
 }
 // Smarty Default
@@ -53,5 +55,5 @@ $pathModuleAdmin = $GLOBALS['xoopsModule']->getInfo('dirmoduleadmin');
 $modPathIcon16 = $GLOBALS['xoopsModule']->getInfo('modicons16');
 $modPathIcon32 = $GLOBALS['xoopsModule']->getInfo('modicons16');
 // Load Languages
-xoops_loadLanguage('main');
-xoops_loadLanguage('modinfo');
+\xoops_loadLanguage('main');
+\xoops_loadLanguage('modinfo');

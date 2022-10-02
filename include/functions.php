@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
@@ -15,21 +17,20 @@
  * @copyright      module for xoops
  * @license        GPL 2.0 or later
  * @package        wgbacklinks
- * @since          1.0
- * @min_xoops      2.5.7
  * @author         Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<http://wedega.com>
- * @version        $Id: 1.0 functions.php 1 Thu 2016-05-05 08:16:10Z Wedega - Webdesign Gabor $
  */
+
+use XoopsModules\Wgbacklinks\Helper;
 
 /***************Blocks**************
  * @param $cats
  * @return string
  */
 function wgbacklinks_block_addCatSelect($cats) {
-    if(is_array($cats))
+    if(\is_array($cats))
     {
         $cat_sql = '('.current($cats);
-        array_shift($cats);
+        \array_shift($cats);
         foreach($cats as $cat)
         {
             $cat_sql .= ','.$cat;
@@ -44,10 +45,10 @@ function wgbacklinksMetaKeywords($content)
     global $xoopsTpl, $xoTheme;
     $myts = MyTextSanitizer::getInstance();
     $content= $myts->undoHtmlSpecialChars($myts->displayTarea($content));
-    if(isset($xoTheme) && is_object($xoTheme)) {
-        $xoTheme->addMeta( 'meta', 'keywords', strip_tags($content));
+    if(isset($xoTheme) && \is_object($xoTheme)) {
+        $xoTheme->addMeta( 'meta', 'keywords', \strip_tags($content));
     } else {    // Compatibility for old Xoops versions
-        $xoopsTpl->assign('xoops_meta_keywords', strip_tags($content));
+        $xoopsTpl->assign('xoops_meta_keywords', \strip_tags($content));
     }
 }
 
@@ -56,10 +57,10 @@ function wgbacklinksMetaDescription($content)
     global $xoopsTpl, $xoTheme;
     $myts = MyTextSanitizer::getInstance();
     $content = $myts->undoHtmlSpecialChars($myts->displayTarea($content));
-    if(isset($xoTheme) && is_object($xoTheme)) {
-        $xoTheme->addMeta( 'meta', 'description', strip_tags($content));
+    if(isset($xoTheme) && \is_object($xoTheme)) {
+        $xoTheme->addMeta( 'meta', 'description', \strip_tags($content));
     } else {    // Compatibility for old Xoops versions
-        $xoopsTpl->assign('xoops_meta_description', strip_tags($content));
+        $xoopsTpl->assign('xoops_meta_description', \strip_tags($content));
     }
 }
 
@@ -76,13 +77,13 @@ function wgbacklinksMetaDescription($content)
 function wgbacklinks_RewriteUrl($module, $array, $type = 'content')
 {
     $comment = '';
-    $wgbacklinks = WgbacklinksHelper::getInstance();
-    $lenght_id = $wgbacklinks->getConfig('lenght_id');
-    $rewrite_url = $wgbacklinks->getConfig('rewrite_url');
+    $helper = Helper::getInstance();
+    $lenght_id = $helper->getConfig('lenght_id');
+    $rewrite_url = $helper->getConfig('rewrite_url');
 
     if ($lenght_id != 0) {
         $id = $array['content_id'];
-        while (strlen($id) < $lenght_id)
+        while (\strlen($id) < $lenght_id)
             $id = "0" . $id;
     } else {
         $id = $array['content_id'];
@@ -102,8 +103,7 @@ function wgbacklinks_RewriteUrl($module, $array, $type = 'content')
             }
             $rewrite_base = '/modules/';
             $page = 'page=' . $array['content_alias'];
-            return XOOPS_URL . $rewrite_base . $module . '/' . $type . '.php?' . $topic_name . 'id=' . $id . '&amp;' . $page . $comment;
-            break;
+            return \XOOPS_URL . $rewrite_base . $module . '/' . $type . '.php?' . $topic_name . 'id=' . $id . '&amp;' . $page . $comment;
 
         case 'rewrite':
             if($topic_name) {
@@ -121,13 +121,12 @@ function wgbacklinks_RewriteUrl($module, $array, $type = 'content')
             if ($type == 'content/') $type = '';
 
             if ($type == 'comment-edit/' || $type == 'comment-reply/' || $type == 'comment-delete/') {
-                return XOOPS_URL . $rewrite_base . $module_name . $type . $id . '/';
+                return \XOOPS_URL . $rewrite_base . $module_name . $type . $id . '/';
             }
 
-            return XOOPS_URL . $rewrite_base . $module_name . $type . $topic_name  . $id . $page . $rewrite_ext;
-            break;
+            return \XOOPS_URL . $rewrite_base . $module_name . $type . $topic_name  . $id . $page . $rewrite_ext;
 
-         case 'short':
+        case 'short':
             if($topic_name) {
                 $topic_name = $topic_name . '/';
             }
@@ -142,11 +141,10 @@ function wgbacklinks_RewriteUrl($module, $array, $type = 'content')
             if ($type == 'content/') $type = '';
 
             if ($type == 'comment-edit/' || $type == 'comment-reply/' || $type == 'comment-delete/') {
-                return XOOPS_URL . $rewrite_base . $module_name . $type . $id . '/';
+                return \XOOPS_URL . $rewrite_base . $module_name . $type . $id . '/';
             }
 
-            return XOOPS_URL . $rewrite_base . $module_name . $type . $topic_name . $page . $rewrite_ext;
-            break;
+            return \XOOPS_URL . $rewrite_base . $module_name . $type . $topic_name . $page . $rewrite_ext;
     }
     return '';
 }
@@ -158,20 +156,19 @@ function wgbacklinks_RewriteUrl($module, $array, $type = 'content')
  * @String  $type   string replacement for any blank case
  * @param $url
  * @param string $type
- * @return string|string[]|null $url
+ * @return string $url
  */
 function wgbacklinks_Filter($url, $type = '') {
 
     // Get regular expression from module setting. default setting is : `[^a-z0-9]`i
-    $wgbacklinks = WgbacklinksHelper::getInstance();
-    $regular_expression = $wgbacklinks->getConfig('regular_expression');
+    $helper = Helper::getInstance();
+    $regular_expression = $helper->getConfig('regular_expression');
 
-    $url = strip_tags($url);
-    $url = preg_replace("`\[.*\]`U", "", $url);
-    $url = preg_replace('`&(amp;)?#?[a-z0-9]+;`i', '-', $url);
+    $url = \strip_tags($url);
+    $url = \preg_replace("`\[.*\]`U", "", $url);
+    $url = \preg_replace('`&(amp;)?#?[a-z0-9]+;`i', '-', $url);
     $url = htmlentities($url, ENT_COMPAT, 'utf-8');
-    $url = preg_replace("`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i", "\1", $url);
-    $url = preg_replace(array($regular_expression, "`[-]+`"), "-", $url);
-    $url = ($url == "") ? $type : strtolower(trim($url, '-'));
-    return $url;
+    $url = \preg_replace("`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i", "\1", $url);
+    $url = \preg_replace(array($regular_expression, "`[-]+`"), "-", $url);
+    return ($url == "") ? $type : strtolower(\trim($url, '-'));
 }

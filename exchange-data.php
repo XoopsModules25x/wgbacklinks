@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
@@ -15,20 +17,19 @@
  * @copyright      module for xoops
  * @license        GPL 2.0 or later
  * @package        wgbacklinks
- * @since          1.0
- * @min_xoops      2.5.7
  * @author         Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<http://wedega.com>
- * @version        $Id: 1.0 exchange-data.php 1 Thu 2016-05-05 08:16:07Z Wedega - Webdesign Gabor $
  */
+
+use Xmf\Request;
 include __DIR__ . '/header.php';
 
-$ptype = XoopsRequest::getString('ptype', '');
+$ptype = Request::getString('ptype');
 
 // check provider key against providers website
 // called by: admin/provider.php (class/provider.php) from client website
 if ($ptype == 'check-provider-key') {
-    $provider_key = XoopsRequest::getString('provider_key', '');
-    if ($provider_key == $wgbacklinks->getConfig('wgbacklinks_modkey')) {
+    $provider_key = Request::getString('provider_key');
+    if ($provider_key == $helper->getConfig('wgbacklinks_modkey')) {
         echo 'valid-provider-key';
     } else {
         echo 'invalid-provider-key';
@@ -38,8 +39,8 @@ if ($ptype == 'check-provider-key') {
 // check client key against clients website
 // called by: admin/client.php (class/client.php) from provider website
  if ($ptype == 'check-client-key') {
-    $client_key = XoopsRequest::getString('client_key', '');
-    if ($client_key == $wgbacklinks->getConfig('wgbacklinks_modkey')) {
+    $client_key = Request::getString('client_key');
+    if ($client_key == $helper->getConfig('wgbacklinks_modkey')) {
         echo 'valid-client-key';
     } else {
         echo 'invalid-client-key';
@@ -49,60 +50,60 @@ if ($ptype == 'check-provider-key') {
 // check provider registration at the client and add new, if not existing
 // called by: clients.php from provider website
 if ($ptype == 'add-provider') {
-    $client_key   = XoopsRequest::getString('client_key', '');
-    $client_url   = XoopsRequest::getString('client_url', '');
-    $provider_key = XoopsRequest::getString('provider_key', '');
+    $client_key   = Request::getString('client_key');
+    $client_url   = Request::getString('client_url');
+    $provider_key = Request::getString('provider_key');
     
-    if ($client_key == $wgbacklinks->getConfig('wgbacklinks_modkey')) {
-        $crit_provider = new CriteriaCompo();
-        $crit_provider->add(new Criteria('provider_key', $provider_key));
+    if ($client_key == $helper->getConfig('wgbacklinks_modkey')) {
+        $crit_provider = new \CriteriaCompo();
+        $crit_provider->add(new \Criteria('provider_key', $provider_key));
         $providersCount = $providersHandler->getCount($crit_provider);
         if ($providersCount == 0) {
             // add this provider to table provider
-            $provider_name      = XoopsRequest::getString('provider_name', '');
-            $provider_url       = XoopsRequest::getString('provider_url', '');
-            $provider_submitter = XoopsRequest::getString('provider_submitter', '');
+            $provider_name      = Request::getString('provider_name');
+            $provider_url       = Request::getString('provider_url');
+            $provider_submitter = Request::getString('provider_submitter');
     
             $providersObj = $providersHandler->create();
             $providersObj->setVar('provider_name', $provider_name);
             $providersObj->setVar('provider_url', $provider_url);
             $providersObj->setVar('provider_key', $provider_key);
             $providersObj->setVar('provider_submitter', $provider_submitter);
-            $providersObj->setVar('provider_date_created', time());
+            $providersObj->setVar('provider_date_created', \time());
             // Insert Data
             if($providersHandler->insert($providersObj)) {
                 echo 'success-' . $ptype;
             } else {
-                $result_text = str_replace('%p', $provider_name, _MA_WGBACKLINKS_EXCHANGE_ERR_ADD_PROVIDER);
-                $result_text = str_replace('%c', $client_url, $result_text);
-                $result_text = str_replace('%e', $providersObj->getHtmlErrors(), $result_text);
+                $result_text = \str_replace('%p', $provider_name, \_MA_WGBACKLINKS_EXCHANGE_ERR_ADD_PROVIDER);
+                $result_text = \str_replace('%c', $client_url, $result_text);
+                $result_text = \str_replace('%e', $providersObj->getHtmlErrors(), $result_text);
             }
         } else {
             echo $ptype . ':provider-exists';
         }
     } else {
-        echo _MA_WGBACKLINKS_EXCHANGE_ERR_INVALID_CKEY;
+        echo \_MA_WGBACKLINKS_EXCHANGE_ERR_INVALID_CKEY;
     }
 }
 
 // check provider registration at the client website and delete, if existing
 // called by: admin/clients.php (class/clients.php) from provider website
 if ($ptype == 'delete-provider') {
-    $client_key    = XoopsRequest::getString('client_key', '');
-    $client_url    = XoopsRequest::getString('client_url', '');
-    $provider_key  = XoopsRequest::getString('provider_key', '');
-    $provider_name = XoopsRequest::getString('provider_name', '');
+    $client_key    = Request::getString('client_key');
+    $client_url    = Request::getString('client_url');
+    $provider_key  = Request::getString('provider_key');
+    $provider_name = Request::getString('provider_name');
     
-    if ($client_key == $wgbacklinks->getConfig('wgbacklinks_modkey')) {
-        $crit_provider = new CriteriaCompo();
-        $crit_provider->add(new Criteria('provider_key', $provider_key));
+    if ($client_key == $helper->getConfig('wgbacklinks_modkey')) {
+        $crit_provider = new \CriteriaCompo();
+        $crit_provider->add(new \Criteria('provider_key', $provider_key));
         $providersCount = $providersHandler->getCount($crit_provider);
 
         if ($providersCount > 0) {
             // delete this provider from table providers
             $providerId = 0;
             $providersAll = $providersHandler->getall($crit_provider);
-            foreach(array_keys($providersAll) as $i) {
+            foreach(\array_keys($providersAll) as $i) {
                 $providerId = $providersAll[$i]->getVar('provider_id');
             }
 
@@ -111,9 +112,9 @@ if ($ptype == 'delete-provider') {
                 if($providersHandler->delete($providersObj)) {
                     echo 'success-' . $ptype;
                 } else {
-                    $result_text = str_replace('%p', $provider_name, _MA_WGBACKLINKS_EXCHANGE_ERR_DEL_PROVIDER);
-                    $result_text = str_replace('%c', $client_url, $result_text);
-                    $result_text = str_replace('%e', $providersObj->getHtmlErrors(), $result_text);
+                    $result_text = \str_replace('%p', $provider_name, \_MA_WGBACKLINKS_EXCHANGE_ERR_DEL_PROVIDER);
+                    $result_text = \str_replace('%c', $client_url, $result_text);
+                    $result_text = \str_replace('%e', $providersObj->getHtmlErrors(), $result_text);
                     echo $result_text;
                 }
             } else {
@@ -123,7 +124,7 @@ if ($ptype == 'delete-provider') {
             echo $ptype . ':provider-not-exists';
         }
     } else {
-        echo _MA_WGBACKLINKS_EXCHANGE_ERR_INVALID_CKEY;
+        echo \_MA_WGBACKLINKS_EXCHANGE_ERR_INVALID_CKEY;
     }
 }
 
@@ -131,19 +132,19 @@ if ($ptype == 'delete-provider') {
 // called by: admin/provider.php (class/provider.php) from client website
 if ($ptype == 'add-client') {
     
-    $provider_url    = XoopsRequest::getString('provider_url', '');
-    $provider_key    = XoopsRequest::getString('provider_key', '');
-    $client_url      = XoopsRequest::getString('client_url', '');
-    $client_key      = XoopsRequest::getString('client_key', '');
-    $client_addsite  = XoopsRequest::getString('client_addsite', '');
-    $client_sitename = XoopsRequest::getString('client_sitename', '');
-    $client_slogan   = XoopsRequest::getString('client_slogan', '');
-    $pcsubmitter     = XoopsRequest::getString('pcsubmitter', '');
+    $provider_url    = Request::getString('provider_url');
+    $provider_key    = Request::getString('provider_key');
+    $client_url      = Request::getString('client_url');
+    $client_key      = Request::getString('client_key');
+    $client_addsite  = Request::getString('client_addsite');
+    $client_sitename = Request::getString('client_sitename');
+    $client_slogan   = Request::getString('client_slogan');
+    $pcsubmitter     = Request::getString('pcsubmitter');
 
     
-    if ($provider_key == $wgbacklinks->getConfig('wgbacklinks_modkey')) {
-        $crit_client = new CriteriaCompo();
-        $crit_client->add(new Criteria('client_key', $client_key));
+    if ($provider_key == $helper->getConfig('wgbacklinks_modkey')) {
+        $crit_client = new \CriteriaCompo();
+        $crit_client->add(new \Criteria('client_key', $client_key));
         $clientsCount = $clientsHandler->getCount($crit_client);
         if ($clientsCount == 0) {
             // add this client to table client
@@ -153,7 +154,7 @@ if ($ptype == 'add-client') {
             $clientsObj->setVar('client_url', $client_url);
             $clientsObj->setVar('client_key', $client_key);
             $clientsObj->setVar('client_submitter', $pcsubmitter);
-            $clientsObj->setVar('client_date_created', time());
+            $clientsObj->setVar('client_date_created', \time());
             // Insert Data
             if($clientsHandler->insert($clientsObj)) {
                 
@@ -163,33 +164,33 @@ if ($ptype == 'add-client') {
                     $sitesObj->setVar('site_name', $client_sitename);
                     $sitesObj->setVar('site_descr', $client_slogan);
                     $sitesObj->setVar('site_url', $client_url);
-                    $sitesObj->setVar('site_uniqueid', md5(substr(str_shuffle("!$%&/=?_-;:,.0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 50)));
+                    $sitesObj->setVar('site_uniqueid', md5(\substr(str_shuffle("!$%&/=?_-;:,.0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 50)));
                     $sitesObj->setVar('site_active', '1');
                     $sitesObj->setVar('site_shared', '0');
                     $sitesObj->setVar('site_submitter', $pcsubmitter);
-                    $sitesObj->setVar('site_date_created', time());
+                    $sitesObj->setVar('site_date_created', \time());
                     
                     // Insert Data
                     if($sitesHandler->insert($sitesObj)) {
                         echo 'success-' . $ptype;
                     } else {
-                        $result_text = str_replace('%p', $provider_url, _MA_WGBACKLINKS_EXCHANGE_ERR_PROV_ADD_SITE);
-                        $result_text = str_replace('%c', $client_url, $result_text);
-                        $result_text = str_replace('%e', $clientsObj->getHtmlErrors(), $result_text);
+                        $result_text = \str_replace('%p', $provider_url, \_MA_WGBACKLINKS_EXCHANGE_ERR_PROV_ADD_SITE);
+                        $result_text = \str_replace('%c', $client_url, $result_text);
+                        $result_text = \str_replace('%e', $clientsObj->getHtmlErrors(), $result_text);
                         echo $result_text;
                     }
                 }
             } else {
-                $result_text = str_replace('%p', $provider_url, _MA_WGBACKLINKS_EXCHANGE_ERR_ADD_CLIENT);
-                $result_text = str_replace('%c', $client_url, $result_text);
-                $result_text = str_replace('%e', $clientsObj->getHtmlErrors(), $result_text);
+                $result_text = \str_replace('%p', $provider_url, \_MA_WGBACKLINKS_EXCHANGE_ERR_ADD_CLIENT);
+                $result_text = \str_replace('%c', $client_url, $result_text);
+                $result_text = \str_replace('%e', $clientsObj->getHtmlErrors(), $result_text);
                 echo $result_text;
             }
         } else {
             echo $ptype . ':client-exists';
         }
     } else {
-        echo _MA_WGBACKLINKS_EXCHANGE_ERR_INVALID_PKEY;
+        echo \_MA_WGBACKLINKS_EXCHANGE_ERR_INVALID_PKEY;
     }
 }
 
@@ -197,21 +198,21 @@ if ($ptype == 'add-client') {
 // called by: admin/provider.php (class/provider.php) from client website
 if ($ptype == 'delete-client') {
     
-    $client_key   = XoopsRequest::getString('client_key', '');
-    $client_url   = XoopsRequest::getString('client_url', '');
-    $provider_key = XoopsRequest::getString('provider_key', '');
-    $provider_name = XoopsRequest::getString('provider_name', '');
+    $client_key   = Request::getString('client_key');
+    $client_url   = Request::getString('client_url');
+    $provider_key = Request::getString('provider_key');
+    $provider_name = Request::getString('provider_name');
     
-    if ($provider_key == $wgbacklinks->getConfig('wgbacklinks_modkey')) {
-        $crit_client = new CriteriaCompo();
-        $crit_client->add(new Criteria('client_key', $client_key));
+    if ($provider_key == $helper->getConfig('wgbacklinks_modkey')) {
+        $crit_client = new \CriteriaCompo();
+        $crit_client->add(new \Criteria('client_key', $client_key));
         $clientsCount = $clientsHandler->getCount($crit_client);
 
         if ($clientsCount > 0) {
             // delete this client from table clients
             $clientId = 0;
             $clientsAll = $clientsHandler->getall($crit_client);
-            foreach(array_keys($clientsAll) as $i) {
+            foreach(\array_keys($clientsAll) as $i) {
                 $clientId = $clientsAll[$i]->getVar('client_id');
             }
 
@@ -220,9 +221,9 @@ if ($ptype == 'delete-client') {
                 if($clientsHandler->delete($clientsObj)) {
                     echo 'success-' . $ptype;
                 } else {
-                    $result_text = str_replace('%p', $provider_name, _MA_WGBACKLINKS_EXCHANGE_ERR_DEL_CLIENT);
-                    $result_text = str_replace('%c', $client_url, $result_text);
-                    $result_text = str_replace('%e', $clientsObj->getHtmlErrors(), $result_text);
+                    $result_text = \str_replace('%p', $provider_name, \_MA_WGBACKLINKS_EXCHANGE_ERR_DEL_CLIENT);
+                    $result_text = \str_replace('%c', $client_url, $result_text);
+                    $result_text = \str_replace('%e', $clientsObj->getHtmlErrors(), $result_text);
                     echo $result_text;
                 }
             } else {
@@ -232,7 +233,7 @@ if ($ptype == 'delete-client') {
             echo $ptype . ':client-not-exists';
         }
     } else {
-        echo _MA_WGBACKLINKS_EXCHANGE_ERR_INVALID_PKEY;
+        echo \_MA_WGBACKLINKS_EXCHANGE_ERR_INVALID_PKEY;
     }
 }
 
@@ -242,26 +243,26 @@ if ($ptype == 'delete-client') {
 // called by: admin/sites.php (class/sites.php) from provider website
 if ($ptype == 'share-site') {
     
-    // check first cliekey
-    $client_key   = XoopsRequest::getString('client_key', '');
-    $client_url   = XoopsRequest::getString('client_url', '');
+    // check first clientkey
+    $client_key   = Request::getString('client_key');
+    $client_url   = Request::getString('client_url');
 
-    if ($client_key == $wgbacklinks->getConfig('wgbacklinks_modkey')) {
+    if ($client_key == $helper->getConfig('wgbacklinks_modkey')) {
         // valid key given by provider        
-        $psite_name      = XoopsRequest::getString('site_name', '');
-        $psite_descr     = XoopsRequest::getString('site_descr', '');
-        $psite_url       = XoopsRequest::getString('site_url', '');
-        $psite_uniqueid  = XoopsRequest::getString('site_uniqueid', '');
-        $psite_active    = XoopsRequest::getString('site_active', '');
-        $psite_submitter = XoopsRequest::getString('site_submitter', '');
+        $psite_name      = Request::getString('site_name');
+        $psite_descr     = Request::getString('site_descr');
+        $psite_url       = Request::getString('site_url');
+        $psite_uniqueid  = Request::getString('site_uniqueid');
+        $psite_active    = Request::getString('site_active');
+        $psite_submitter = Request::getString('site_submitter');
         
         $site_id = 0;
 
-        $crit_site = new CriteriaCompo();
-        $crit_site->add(new Criteria('site_uniqueid', $psite_uniqueid));
+        $crit_site = new \CriteriaCompo();
+        $crit_site->add(new \Criteria('site_uniqueid', $psite_uniqueid));
         $sitesAll = $sitesHandler->getall($crit_site);
 
-        foreach(array_keys($sitesAll) as $i) {
+        foreach(\array_keys($sitesAll) as $i) {
             $site_id = $sitesAll[$i]->getVar('site_id');
             unset($site);
         }
@@ -285,8 +286,8 @@ if ($ptype == 'share-site') {
                 if($sitesHandler->delete($sitesObj)) {
                     $result = 'deleted ' . $client_key;
                 } else {
-                    $result = str_replace('%s', $psite_name, _MA_WGBACKLINKS_EXCHANGE_ERR_DELETE_SITE);
-                    $result = str_replace('%c', $client_url, $result);
+                    $result = \str_replace('%s', $psite_name, \_MA_WGBACKLINKS_EXCHANGE_ERR_DELETE_SITE);
+                    $result = \str_replace('%c', $client_url, $result);
                 }
             } else {
                 $result = 'skipped ' . $client_key;
@@ -299,19 +300,19 @@ if ($ptype == 'share-site') {
             $sitesObj->setVar('site_url', $psite_url);
             $sitesObj->setVar('site_uniqueid', $psite_uniqueid);
             $sitesObj->setVar('site_submitter', $psite_submitter);
-            $sitesObj->setVar('site_date_created', time());
+            $sitesObj->setVar('site_date_created', \time());
             $sitesObj->setVar('site_active', $psite_active);
             $sitesObj->setVar('site_descr', $psite_descr);
             // Insert Data
             if($sitesHandler->insert($sitesObj)) {
                 echo $result;
             } else {
-                $result_text = str_replace('%s', $psite_name, _MA_WGBACKLINKS_EXCHANGE_ERR_ADD_SITE);
-                echo str_replace('%c', $client_url, $result_text);
+                $result_text = \str_replace('%s', $psite_name, \_MA_WGBACKLINKS_EXCHANGE_ERR_ADD_SITE);
+                echo \str_replace('%c', $client_url, $result_text);
             }
         }
     } else {
-        echo _MA_WGBACKLINKS_EXCHANGE_ERR_INVALID_CKEY;
+        echo \_MA_WGBACKLINKS_EXCHANGE_ERR_INVALID_CKEY;
     }
 
 }

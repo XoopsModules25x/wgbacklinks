@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
@@ -15,18 +17,17 @@
  * @copyright      module for xoops
  * @license        GPL 2.0 or later
  * @package        wgbacklinks
- * @since          1.0
- * @min_xoops      2.5.7
  * @author         Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<http://wedega.com>
- * @version        $Id: 1.0 xoops_version.php 1 Thu 2016-05-05 08:16:11Z Wedega - Webdesign Gabor $
  */
 
+require_once \dirname(__DIR__) . '/wgbacklinks/preloads/autoloader.php';
+
 // 
-$dirname  = basename(__DIR__);
+$dirname  = \basename(__DIR__);
 // ------------------- Informations ------------------- //
-$modversion['name']                 = _MI_WGBACKLINKS_NAME;
-$modversion['version']              = '1.03';
-$modversion['description']          = _MI_WGBACKLINKS_DESC;
+$modversion['name']                 = \_MI_WGBACKLINKS_NAME;
+$modversion['version']              = '1.1.0';
+$modversion['description']          = \_MI_WGBACKLINKS_DESC;
 $modversion['author']               = 'Goffy - Wedega.com';
 $modversion['author_mail']          = 'webmaster@wedega.com';
 $modversion['author_website_url']   = 'http://wedega.com';
@@ -36,16 +37,16 @@ $modversion['license']              = 'GPL 2.0 or later';
 $modversion['license_url']          = 'www.gnu.org/licenses/gpl-2.0.html/';
 $modversion['help']                 = 'page=help';
 $modversion['release_info']         = 'release_info';
-$modversion['release_file']         = XOOPS_URL . '/modules/wgbacklinks/docs/release_info file';
-$modversion['release_date']         = '2016/05/05';
+$modversion['release_file']         = \XOOPS_URL . '/modules/wgbacklinks/docs/release_info file';
+$modversion['release_date']         = '2022/10/02';
 $modversion['manual']               = 'link to manual file';
-$modversion['manual_file']          = XOOPS_URL . '/modules/wgbacklinks/docs/install.txt';
+$modversion['manual_file']          = \XOOPS_URL . '/modules/wgbacklinks/docs/install.txt';
 $modversion['min_php']              = '5.3';
-$modversion['min_xoops']            = '2.5.7';
+$modversion['min_xoops']            = '2.5.11 Beta2';
 $modversion['min_admin']            = '1.1';
 $modversion['min_db']               = array('mysql' => '5.0.7', 'mysqli' => '5.0.7');
 $modversion['image']                = 'assets/images/wgbacklinks_logo.png';
-$modversion['dirname']              = basename(__DIR__);
+$modversion['dirname']              = \basename(__DIR__);
 $modversion['dirmoduleadmin']       = 'Frameworks/moduleclasses/moduleadmin';
 $modversion['sysicons16']           = '../../Frameworks/moduleclasses/icons/16';
 $modversion['sysicons32']           = '../../Frameworks/moduleclasses/icons/32';
@@ -57,7 +58,7 @@ $modversion['support_url']          = 'https://xoops.wedega.com';
 $modversion['support_name']         = '';
 $modversion['module_website_url']   = 'https://xoops.wedega.com';
 $modversion['module_website_name']  = 'XOOPS on Wedega';
-$modversion['release']              = '2016-02-03';
+$modversion['release']              = '2022-10-02';
 $modversion['module_status']        = 'Alpha 1';
 $modversion['system_menu']          = 1;
 $modversion['hasAdmin']             = 1;
@@ -92,35 +93,35 @@ $modversion['tables'][3] = 'wgbacklinks_clients';
 $c = 1;
 // Keywords
 $modversion['config'][$c]['name']        = 'keywords';
-$modversion['config'][$c]['title']       = '_MI_WGBACKLINKS_KEYWORDS';
-$modversion['config'][$c]['description'] = '_MI_WGBACKLINKS_KEYWORDS_DESC';
+$modversion['config'][$c]['title']       = '\_MI_WGBACKLINKS_KEYWORDS';
+$modversion['config'][$c]['description'] = '\_MI_WGBACKLINKS_KEYWORDS_DESC';
 $modversion['config'][$c]['formtype']    = 'textbox';
 $modversion['config'][$c]['valuetype']   = 'text';
 $modversion['config'][$c]['default']     = 'wgbacklinks, wedega, webdesign gabor';
 ++$c;
 // Admin pager
 $modversion['config'][$c]['name']        = 'adminpager';
-$modversion['config'][$c]['title']       = '_MI_WGBACKLINKS_ADMIN_PAGER';
-$modversion['config'][$c]['description'] = '_MI_WGBACKLINKS_ADMIN_PAGER_DESC';
+$modversion['config'][$c]['title']       = '\_MI_WGBACKLINKS_ADMIN_PAGER';
+$modversion['config'][$c]['description'] = '\_MI_WGBACKLINKS_ADMIN_PAGER_DESC';
 $modversion['config'][$c]['formtype']    = 'textbox';
 $modversion['config'][$c]['valuetype']   = 'int';
 $modversion['config'][$c]['default']     = 10;
 ++$c;
 // Module type
-include_once XOOPS_ROOT_PATH . '/modules/wgbacklinks/include/common.php';
+include_once \XOOPS_ROOT_PATH . '/modules/wgbacklinks/include/common.php';
 $modversion['config'][$c]['name']        = 'wgbacklinks_modtype';
-$modversion['config'][$c]['title']       = '_MI_WGBACKLINKS_MODTYPE';
-$modversion['config'][$c]['description'] = '_MI_WGBACKLINKS_MODTYPE_DESC';
+$modversion['config'][$c]['title']       = '\_MI_WGBACKLINKS_MODTYPE';
+$modversion['config'][$c]['description'] = '\_MI_WGBACKLINKS_MODTYPE_DESC';
 $modversion['config'][$c]['formtype']    = 'select';
 $modversion['config'][$c]['valuetype']   = 'int';
 $modversion['config'][$c]['default']     = 2;
-$modversion['config'][$c]['options']     = array('_MI_WGBACKLINKS_MODTYPE_1' => WGBACKLINKS_MODTYPE_1, '_MI_WGBACKLINKS_MODTYPE_2' => WGBACKLINKS_MODTYPE_2);
+$modversion['config'][$c]['options']     = array('\_MI_WGBACKLINKS_MODTYPE_1' => \WGBACKLINKS_MODTYPE_1, '\_MI_WGBACKLINKS_MODTYPE_2' => \WGBACKLINKS_MODTYPE_2);
 ++$c;
 // Unique Key for this module
 $modversion['config'][$c]['name']        = 'wgbacklinks_modkey';
-$modversion['config'][$c]['title']       = '_MI_WGBACKLINKS_MODKEY';
-$modversion['config'][$c]['description'] = '_MI_WGBACKLINKS_MODKEY_DESC';
+$modversion['config'][$c]['title']       = '\_MI_WGBACKLINKS_MODKEY';
+$modversion['config'][$c]['description'] = '\_MI_WGBACKLINKS_MODKEY_DESC';
 $modversion['config'][$c]['formtype']    = 'textbox';
 $modversion['config'][$c]['valuetype']   = 'text';
-$modversion['config'][$c]['default']     = md5(substr(str_shuffle("!$%&/=?_-;:,.0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 50));
+$modversion['config'][$c]['default']     = md5(\substr(str_shuffle("!$%&/=?_-;:,.0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 50));
 ++$c;
