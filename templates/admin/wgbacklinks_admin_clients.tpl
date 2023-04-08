@@ -25,8 +25,8 @@
                         <td class="center"><{$client.submitter}></td>
                         <td class="center"><{$client.date_created}></td>
                         <td class="center  width5">
-                            <a href="clients.php?op=edit&amp;client_id=<{$client.id}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 edit.png}>" alt="clients"></a>
-                            <a href="clients.php?op=delete&amp;client_id=<{$client.id}>" title="<{$smarty.const._DELETE}>"><img src="<{xoModuleIcons16 delete.png}>" alt="clients"></a>
+                            <a href="clients.php?op=edit&amp;client_id=<{$client.id}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 'edit.png'}>" alt="clients"></a>
+                            <a href="clients.php?op=delete&amp;client_id=<{$client.id}>" title="<{$smarty.const._DELETE}>"><img src="<{xoModuleIcons16 'delete.png'}>" alt="clients"></a>
                         </td>
                     </tr>
                 <{/foreach}>

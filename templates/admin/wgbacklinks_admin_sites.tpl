@@ -35,9 +35,9 @@
                         <td class="center"><{$site.submitter}></td>
                         <td class="center"><{$site.date_created}></td>
                         <td class="center  width5">
-                            <a href="sites.php?op=edit&amp;site_id=<{$site.id}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 edit.png}>" alt="sites"></a>
+                            <a href="sites.php?op=edit&amp;site_id=<{$site.id}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 'edit.png'}>" alt="sites"></a>
                             <{if $site.shared|default:0 == 1 && $site.active|default:0 == 0}>
-                                <a href="sites.php?op=delete&amp;site_id=<{$site.id}>" title="<{$smarty.const._DELETE}>"><img src="<{xoModuleIcons16 delete.png}>" alt="sites"></a>
+                                <a href="sites.php?op=delete&amp;site_id=<{$site.id}>" title="<{$smarty.const._DELETE}>"><img src="<{xoModuleIcons16 'delete.png'}>" alt="sites"></a>
                             <{/if}>
 
                         </td>
