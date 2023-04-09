@@ -1,6 +1,6 @@
 <{include file='db:wgbacklinks_header.tpl'}>
 
-<{if $sites|default:false}>
+<{if isset($sites) && $sites}>
 	<table class="table">
         <tr>
 			<th class="head center"><{$smarty.const._MA_WGBACKLINKS_SITE_NAME}></th>

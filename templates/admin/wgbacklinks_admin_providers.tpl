@@ -15,7 +15,7 @@
                 <th class="center width5"><{$smarty.const._AM_WGBACKLINKS_FORM_ACTION}></th>
             </tr>
         </thead>
-        <{if isset($providers_count)}>
+        <{if isset($providers_count) && $providers_count > 0}>
             <tbody>
                 <{foreach item=provider from=$providers_list}>
                     <tr class="<{cycle values="odd, even"}>">
