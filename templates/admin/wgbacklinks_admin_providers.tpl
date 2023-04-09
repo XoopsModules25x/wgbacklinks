@@ -1,7 +1,7 @@
 <!-- Header -->
 <{include file='db:wgbacklinks_admin_header.tpl'}>
 
-<{if $providers_list|default:''}>
+<{if isset($providers_list)}>
 	<table class='table table-bordered'>
         <thead>
             <tr class="head">
@@ -15,7 +15,7 @@
                 <th class="center width5"><{$smarty.const._AM_WGBACKLINKS_FORM_ACTION}></th>
             </tr>
         </thead>
-        <{if $providers_count|default:''}>
+        <{if isset($providers_count)}>
             <tbody>
                 <{foreach item=provider from=$providers_list}>
                     <tr class="<{cycle values="odd, even"}>">
@@ -37,17 +37,17 @@
     </table>
 
     <div class="clear">&nbsp;</div>
-    <{if $pagenav|default:''}>
+    <{if isset($pagenav)}>
         <div class="xo-pagenav floatright"><{$pagenav}></div>
         <div class="clear spacer"></div>
     <{/if}>
 <{/if}>
 
-<{if $form|default:''}>
+<{if isset($form)}>
 	<{$form}>
 <{/if}>
 
-<{if $error|default:''}>
+<{if isset($error)}>
 	<div class="errorMsg"><strong><{$error}></strong></div>
 <{/if}>
 <br>
