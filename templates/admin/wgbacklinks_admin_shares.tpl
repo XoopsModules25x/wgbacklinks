@@ -29,7 +29,7 @@
     <div class="clear">&nbsp;</div>
 <{/if}>
 
-<{if isset($error)}>
+<{if !empty($error)}>
 	<div class="errorMsg"><strong><{$error}></strong></div>
 <{/if}>
 <br>
