@@ -35,20 +35,20 @@ class ClientsHandler extends \XoopsPersistableObjectHandler
      *
      * @param \XoopsDatabase $db
      */
-	public function __construct(\XoopsDatabase $db)
-	{
-		parent::__construct($db, 'wgbacklinks_clients', Clients::class, 'client_id', 'client_url');
-	}
+    public function __construct(\XoopsDatabase $db)
+    {
+        parent::__construct($db, 'wgbacklinks_clients', Clients::class, 'client_id', 'client_url');
+    }
 
-	/**
-	 * @param bool $isNew
-	 *
-	 * @return object
-	 */
-	public function create($isNew = true)
-	{
-		return parent::create($isNew);
-	}
+    /**
+     * @param bool $isNew
+     *
+     * @return object
+     */
+    public function create($isNew = true)
+    {
+        return parent::create($isNew);
+    }
 
     /**
      * retrieve a field
@@ -57,20 +57,20 @@ class ClientsHandler extends \XoopsPersistableObjectHandler
      * @param null $fields
      * @return \XoopsObject|null reference to the {@link Get} object
      */
-	public function get($id = null, $fields = null)
-	{
-		return parent::get($id, $fields);
-	}
+    public function get($id = null, $fields = null)
+    {
+        return parent::get($id, $fields);
+    }
 
-	/**
-	 * get inserted id
-	 *
-	 * @return integer reference to the {@link Get} object
-	 */
-	public function getInsertId()
-	{
-		return $this->db->getInsertId();
-	}
+    /**
+     * get inserted id
+     *
+     * @return integer reference to the {@link Get} object
+     */
+    public function getInsertId()
+    {
+        return $this->db->getInsertId();
+    }
 
     /**
      * Get Count Clients in the database
@@ -80,12 +80,12 @@ class ClientsHandler extends \XoopsPersistableObjectHandler
      * @param string $order
      * @return int
      */
-	public function getCountClients($start = 0, $limit = 0, $sort = 'client_id ASC, client_key', $order = 'ASC')
-	{
-		$criteriaCountClients = new \CriteriaCompo();
-		$criteriaCountClients = $this->getClientsCriteria($criteriaCountClients, $start, $limit, $sort, $order);
-		return parent::getCount($criteriaCountClients);
-	}
+    public function getCountClients($start = 0, $limit = 0, $sort = 'client_id ASC, client_key', $order = 'ASC')
+    {
+        $criteriaCountClients = new \CriteriaCompo();
+        $criteriaCountClients = $this->getClientsCriteria($criteriaCountClients, $start, $limit, $sort, $order);
+        return parent::getCount($criteriaCountClients);
+    }
 
     /**
      * Get All Clients in the database
@@ -95,12 +95,12 @@ class ClientsHandler extends \XoopsPersistableObjectHandler
      * @param string $order
      * @return array
      */
-	public function getAllClients($start = 0, $limit = 0, $sort = 'client_id ASC, client_key', $order = 'ASC')
-	{
-		$criteriaAllClients = new \CriteriaCompo();
-		$criteriaAllClients = $this->getClientsCriteria($criteriaAllClients, $start, $limit, $sort, $order);
-		return parent::getAll($criteriaAllClients);
-	}
+    public function getAllClients($start = 0, $limit = 0, $sort = 'client_id ASC, client_key', $order = 'ASC')
+    {
+        $criteriaAllClients = new \CriteriaCompo();
+        $criteriaAllClients = $this->getClientsCriteria($criteriaAllClients, $start, $limit, $sort, $order);
+        return parent::getAll($criteriaAllClients);
+    }
 
     /**
      * Get Criteria Clients
@@ -111,14 +111,14 @@ class ClientsHandler extends \XoopsPersistableObjectHandler
      * @param $order
      * @return mixed
      */
-	private function getClientsCriteria($criteriaClients, $start, $limit, $sort, $order)
-	{
-		$criteriaClients->setStart( $start );
-		$criteriaClients->setLimit( $limit );
-		$criteriaClients->setSort( $sort );
-		$criteriaClients->setOrder( $order );
-		return $criteriaClients;
-	}
+    private function getClientsCriteria($criteriaClients, $start, $limit, $sort, $order)
+    {
+        $criteriaClients->setStart( $start );
+        $criteriaClients->setLimit( $limit );
+        $criteriaClients->setSort( $sort );
+        $criteriaClients->setOrder( $order );
+        return $criteriaClients;
+    }
 
     /**
      * add the provider to tables in client website
@@ -172,11 +172,11 @@ class ClientsHandler extends \XoopsPersistableObjectHandler
     }
     
     /**
-	 * check whether the client key is valid on client website
-	 *
-	 * @param array $client
-	 * @return string
-	 */
+     * check whether the client key is valid on client website
+     *
+     * @param array $client
+     * @return string
+     */
     public function checkClientKey($client) {
 
         $postdata = \http_build_query(

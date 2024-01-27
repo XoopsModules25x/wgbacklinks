@@ -36,9 +36,9 @@ $sitesHandler     = $helper->getHandler('Sites');
 $clientsHandler   = $helper->getHandler('Clients');
 $myts = MyTextSanitizer::getInstance();
 // 
-if(!isset($xoopsTpl) || !\is_object($xoopsTpl)) {
+if (!isset($xoopsTpl) || !\is_object($xoopsTpl)) {
 include_once \XOOPS_ROOT_PATH . '/class/template.php';
-	$xoopsTpl = new \XoopsTpl();
+    $xoopsTpl = new \XoopsTpl();
 }
 // System icons path
 $GLOBALS['xoopsTpl']->assign('sysPathIcon16', $sysPathIcon16);
@@ -49,7 +49,7 @@ $GLOBALS['xoopsTpl']->assign('modPathIcon32', $modPathIcon32);
 \xoops_loadLanguage('admin');
 \xoops_loadLanguage('modinfo');
 // Local admin menu class
-if(\file_exists($GLOBALS['xoops']->path($pathModuleAdmin . '/moduleadmin.php'))) {
+if (\file_exists($GLOBALS['xoops']->path($pathModuleAdmin . '/moduleadmin.php'))) {
     include_once $GLOBALS['xoops']->path($pathModuleAdmin . '/moduleadmin.php');
 } else {
     \redirect_header('../../../admin.php.php', 5, _AM_MODULEADMIN_MISSING);

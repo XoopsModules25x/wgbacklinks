@@ -20,8 +20,8 @@ declare(strict_types=1);
  * @author         Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<https://wedega.com>
  */
 
-if(\count($xoBreadcrumbs) > 1) {
-	$GLOBALS['xoopsTpl']->assign('xoBreadcrumbs', $xoBreadcrumbs);
+if (\count($xoBreadcrumbs) > 1) {
+    $GLOBALS['xoopsTpl']->assign('xoBreadcrumbs', $xoBreadcrumbs);
 }
 $GLOBALS['xoopsTpl']->assign('adv', $helper->getConfig('advertise'));
 // 

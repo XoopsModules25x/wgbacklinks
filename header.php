@@ -36,17 +36,17 @@ $clientsHandler   = $helper->getHandler('Clients');
 // Permission
 include_once \XOOPS_ROOT_PATH . '/class/xoopsform/grouppermform.php';
 $gpermHandler = xoops_gethandler('groupperm');
-if(\is_object($xoopsUser)) {
-	$groups  = $xoopsUser->getGroups();
+if (\is_object($xoopsUser)) {
+    $groups  = $xoopsUser->getGroups();
 } else {
-	$groups  = \XOOPS_GROUP_ANONYMOUS;
+    $groups  = \XOOPS_GROUP_ANONYMOUS;
 }
 // 
 $myts = MyTextSanitizer::getInstance();
 // Default Css Style
 $style = \WGBACKLINKS_URL . '/assets/css/style.css';
-if(!\file_exists($style)) {
-	return false;
+if (!\file_exists($style)) {
+    return false;
 }
 // Smarty Default
 $sysPathIcon16 = $GLOBALS['xoopsModule']->getInfo('sysicons16');

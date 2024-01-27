@@ -71,7 +71,7 @@ if ($ptype == 'add-provider') {
             $providersObj->setVar('provider_submitter', $provider_submitter);
             $providersObj->setVar('provider_date_created', \time());
             // Insert Data
-            if($providersHandler->insert($providersObj)) {
+            if ($providersHandler->insert($providersObj)) {
                 echo 'success-' . $ptype;
             } else {
                 $result_text = \str_replace('%p', $provider_name, \_MA_WGBACKLINKS_EXCHANGE_ERR_ADD_PROVIDER);
@@ -103,13 +103,13 @@ if ($ptype == 'delete-provider') {
             // delete this provider from table providers
             $providerId = 0;
             $providersAll = $providersHandler->getall($crit_provider);
-            foreach(\array_keys($providersAll) as $i) {
+            foreach (\array_keys($providersAll) as $i) {
                 $providerId = $providersAll[$i]->getVar('provider_id');
             }
 
             if ($providerId > 0) {
                 $providersObj = $providersHandler->get($providerId);
-                if($providersHandler->delete($providersObj)) {
+                if ($providersHandler->delete($providersObj)) {
                     echo 'success-' . $ptype;
                 } else {
                     $result_text = \str_replace('%p', $provider_name, \_MA_WGBACKLINKS_EXCHANGE_ERR_DEL_PROVIDER);
@@ -156,7 +156,7 @@ if ($ptype == 'add-client') {
             $clientsObj->setVar('client_submitter', $pcsubmitter);
             $clientsObj->setVar('client_date_created', \time());
             // Insert Data
-            if($clientsHandler->insert($clientsObj)) {
+            if ($clientsHandler->insert($clientsObj)) {
                 
                 if ($client_addsite > 0) {
                     $sitesObj = $sitesHandler->create();
@@ -171,7 +171,7 @@ if ($ptype == 'add-client') {
                     $sitesObj->setVar('site_date_created', \time());
                     
                     // Insert Data
-                    if($sitesHandler->insert($sitesObj)) {
+                    if ($sitesHandler->insert($sitesObj)) {
                         echo 'success-' . $ptype;
                     } else {
                         $result_text = \str_replace('%p', $provider_url, \_MA_WGBACKLINKS_EXCHANGE_ERR_PROV_ADD_SITE);
@@ -212,13 +212,13 @@ if ($ptype == 'delete-client') {
             // delete this client from table clients
             $clientId = 0;
             $clientsAll = $clientsHandler->getall($crit_client);
-            foreach(\array_keys($clientsAll) as $i) {
+            foreach (\array_keys($clientsAll) as $i) {
                 $clientId = $clientsAll[$i]->getVar('client_id');
             }
 
             if ($clientId > 0) {
                 $clientsObj = $clientsHandler->get($clientId);
-                if($clientsHandler->delete($clientsObj)) {
+                if ($clientsHandler->delete($clientsObj)) {
                     echo 'success-' . $ptype;
                 } else {
                     $result_text = \str_replace('%p', $provider_name, \_MA_WGBACKLINKS_EXCHANGE_ERR_DEL_CLIENT);
@@ -262,7 +262,7 @@ if ($ptype == 'share-site') {
         $crit_site->add(new \Criteria('site_uniqueid', $psite_uniqueid));
         $sitesAll = $sitesHandler->getall($crit_site);
 
-        foreach(\array_keys($sitesAll) as $i) {
+        foreach (\array_keys($sitesAll) as $i) {
             $site_id = $sitesAll[$i]->getVar('site_id');
             unset($site);
         }
@@ -283,7 +283,7 @@ if ($ptype == 'share-site') {
             // site is not active
             // delete, if exisiting
             if ($site_id > 0) {
-                if($sitesHandler->delete($sitesObj)) {
+                if ($sitesHandler->delete($sitesObj)) {
                     $result = 'deleted ' . $client_key;
                 } else {
                     $result = \str_replace('%s', $psite_name, \_MA_WGBACKLINKS_EXCHANGE_ERR_DELETE_SITE);
@@ -304,7 +304,7 @@ if ($ptype == 'share-site') {
             $sitesObj->setVar('site_active', $psite_active);
             $sitesObj->setVar('site_descr', $psite_descr);
             // Insert Data
-            if($sitesHandler->insert($sitesObj)) {
+            if ($sitesHandler->insert($sitesObj)) {
                 echo $result;
             } else {
                 $result_text = \str_replace('%s', $psite_name, \_MA_WGBACKLINKS_EXCHANGE_ERR_ADD_SITE);

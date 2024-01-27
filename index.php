@@ -24,7 +24,7 @@ include __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'wgbacklinks_index.tpl';
 include_once \XOOPS_ROOT_PATH . '/header.php';
 // Define Stylesheet
-$GLOBALS['xoTheme']->addStylesheet( $style, null );
+$GLOBALS['xoTheme']->addStylesheet($style, null);
 $keywords = array();
 // 
 $GLOBALS['xoopsTpl']->assign('xoops_icons32_url', XOOPS_ICONS32_URL);
@@ -34,18 +34,18 @@ $crit_sites = new \CriteriaCompo();
 $crit_sites->add(new \Criteria('site_active', 1));
 $sitesCount = $sitesHandler->getCount($crit_sites);
 
-if($sitesCount > 0) {
-	$sitesAll = $sitesHandler->getall($crit_sites);
-	// Get All Sites
+if ($sitesCount > 0) {
+    $sitesAll = $sitesHandler->getall($crit_sites);
+    // Get All Sites
     $sites = [];
-	foreach(\array_keys($sitesAll) as $i) {
-		$sites[] = $sitesAll[$i]->getValuesSites();
+    foreach (\array_keys($sitesAll) as $i) {
+        $sites[] = $sitesAll[$i]->getValuesSites();
         $keywords[] = $sitesAll[$i]->getVar('site_name');
         $keywords[] = $sitesAll[$i]->getVar('site_desc');
         $keywords[] = $sitesAll[$i]->getVar('site_url');
-	}
-	$GLOBALS['xoopsTpl']->assign('sites', $sites);
-	unset($sites);
+    }
+    $GLOBALS['xoopsTpl']->assign('sites', $sites);
+    unset($sites);
 }
 
 $GLOBALS['xoopsTpl']->assign('copyright', $copyright);

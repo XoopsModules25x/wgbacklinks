@@ -35,20 +35,20 @@ class SitesHandler extends \XoopsPersistableObjectHandler
      *
      * @param \XoopsDatabase $db
      */
-	public function __construct(\XoopsDatabase $db)
-	{
-		parent::__construct($db, 'wgbacklinks_sites', Sites::class, 'site_id', 'site_name');
-	}
+    public function __construct(\XoopsDatabase $db)
+    {
+        parent::__construct($db, 'wgbacklinks_sites', Sites::class, 'site_id', 'site_name');
+    }
 
-	/**
-	 * @param bool $isNew
-	 *
-	 * @return object
-	 */
-	public function create($isNew = true)
-	{
-		return parent::create($isNew);
-	}
+    /**
+     * @param bool $isNew
+     *
+     * @return object
+     */
+    public function create($isNew = true)
+    {
+        return parent::create($isNew);
+    }
 
     /**
      * retrieve a field
@@ -57,20 +57,20 @@ class SitesHandler extends \XoopsPersistableObjectHandler
      * @param null $fields
      * @return \XoopsObject|null reference to the {@link Get} object
      */
-	public function get($id = null, $fields = null)
-	{
-		return parent::get($id, $fields);
-	}
+    public function get($id = null, $fields = null)
+    {
+        return parent::get($id, $fields);
+    }
 
-	/**
-	 * get inserted id
-	 *
-	 * @return integer reference to the {@link Get} object
-	 */
-	public function getInsertId()
-	{
-		return $this->db->getInsertId();
-	}
+    /**
+     * get inserted id
+     *
+     * @return integer reference to the {@link Get} object
+     */
+    public function getInsertId()
+    {
+        return $this->db->getInsertId();
+    }
 
     /**
      * Get Count Sites in the database
@@ -80,12 +80,12 @@ class SitesHandler extends \XoopsPersistableObjectHandler
      * @param string $order
      * @return int
      */
-	public function getCountSites($start = 0, $limit = 0, $sort = 'site_id ASC, site_name', $order = 'ASC')
-	{
-		$criteriaCountSites = new \CriteriaCompo();
-		$criteriaCountSites = $this->getSitesCriteria($criteriaCountSites, $start, $limit, $sort, $order);
-		return parent::getCount($criteriaCountSites);
-	}
+    public function getCountSites($start = 0, $limit = 0, $sort = 'site_id ASC, site_name', $order = 'ASC')
+    {
+        $criteriaCountSites = new \CriteriaCompo();
+        $criteriaCountSites = $this->getSitesCriteria($criteriaCountSites, $start, $limit, $sort, $order);
+        return parent::getCount($criteriaCountSites);
+    }
 
     /**
      * Get All Sites in the database
@@ -95,12 +95,12 @@ class SitesHandler extends \XoopsPersistableObjectHandler
      * @param string $order
      * @return array
      */
-	public function getAllSites($start = 0, $limit = 0, $sort = 'site_id ASC, site_name', $order = 'ASC')
-	{
-		$criteriaAllSites = new \CriteriaCompo();
-		$criteriaAllSites = $this->getSitesCriteria($criteriaAllSites, $start, $limit, $sort, $order);
-		return parent::getAll($criteriaAllSites);
-	}
+    public function getAllSites($start = 0, $limit = 0, $sort = 'site_id ASC, site_name', $order = 'ASC')
+    {
+        $criteriaAllSites = new \CriteriaCompo();
+        $criteriaAllSites = $this->getSitesCriteria($criteriaAllSites, $start, $limit, $sort, $order);
+        return parent::getAll($criteriaAllSites);
+    }
 
 
     /**
@@ -112,14 +112,14 @@ class SitesHandler extends \XoopsPersistableObjectHandler
      * @param $order
      * @return mixed
      */
-	private function getSitesCriteria($criteriaSites, $start, $limit, $sort, $order)
-	{
-		$criteriaSites->setStart( $start );
-		$criteriaSites->setLimit( $limit );
-		$criteriaSites->setSort( $sort );
-		$criteriaSites->setOrder( $order );
-		return $criteriaSites;
-	}
+    private function getSitesCriteria($criteriaSites, $start, $limit, $sort, $order)
+    {
+        $criteriaSites->setStart( $start );
+        $criteriaSites->setLimit( $limit );
+        $criteriaSites->setSort( $sort );
+        $criteriaSites->setOrder( $order );
+        return $criteriaSites;
+    }
 
     /**
      * submit site data to all client websites

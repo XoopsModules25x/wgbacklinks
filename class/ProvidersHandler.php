@@ -35,20 +35,20 @@ class ProvidersHandler extends \XoopsPersistableObjectHandler
      *
      * @param \XoopsDatabase $db
      */
-	public function __construct(\XoopsDatabase $db)
-	{
-		parent::__construct($db, 'wgbacklinks_providers', Providers::class, 'provider_id', 'provider_name');
-	}
+    public function __construct(\XoopsDatabase $db)
+    {
+        parent::__construct($db, 'wgbacklinks_providers', Providers::class, 'provider_id', 'provider_name');
+    }
 
-	/**
-	 * @param bool $isNew
-	 *
-	 * @return object
-	 */
-	public function create($isNew = true)
-	{
-		return parent::create($isNew);
-	}
+    /**
+     * @param bool $isNew
+     *
+     * @return object
+     */
+    public function create($isNew = true)
+    {
+        return parent::create($isNew);
+    }
 
     /**
      * retrieve a field
@@ -57,20 +57,20 @@ class ProvidersHandler extends \XoopsPersistableObjectHandler
      * @param null $fields
      * @return \XoopsObject|null reference to the {@link Get} object
      */
-	public function get($id = null, $fields = null)
-	{
-		return parent::get($id, $fields);
-	}
+    public function get($id = null, $fields = null)
+    {
+        return parent::get($id, $fields);
+    }
 
-	/**
-	 * get inserted id
-	 *
-	 * @return integer reference to the {@link Get} object
-	 */
-	public function getInsertId()
-	{
-		return $this->db->getInsertId();
-	}
+    /**
+     * get inserted id
+     *
+     * @return integer reference to the {@link Get} object
+     */
+    public function getInsertId()
+    {
+        return $this->db->getInsertId();
+    }
 
     /**
      * Get Count Providers in the database
@@ -80,12 +80,12 @@ class ProvidersHandler extends \XoopsPersistableObjectHandler
      * @param string $order
      * @return int
      */
-	public function getCountProviders($start = 0, $limit = 0, $sort = 'provider_id ASC, provider_date_created', $order = 'ASC')
-	{
-		$criteriaCountProviders = new \CriteriaCompo();
-		$criteriaCountProviders = $this->getProvidersCriteria($criteriaCountProviders, $start, $limit, $sort, $order);
-		return parent::getCount($criteriaCountProviders);
-	}
+    public function getCountProviders($start = 0, $limit = 0, $sort = 'provider_id ASC, provider_date_created', $order = 'ASC')
+    {
+        $criteriaCountProviders = new \CriteriaCompo();
+        $criteriaCountProviders = $this->getProvidersCriteria($criteriaCountProviders, $start, $limit, $sort, $order);
+        return parent::getCount($criteriaCountProviders);
+    }
 
     /**
      * Get All Providers in the database
@@ -95,12 +95,12 @@ class ProvidersHandler extends \XoopsPersistableObjectHandler
      * @param string $order
      * @return array
      */
-	public function getAllProviders($start = 0, $limit = 0, $sort = 'provider_id ASC, provider_date_created', $order = 'ASC')
-	{
-		$criteriaAllProviders = new \CriteriaCompo();
-		$criteriaAllProviders = $this->getProvidersCriteria($criteriaAllProviders, $start, $limit, $sort, $order);
-		return parent::getAll($criteriaAllProviders);
-	}
+    public function getAllProviders($start = 0, $limit = 0, $sort = 'provider_id ASC, provider_date_created', $order = 'ASC')
+    {
+        $criteriaAllProviders = new \CriteriaCompo();
+        $criteriaAllProviders = $this->getProvidersCriteria($criteriaAllProviders, $start, $limit, $sort, $order);
+        return parent::getAll($criteriaAllProviders);
+    }
 
     /**
      * Get Criteria Providers
@@ -111,14 +111,14 @@ class ProvidersHandler extends \XoopsPersistableObjectHandler
      * @param $order
      * @return mixed
      */
-	private function getProvidersCriteria($criteriaProviders, $start, $limit, $sort, $order)
-	{
-		$criteriaProviders->setStart( $start );
-		$criteriaProviders->setLimit( $limit );
-		$criteriaProviders->setSort( $sort );
-		$criteriaProviders->setOrder( $order );
-		return $criteriaProviders;
-	}
+    private function getProvidersCriteria($criteriaProviders, $start, $limit, $sort, $order)
+    {
+        $criteriaProviders->setStart( $start );
+        $criteriaProviders->setLimit( $limit );
+        $criteriaProviders->setSort( $sort );
+        $criteriaProviders->setOrder( $order );
+        return $criteriaProviders;
+    }
 
     /**
      * check whether the client is registered at the provider website, and add, if not exist
@@ -174,11 +174,11 @@ class ProvidersHandler extends \XoopsPersistableObjectHandler
     }
     
     /**
-	 * validate whether the given website and key are valid for provider website
-	 *
-	 * @param array $provider
-	 * @return string
-	 */
+     * validate whether the given website and key are valid for provider website
+     *
+     * @param array $provider
+     * @return string
+     */
     public function checkProviderKey($provider) {
 
         $postdata = \http_build_query(

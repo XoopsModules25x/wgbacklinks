@@ -34,7 +34,7 @@ $helper = Helper::getInstance();
 $i = 1;
 $adminmenu[$i]['title'] = \_MI_WGBACKLINKS_ADMENU1;
 $adminmenu[$i]['link'] = 'admin/index.php';
-$adminmenu[$i]['icon'] = $sysPathIcon32.'/dashboard.png';
+$adminmenu[$i]['icon'] = $sysPathIcon32 . '/dashboard.png';
 if ($helper->getConfig('wgbacklinks_modtype') == \WGBACKLINKS_MODTYPE_1) {
     ++$i;
     $adminmenu[$i]['title'] = \_MI_WGBACKLINKS_ADMENU4;
@@ -54,5 +54,5 @@ $adminmenu[$i]['icon'] = 'assets/icons/32/fileshare.png';
 ++$i;
 $adminmenu[$i]['title'] = \_MI_WGBACKLINKS_ABOUT;
 $adminmenu[$i]['link'] = 'admin/about.php';
-$adminmenu[$i]['icon'] = $sysPathIcon32.'/about.png';
+$adminmenu[$i]['icon'] = $sysPathIcon32 . '/about.png';
 unset($i);

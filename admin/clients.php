@@ -37,79 +37,79 @@ if ($error != 'none') {
 
 global $xoopsUser;
 
-switch($op) {
-	case 'list':
-	default:
-		// Define Stylesheet
-		$GLOBALS['xoTheme']->addStylesheet( $style, null );
-		$start = Request::getInt('start');
-		$limit = Request::getInt('limit', $helper->getConfig('adminpager'));
-		$templateMain = 'wgbacklinks_admin_clients.tpl';
-		$GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('clients.php'));
-		$adminMenu->addItemButton(\_AM_WGBACKLINKS_ADD_CLIENT, 'clients.php?op=new');
-		$GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
-		$clientsCount = $clientsHandler->getCountClients();
-		$clientsAll = $clientsHandler->getAllClients($start, $limit);
-		$GLOBALS['xoopsTpl']->assign('clients_count', $clientsCount);
-		$GLOBALS['xoopsTpl']->assign('wgbacklinks_url', \WGBACKLINKS_URL);
-		$GLOBALS['xoopsTpl']->assign('wgbacklinks_upload_url', \WGBACKLINKS_UPLOAD_URL);
-		// Table view clients
-		if($clientsCount > 0) {
-			foreach(\array_keys($clientsAll) as $i) {
-				$client = $clientsAll[$i]->getValuesClients();
+switch ($op) {
+    case 'list':
+    default:
+        // Define Stylesheet
+        $GLOBALS['xoTheme']->addStylesheet($style, null);
+        $start = Request::getInt('start');
+        $limit = Request::getInt('limit', $helper->getConfig('adminpager'));
+        $templateMain = 'wgbacklinks_admin_clients.tpl';
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('clients.php'));
+        $adminMenu->addItemButton(\_AM_WGBACKLINKS_ADD_CLIENT, 'clients.php?op=new');
+        $GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
+        $clientsCount = $clientsHandler->getCountClients();
+        $clientsAll = $clientsHandler->getAllClients($start, $limit);
+        $GLOBALS['xoopsTpl']->assign('clients_count', $clientsCount);
+        $GLOBALS['xoopsTpl']->assign('wgbacklinks_url', \WGBACKLINKS_URL);
+        $GLOBALS['xoopsTpl']->assign('wgbacklinks_upload_url', \WGBACKLINKS_UPLOAD_URL);
+        // Table view clients
+        if ($clientsCount > 0) {
+            foreach (\array_keys($clientsAll) as $i) {
+                $client = $clientsAll[$i]->getValuesClients();
                 $result = $clientsHandler->checkClientKey($client);
                 if ($result == 'valid-client-key') {
                     $image_valid = '<img src="' . \WGBACKLINKS_ICONS_URL . '/16/ok.png" alt="' . \_AM_WGBACKLINKS_CHECK_KEY_VALID . '">' . \_AM_WGBACKLINKS_CHECK_KEY_VALID;
-                } else if ($result == 'invalid-client-key'){
+                } else if ($result == 'invalid-client-key') {
                     $image_valid = '<img src="' . \WGBACKLINKS_ICONS_URL . '/16/alert.png" alt="' . \_AM_WGBACKLINKS_CHECK_KEY_INVALID . '">' . \_AM_WGBACKLINKS_CHECK_KEY_INVALID;
                 } else {
                     $image_valid = '<img src="' . \WGBACKLINKS_ICONS_URL . '/16/alert.png" alt="' . \_AM_WGBACKLINKS_CHECK_URL_INVALID . '">' . \_AM_WGBACKLINKS_CHECK_URL_INVALID;
                 }
                 $client['validkey'] = $image_valid;
 
-				$GLOBALS['xoopsTpl']->append('clients_list', $client);
-				unset($client);
-			}
-			// Display Navigation
-			if($clientsCount > $limit) {
-				include_once \XOOPS_ROOT_PATH . '/class/pagenav.php';
-				$pagenav = new \XoopsPageNav($clientsCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
-				$GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav());
-			}
-		} else {
-			$GLOBALS['xoopsTpl']->assign('error', \_AM_WGBACKLINKS_THEREARENT_CLIENTS);
-		}
+                $GLOBALS['xoopsTpl']->append('clients_list', $client);
+                unset($client);
+            }
+            // Display Navigation
+            if ($clientsCount > $limit) {
+                include_once \XOOPS_ROOT_PATH . '/class/pagenav.php';
+                $pagenav = new \XoopsPageNav($clientsCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
+                $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav());
+            }
+        } else {
+            $GLOBALS['xoopsTpl']->assign('error', \_AM_WGBACKLINKS_THEREARENT_CLIENTS);
+        }
 
-	break;
-	case 'new':
-		$templateMain = 'wgbacklinks_admin_clients.tpl';
-		$GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('clients.php'));
-		$adminMenu->addItemButton(\_AM_WGBACKLINKS_CLIENTS_LIST, 'clients.php', 'list');
-		$GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
-		// Get Form
-		$clientsObj = $clientsHandler->create();
-		$form = $clientsObj->getFormClients();
-		$GLOBALS['xoopsTpl']->assign('form', $form->render());
+    break;
+    case 'new':
+        $templateMain = 'wgbacklinks_admin_clients.tpl';
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('clients.php'));
+        $adminMenu->addItemButton(\_AM_WGBACKLINKS_CLIENTS_LIST, 'clients.php', 'list');
+        $GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
+        // Get Form
+        $clientsObj = $clientsHandler->create();
+        $form = $clientsObj->getFormClients();
+        $GLOBALS['xoopsTpl']->assign('form', $form->render());
 
-	break;
-	case 'save':
-		// Security Check
-		if(!$GLOBALS['xoopsSecurity']->check()) {
-			\redirect_header('clients.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
-		}
-		if(isset($clientId)) {
-			$clientsObj = $clientsHandler->get($clientId);
-		} else {
-			$clientsObj = $clientsHandler->create();
-		}
-		// Set Vars
+    break;
+    case 'save':
+        // Security Check
+        if (!$GLOBALS['xoopsSecurity']->check()) {
+            \redirect_header('clients.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
+        }
+        if (isset($clientId)) {
+            $clientsObj = $clientsHandler->get($clientId);
+        } else {
+            $clientsObj = $clientsHandler->create();
+        }
+        // Set Vars
         $clientsObj->setVar('client_url', Request::getString('client_url'));
-		$clientsObj->setVar('client_key', Request::getString('client_key'));
-		$clientsObj->setVar('client_submitter', Request::getInt('client_submitter'));
-		$clientsObj->setVar('client_date_created', \strtotime(Request::getString('client_date_created')));
+        $clientsObj->setVar('client_key', Request::getString('client_key'));
+        $clientsObj->setVar('client_submitter', Request::getInt('client_submitter'));
+        $clientsObj->setVar('client_date_created', \strtotime(Request::getString('client_date_created')));
             
-		// Insert Data
-		if($clientsHandler->insert($clientsObj)) {
+        // Insert Data
+        if ($clientsHandler->insert($clientsObj)) {
             // add provider to client database
             $client = array();
             $client['client_url'] = Request::getString('client_url');
@@ -119,7 +119,7 @@ switch($op) {
             $provider['provider_name'] = $xoopsConfig['sitename'];
             
             $result = $clientsHandler->addProviderToClient($provider, $client);
-            if ($result == 'success-add-provider' || $result == 'add-provider:provider-exists'){
+            if ($result == 'success-add-provider' || $result == 'add-provider:provider-exists') {
                 // creating provider successful or provider already existing
                 \redirect_header('clients.php?op=list', 2, \_AM_WGBACKLINKS_FORM_OK);
             } else {
@@ -127,34 +127,34 @@ switch($op) {
                 echo $result;
                 \redirect_header('clients.php?op=list&amp;error='.\_AM_WGBACKLINKS_PROVIDER_ERROR_ADD, 5, \_AM_WGBACKLINKS_PROVIDER_ERROR_ADD);
             }
-		} else {
+        } else {
             $GLOBALS['xoopsTpl']->assign('error', $clientsObj->getHtmlErrors());
             // Get Form
             $form = $clientsObj->getFormClients();
             $GLOBALS['xoopsTpl']->assign('form', $form->render());
         }
 
-	break;
-	case 'edit':
-		$templateMain = 'wgbacklinks_admin_clients.tpl';
-		$GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('clients.php'));
-		$adminMenu->addItemButton(\_AM_WGBACKLINKS_ADD_CLIENT, 'clients.php?op=new');
-		$adminMenu->addItemButton(\_AM_WGBACKLINKS_CLIENTS_LIST, 'clients.php', 'list');
-		$GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
-		// Get Form
-		$clientsObj = $clientsHandler->get($clientId);
-		$form = $clientsObj->getFormClients();
-		$GLOBALS['xoopsTpl']->assign('form', $form->render());
+    break;
+    case 'edit':
+        $templateMain = 'wgbacklinks_admin_clients.tpl';
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('clients.php'));
+        $adminMenu->addItemButton(\_AM_WGBACKLINKS_ADD_CLIENT, 'clients.php?op=new');
+        $adminMenu->addItemButton(\_AM_WGBACKLINKS_CLIENTS_LIST, 'clients.php', 'list');
+        $GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
+        // Get Form
+        $clientsObj = $clientsHandler->get($clientId);
+        $form = $clientsObj->getFormClients();
+        $GLOBALS['xoopsTpl']->assign('form', $form->render());
 
-	break;
-	case 'delete':
-		$clientsObj = $clientsHandler->get($clientId);
-		if(isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
-			if(!$GLOBALS['xoopsSecurity']->check()) {
-				\redirect_header('clients.php', 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
-			}
+    break;
+    case 'delete':
+        $clientsObj = $clientsHandler->get($clientId);
+        if (isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
+            if (!$GLOBALS['xoopsSecurity']->check()) {
+                \redirect_header('clients.php', 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
+            }
             
-			if($clientsHandler->delete($clientsObj)) {
+            if ($clientsHandler->delete($clientsObj)) {
                 // delete provider to client database
                 $client = array();
                 $client['client_url'] = Request::getString('client_url');
@@ -164,7 +164,7 @@ switch($op) {
 
                 $result = $clientsHandler->deleteProviderFromClient($provider, $client);
 
-                if ($result == 'success-delete-provider' || $result == 'delete-provider:provider-not-exists'){
+                if ($result == 'success-delete-provider' || $result == 'delete-provider:provider-not-exists') {
                     // creating provider successful or provider already existing
                     \redirect_header('clients.php', 3, \_AM_WGBACKLINKS_FORM_DELETE_OK);
                 } else if ( $result == \_MA_WGBACKLINKS_EXCHANGE_ERR_INVALID_CKEY ) {
@@ -174,13 +174,13 @@ switch($op) {
                     $GLOBALS['xoopsTpl']->assign('error', $result);
                     break;
                 }
-			} else {
-				$GLOBALS['xoopsTpl']->assign('error', $clientsObj->getHtmlErrors());
-			}
-		} else {
-			xoops_confirm(array('ok' => 1, 'client_id' => $clientId, 'client_url' => $clientsObj->getVar('client_url'), 'client_key' => $clientsObj->getVar('client_key'), 'op' => 'delete'), $_SERVER['REQUEST_URI'], \sprintf(\_AM_WGBACKLINKS_FORM_SURE_DELETE, $clientsObj->getVar('client_url')));
-		}
+            } else {
+                $GLOBALS['xoopsTpl']->assign('error', $clientsObj->getHtmlErrors());
+            }
+        } else {
+            xoops_confirm(array('ok' => 1, 'client_id' => $clientId, 'client_url' => $clientsObj->getVar('client_url'), 'client_key' => $clientsObj->getVar('client_key'), 'op' => 'delete'), $_SERVER['REQUEST_URI'], \sprintf(\_AM_WGBACKLINKS_FORM_SURE_DELETE, $clientsObj->getVar('client_url')));
+        }
 
-	break;
+    break;
 }
 include __DIR__ . '/footer.php';

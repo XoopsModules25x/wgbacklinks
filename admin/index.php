@@ -36,12 +36,12 @@ $adminMenu->addInfoBoxLine(\_AM_WGBACKLINKS_STATISTICS, '<label>' . \_AM_WGBACKL
 $adminMenu->addInfoBoxLine(\_AM_WGBACKLINKS_STATISTICS, '<label>' . \_AM_WGBACKLINKS_THEREARE_CLIENTS . '</label>', $countClients);
 // Upload Folders
 $folder = array(
-	\WGBACKLINKS_UPLOAD_PATH
+    \WGBACKLINKS_UPLOAD_PATH
 );
 // Uploads Folders Created
-foreach(\array_keys($folder) as $i) {
-	$adminMenu->addConfigBoxLine($folder[$i], 'folder');
-	$adminMenu->addConfigBoxLine(array($folder[$i], '777'), 'chmod');
+foreach (\array_keys($folder) as $i) {
+    $adminMenu->addConfigBoxLine($folder[$i], 'folder');
+    $adminMenu->addConfigBoxLine(array($folder[$i], '777'), 'chmod');
 }
 
 // Render Index

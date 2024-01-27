@@ -27,11 +27,11 @@ use XoopsModules\Wgbacklinks\Helper;
  * @return string
  */
 function wgbacklinks_block_addCatSelect($cats) {
-    if(\is_array($cats))
+    if (\is_array($cats))
     {
         $cat_sql = '('.current($cats);
         \array_shift($cats);
-        foreach($cats as $cat)
+        foreach ($cats as $cat)
         {
             $cat_sql .= ','.$cat;
         }
@@ -45,7 +45,7 @@ function wgbacklinksMetaKeywords($content)
     global $xoopsTpl, $xoTheme;
     $myts = MyTextSanitizer::getInstance();
     $content= $myts->undoHtmlSpecialChars($myts->displayTarea($content));
-    if(isset($xoTheme) && \is_object($xoTheme)) {
+    if (isset($xoTheme) && \is_object($xoTheme)) {
         $xoTheme->addMeta( 'meta', 'keywords', \strip_tags($content));
     } else {    // Compatibility for old Xoops versions
         $xoopsTpl->assign('xoops_meta_keywords', \strip_tags($content));
@@ -57,7 +57,7 @@ function wgbacklinksMetaDescription($content)
     global $xoopsTpl, $xoTheme;
     $myts = MyTextSanitizer::getInstance();
     $content = $myts->undoHtmlSpecialChars($myts->displayTarea($content));
-    if(isset($xoTheme) && \is_object($xoTheme)) {
+    if (isset($xoTheme) && \is_object($xoTheme)) {
         $xoTheme->addMeta( 'meta', 'description', \strip_tags($content));
     } else {    // Compatibility for old Xoops versions
         $xoopsTpl->assign('xoops_meta_description', \strip_tags($content));
@@ -96,7 +96,7 @@ function wgbacklinks_RewriteUrl($module, $array, $type = 'content')
     switch ($rewrite_url) {
 
         case 'none':
-            if($topic_name) {
+            if ($topic_name) {
                  $topic_name = 'topic=' . $topic_name . '&amp;';
             }
             $rewrite_base = '/modules/';
@@ -104,13 +104,13 @@ function wgbacklinks_RewriteUrl($module, $array, $type = 'content')
             return \XOOPS_URL . $rewrite_base . $module . '/' . $type . '.php?' . $topic_name . 'id=' . $id . '&amp;' . $page . $comment;
 
         case 'rewrite':
-            if($topic_name) {
+            if ($topic_name) {
                 $topic_name = $topic_name . '/';
             }
             $rewrite_base = xoops_getModuleOption('rewrite_mode', $module);
             $rewrite_ext = xoops_getModuleOption('rewrite_ext', $module);
             $module_name = '';
-            if(xoops_getModuleOption('rewrite_name', $module)) {
+            if (xoops_getModuleOption('rewrite_name', $module)) {
                 $module_name = xoops_getModuleOption('rewrite_name', $module) . '/';
             }
             $page = $array['content_alias'];
@@ -125,13 +125,13 @@ function wgbacklinks_RewriteUrl($module, $array, $type = 'content')
             return \XOOPS_URL . $rewrite_base . $module_name . $type . $topic_name  . $id . $page . $rewrite_ext;
 
         case 'short':
-            if($topic_name) {
+            if ($topic_name) {
                 $topic_name = $topic_name . '/';
             }
             $rewrite_base = xoops_getModuleOption('rewrite_mode', $module);
             $rewrite_ext = xoops_getModuleOption('rewrite_ext', $module);
             $module_name = '';
-            if(xoops_getModuleOption('rewrite_name', $module)) {
+            if (xoops_getModuleOption('rewrite_name', $module)) {
                 $module_name = xoops_getModuleOption('rewrite_name', $module) . '/';
             }
             $page = $array['content_alias'];

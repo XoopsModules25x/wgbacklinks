@@ -19,6 +19,6 @@ declare(strict_types=1);
  * @package        wgbacklinks
  * @author         Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<https://wedega.com>
  */
-if(isset($templateMain)) {
-	$GLOBALS['xoopsTpl']->display("db:$templateMain");}
+if (isset($templateMain)) {
+    $GLOBALS['xoopsTpl']->display("db:$templateMain");}
 xoops_cp_footer();
