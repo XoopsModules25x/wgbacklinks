@@ -17,7 +17,7 @@ declare(strict_types=1);
  * @copyright      module for xoops
  * @license        GPL 2.0 or later
  * @package        wgbacklinks
- * @author         Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<http://wedega.com>
+ * @author         Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<https://wedega.com>
  */
 
 require_once \dirname(__DIR__) . '/wgbacklinks/preloads/autoloader.php';
@@ -29,12 +29,12 @@ $modversion['name']                 = \_MI_WGBACKLINKS_NAME;
 $modversion['version']              = '1.1.1';
 $modversion['release']              = '2023-04-09';
 $modversion['release_date']         = '2023/04/09';
-$modversion['module_status']        = 'RC1';
-$modversion['min_xoops']            = '2.5.11 RC1';
+$modversion['module_status']        = 'RC2';
+$modversion['min_xoops']            = '2.5.11 Stable';
 $modversion['description']          = \_MI_WGBACKLINKS_DESC;
 $modversion['author']               = 'Goffy - Wedega.com';
 $modversion['author_mail']          = 'webmaster@wedega.com';
-$modversion['author_website_url']   = 'http://wedega.com';
+$modversion['author_website_url']   = 'https://wedega.com';
 $modversion['author_website_name']  = 'Wedega - Webdesign Gabor';
 $modversion['credits']              = 'Wedega - Webdesign Gabor';
 $modversion['license']              = 'GPL 2.0 or later';

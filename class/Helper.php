@@ -78,7 +78,7 @@ class Helper extends \Xmf\Module\Helper
 
     /**
      * @static function getModule
-     * @param null
+     *
      * @return string
      */
     public function &getModule()
@@ -108,7 +108,7 @@ class Helper extends \Xmf\Module\Helper
         $db     = \XoopsDatabaseFactory::getDatabaseConnection();
         $helper = self::getInstance();
         $ret    = new $class($db, $helper);
-        $this->addLog("Getting handler '{$name}'");
+        $this->addLog("Getting handler '$name'");
         return $ret;
     }
 
@@ -200,7 +200,7 @@ class Helper extends \Xmf\Module\Helper
         if (!$exact) {
             // ...search the last occurance of a space...
             $spacepos = strrpos($truncate, ' ');
-            if (isset($spacepos)) {
+            if ($spacepos > 0) {
                 // ...and cut the text in this position
                 $truncate = \substr($truncate, 0, $spacepos);
             }

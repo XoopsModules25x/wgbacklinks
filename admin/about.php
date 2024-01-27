@@ -17,7 +17,7 @@
  * @package        wgbacklinks
  * @since          1.0
  * @min_xoops      2.5.7
- * @author         Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<http://wedega.com>
+ * @author         Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<https://wedega.com>
  * @version        $Id: 1.0 about.php 1 Thu 2016-05-05 08:16:09Z Wedega - Webdesign Gabor $
  */
 include __DIR__ . '/header.php';

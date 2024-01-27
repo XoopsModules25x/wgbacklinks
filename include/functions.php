@@ -17,7 +17,7 @@ declare(strict_types=1);
  * @copyright      module for xoops
  * @license        GPL 2.0 or later
  * @package        wgbacklinks
- * @author         Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<http://wedega.com>
+ * @author         Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<https://wedega.com>
  */
 
 use XoopsModules\Wgbacklinks\Helper;
@@ -81,12 +81,10 @@ function wgbacklinks_RewriteUrl($module, $array, $type = 'content')
     $lenght_id = $helper->getConfig('lenght_id');
     $rewrite_url = $helper->getConfig('rewrite_url');
 
+    $id = $array['content_id'];
     if ($lenght_id != 0) {
-        $id = $array['content_id'];
         while (\strlen($id) < $lenght_id)
             $id = "0" . $id;
-    } else {
-        $id = $array['content_id'];
     }
 
     if (isset($array['topic_alias']) && $array['topic_alias']) {

@@ -18,7 +18,7 @@ namespace XoopsModules\Wgbacklinks;
  * @copyright      module for xoops
  * @license        GPL 2.0 or later
  * @package        wgbacklinks
- * @author         Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<http://wedega.com>
+ * @author         Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<https://wedega.com>
  */
 
 use XoopsModules\Wgbacklinks\Helper;
@@ -65,7 +65,6 @@ class ClientsHandler extends \XoopsPersistableObjectHandler
 	/**
 	 * get inserted id
 	 *
-	 * @param null
 	 * @return integer reference to the {@link Get} object
 	 */
 	public function getInsertId()

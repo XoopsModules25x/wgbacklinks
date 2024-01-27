@@ -18,7 +18,7 @@ namespace XoopsModules\Wgbacklinks;
  * @copyright      module for xoops
  * @license        GPL 2.0 or later
  * @package        wgbacklinks
- * @author         Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<http://wedega.com>
+ * @author         Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<https://wedega.com>
  */
 
 \defined('XOOPS_ROOT_PATH') || die('Restricted access');
@@ -32,7 +32,6 @@ class Providers extends \XoopsObject
 	/**
 	 * Constructor 
 	 *
-	 * @param null
 	 */
 	public function __construct()
 	{
@@ -47,7 +46,6 @@ class Providers extends \XoopsObject
 	/**
 	 * @static function &getInstance
 	 *
-	 * @param null
 	 */
 	public static function &getInstance()
 	{
@@ -85,7 +83,7 @@ class Providers extends \XoopsObject
 		// Form Text ProviderName
 		$form->addElement(new \XoopsFormText( \_AM_WGBACKLINKS_PROVIDER_NAME, 'provider_name', 50, 255, $this->getVar('provider_name') ), true);
 		// Form Text ProviderUrl
-        $provider_url = $this->isNew() ? 'http://mydomain.com' : $this->getVar('provider_url');
+        $provider_url = $this->isNew() ? 'https://mydomain.com' : $this->getVar('provider_url');
 		$form->addElement(new \XoopsFormText( \_AM_WGBACKLINKS_PROVIDER_URL, 'provider_url', 50, 255, $provider_url ), true);
 		// Form Text ProviderKey
 		$form->addElement(new \XoopsFormText( \_AM_WGBACKLINKS_PROVIDER_KEY, 'provider_key', 50, 255, $this->getVar('provider_key') ));

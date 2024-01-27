@@ -17,7 +17,7 @@ declare(strict_types=1);
  * @copyright      module for xoops
  * @license        GPL 2.0 or later
  * @package        wgbacklinks
- * @author         Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<http://wedega.com>
+ * @author         Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<https://wedega.com>
  */
 if (!\defined('XOOPS_ICONS32_PATH')) \define('XOOPS_ICONS32_PATH', \XOOPS_ROOT_PATH . '/Frameworks/moduleclasses/icons/32');
 if (!\defined('XOOPS_ICONS32_URL')) \define('XOOPS_ICONS32_URL', \XOOPS_URL . '/Frameworks/moduleclasses/icons/32');
@@ -38,7 +38,7 @@ $local_logo = \WGBACKLINKS_IMAGE_URL . '/wedega.png';
 \define('WGBACKLINKS_MODTYPE_2', 2); //client
 
 // module information
-$copyright = "<a href='http://wedega.com' title='Wedega - Webdesign Gabor' target='_blank'>
+$copyright = "<a href='https://wedega.com' title='Wedega - Webdesign Gabor' target='_blank'>
                      <img src='".$local_logo."' alt='Wedega - Webdesign Gabor' style='height:50px'/></a>";
 
 include_once \WGBACKLINKS_PATH.'/include/functions.php';

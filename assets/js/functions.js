@@ -16,7 +16,7 @@
  * @package        wgbacklinks
  * @since          1.0
  * @min_xoops      2.5.7
- * @author         Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<http://wedega.com>
+ * @author         Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<https://wedega.com>
  * @version        $Id: 1.0 functions.js 1 Thu 2016-05-05 08:16:10Z XOOPS Development Team $
  */
 $(document).ready(function(){
@@ -30,9 +30,9 @@ $(document).ready(function(){
 /*------------------------------------------------------------------------------
 Excerpts from the jsUtilities Library
 Version:        2.1
-Homepage:       http://www.easy-designs.net/code/jsUtilities/
+Homepage:       https://www.easy-designs.net/code/jsUtilities/
 License:        Creative Commons Attribution-ShareAlike 2.0 License
-				http://creativecommons.org/licenses/by-sa/2.0/
+				https://creativecommons.org/licenses/by-sa/2.0/
 Note:           If you change or improve on this script, please let us know.
 ------------------------------------------------------------------------------*/
 if(Array.prototype.push == null) {
@@ -43,7 +43,7 @@ if(Array.prototype.push == null) {
 };
 // ---------------------------------------------------------------------
 //                  function.apply (if unsupported)
-//           Courtesy of Aaron Boodman - http://youngpup.net
+//           Courtesy of Aaron Boodman - https://youngpup.net
 // ---------------------------------------------------------------------
 if (!Function.prototype.apply) {
   Function.prototype.apply = function(oScope, args) {

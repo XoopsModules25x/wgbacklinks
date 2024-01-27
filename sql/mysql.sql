@@ -1,6 +1,6 @@
 # SQL Dump for wgbacklinks module
 # PhpMyAdmin Version: 4.0.4
-# http://www.phpmyadmin.net
+# https://www.phpmyadmin.net
 #
 # Host: localhost
 # Generated on: Thu May 05, 2016 to 8:16

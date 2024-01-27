@@ -17,7 +17,7 @@
  * @package        wgbacklinks
  * @since          1.0
  * @min_xoops      2.5.7
- * @author         Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<http://wedega.com>
+ * @author         Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<https://wedega.com>
  * @version        $Id: 1.0 admin.php 1 Thu 2016-05-05 08:16:09Z Wedega - Webdesign Gabor $
  */
 // ---------------- Admin Index ----------------
@@ -106,5 +106,5 @@
 \define('_AM_WGBACKLINKS_FORM_EDIT', "Modification");
 \define('_AM_WGBACKLINKS_FORM_DELETE', "Clear");
 // ---------------- Admin Others ----------------
-\define('_AM_WGBACKLINKS_MAINTAINEDBY', " is maintained by <a href='http://wedega.com'>http://wedega.com</a> and <a href='https://xoops.wedega.com'>https://xoops.wedega.com</a>");
+\define('_AM_WGBACKLINKS_MAINTAINEDBY', " is maintained by <a href='https://wedega.com'>https://wedega.com</a> and <a href='https://xoops.wedega.com'>https://xoops.wedega.com</a>");
 // ---------------- End ----------------

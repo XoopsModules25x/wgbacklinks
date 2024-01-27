@@ -17,8 +17,8 @@ declare(strict_types=1);
  * @copyright      module for xoops
  * @license        GPL 2.0 or later
  * @package        wgbacklinks
- * @author         Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<http://wedega.com>
+ * @author         Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<https://wedega.com>
  */
 if(isset($templateMain)) {
-	$GLOBALS['xoopsTpl']->display("db:{$templateMain}");}
+	$GLOBALS['xoopsTpl']->display("db:$templateMain");}
 xoops_cp_footer();

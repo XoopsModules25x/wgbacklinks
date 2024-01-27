@@ -18,7 +18,7 @@ namespace XoopsModules\Wgbacklinks;
  * @copyright      module for xoops
  * @license        GPL 2.0 or later
  * @package        wgbacklinks
- * @author         Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<http://wedega.com>
+ * @author         Goffy - Wedega.com - Email:<webmaster@wedega.com> - Website:<https://wedega.com>
  */
 
 \defined('XOOPS_ROOT_PATH') || die('Restricted access');
@@ -32,7 +32,6 @@ class Sites extends \XoopsObject
 	/**
 	 * Constructor 
 	 *
-	 * @param null
 	 */
 	public function __construct()
 	{
@@ -51,7 +50,6 @@ class Sites extends \XoopsObject
 	/**
 	 * @static function &getInstance
 	 *
-	 * @param null
 	 */
 	public static function &getInstance()
 	{
