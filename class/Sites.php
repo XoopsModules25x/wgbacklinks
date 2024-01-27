@@ -87,24 +87,24 @@ class Sites extends \XoopsObject
         $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
         // Form Text SiteName
-        $form->addElement(new \XoopsFormText( \_AM_WGBACKLINKS_SITE_NAME, 'site_name', 50, 255, $this->getVar('site_name') ), true);
+        $form->addElement(new \XoopsFormText(\_AM_WGBACKLINKS_SITE_NAME, 'site_name', 50, 255, $this->getVar('site_name') ), true);
         // Form Text Area SiteDescr
-        $form->addElement(new \XoopsFormTextArea( \_AM_WGBACKLINKS_SITE_DESCR, 'site_descr', $this->getVar('site_descr'), 4, 47 ));
+        $form->addElement(new \XoopsFormTextArea(\_AM_WGBACKLINKS_SITE_DESCR, 'site_descr', $this->getVar('site_descr'), 4, 47 ));
         // Form Text SiteUrl
-        $form->addElement(new \XoopsFormText( \_AM_WGBACKLINKS_SITE_URL, 'site_url', 50, 255, $this->getVar('site_url') ));
+        $form->addElement(new \XoopsFormText(\_AM_WGBACKLINKS_SITE_URL, 'site_url', 50, 255, $this->getVar('site_url') ));
         // Form Text SiteUniqueid
         if (!$this->isNew()) {
-            $form->addElement(new \XoopsFormText( \_AM_WGBACKLINKS_SITE_UNIQUEID, 'site_uniqueid', 50, 255, $this->getVar('site_uniqueid') ));
+            $form->addElement(new \XoopsFormText(\_AM_WGBACKLINKS_SITE_UNIQUEID, 'site_uniqueid', 50, 255, $this->getVar('site_uniqueid') ));
         }
         // Form Radio Yes/No
         $siteActive = $this->isNew() ? 1 : $this->getVar('site_active');
-        $form->addElement(new \XoopsFormRadioYN( \_AM_WGBACKLINKS_SITE_ACTIVE, 'site_active', $siteActive));
+        $form->addElement(new \XoopsFormRadioYN(\_AM_WGBACKLINKS_SITE_ACTIVE, 'site_active', $siteActive));
         // Form site_submitter
         $site_submitter = $this->isNew() ? $xoopsUser->getVar('uname') : $this->getVar('site_submitter');
-        $form->addElement(new \XoopsFormText( \_AM_WGBACKLINKS_SITE_SUBMITTER, 'site_submitter', 50, 255, $site_submitter));
+        $form->addElement(new \XoopsFormText(\_AM_WGBACKLINKS_SITE_SUBMITTER, 'site_submitter', 50, 255, $site_submitter));
         // Form Text Date Select
         $siteDate_created = $this->isNew() ? 0 : $this->getVar('site_date_created');
-        $form->addElement(new \XoopsFormTextDateSelect( \_AM_WGBACKLINKS_SITE_DATE_CREATED, 'site_date_created', '', $siteDate_created ));
+        $form->addElement(new \XoopsFormTextDateSelect(\_AM_WGBACKLINKS_SITE_DATE_CREATED, 'site_date_created', '', $siteDate_created ));
         // To Save
         $form->addElement(new \XoopsFormHidden('op', 'save'));
         $form->addElement(new \XoopsFormButtonTray('', _SUBMIT, 'submit', '', false));
@@ -143,7 +143,7 @@ class Sites extends \XoopsObject
         } else {
             $image_shared = '<img src="' . \WGBACKLINKS_ICONS_URL . '/16/off.png" alt="' . _NO . '">';
         }
-        $ret['shared_img']   = $image_shared;
+        $ret['shared_img'] = $image_shared;
         
         return $ret;
     }

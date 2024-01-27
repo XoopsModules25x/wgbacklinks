@@ -113,10 +113,10 @@ class ClientsHandler extends \XoopsPersistableObjectHandler
      */
     private function getClientsCriteria($criteriaClients, $start, $limit, $sort, $order)
     {
-        $criteriaClients->setStart( $start );
-        $criteriaClients->setLimit( $limit );
-        $criteriaClients->setSort( $sort );
-        $criteriaClients->setOrder( $order );
+        $criteriaClients->setStart($start);
+        $criteriaClients->setLimit($limit);
+        $criteriaClients->setSort($sort);
+        $criteriaClients->setOrder($order);
         return $criteriaClients;
     }
 

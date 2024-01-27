@@ -24,7 +24,7 @@ use XoopsModules\Wgbacklinks\Helper;
 
 include dirname(__DIR__, 2) . '/mainfile.php';
 include __DIR__ . '/include/common.php';
-$dirname  = \basename(__DIR__);
+$dirname = \basename(__DIR__);
 // Breadcrumbs
 $xoBreadcrumbs = array();
 $xoBreadcrumbs[] = array('title' => $GLOBALS['xoopsModule']->getVar('name'), 'link' => \WGBACKLINKS_URL . '/');

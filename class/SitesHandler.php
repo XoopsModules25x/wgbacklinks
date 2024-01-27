@@ -114,10 +114,10 @@ class SitesHandler extends \XoopsPersistableObjectHandler
      */
     private function getSitesCriteria($criteriaSites, $start, $limit, $sort, $order)
     {
-        $criteriaSites->setStart( $start );
-        $criteriaSites->setLimit( $limit );
-        $criteriaSites->setSort( $sort );
-        $criteriaSites->setOrder( $order );
+        $criteriaSites->setStart($start);
+        $criteriaSites->setLimit($limit);
+        $criteriaSites->setSort($sort);
+        $criteriaSites->setOrder($order);
         return $criteriaSites;
     }
 

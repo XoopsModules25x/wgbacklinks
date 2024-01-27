@@ -63,7 +63,7 @@ switch ($op) {
             }
             // Display Navigation
             if ($providersCount > $limit) {
-                include_once \XOOPS_ROOT_PATH .'/class/pagenav.php';
+                include_once \XOOPS_ROOT_PATH  . '/class/pagenav.php';
                 $pagenav = new \XoopsPageNav($providersCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
                 $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav());
             }

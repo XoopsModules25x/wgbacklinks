@@ -269,7 +269,7 @@ if ($ptype == 'share-site') {
         
         if ($site_id > 0) {
             // existing site, update
-            $result =  'updated ' . $client_key;
+            $result = 'updated ' . $client_key;
             $sitesObj = $sitesHandler->get($site_id);
         } else {
             // new site

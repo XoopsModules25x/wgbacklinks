@@ -81,21 +81,21 @@ class Providers extends \XoopsObject
         $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
         // Form Text ProviderName
-        $form->addElement(new \XoopsFormText( \_AM_WGBACKLINKS_PROVIDER_NAME, 'provider_name', 50, 255, $this->getVar('provider_name') ), true);
+        $form->addElement(new \XoopsFormText(\_AM_WGBACKLINKS_PROVIDER_NAME, 'provider_name', 50, 255, $this->getVar('provider_name') ), true);
         // Form Text ProviderUrl
         $provider_url = $this->isNew() ? 'https://mydomain.com' : $this->getVar('provider_url');
-        $form->addElement(new \XoopsFormText( \_AM_WGBACKLINKS_PROVIDER_URL, 'provider_url', 50, 255, $provider_url ), true);
+        $form->addElement(new \XoopsFormText(\_AM_WGBACKLINKS_PROVIDER_URL, 'provider_url', 50, 255, $provider_url ), true);
         // Form Text ProviderKey
-        $form->addElement(new \XoopsFormText( \_AM_WGBACKLINKS_PROVIDER_KEY, 'provider_key', 50, 255, $this->getVar('provider_key') ));
+        $form->addElement(new \XoopsFormText(\_AM_WGBACKLINKS_PROVIDER_KEY, 'provider_key', 50, 255, $this->getVar('provider_key') ));
         if ($this->isNew()) {
             // Form Text Add to site table
-            $form->addElement(new \XoopsFormRadioYN( \_AM_WGBACKLINKS_PROVIDER_ADD_TO_SITE, 'provider_add_site', 1));
+            $form->addElement(new \XoopsFormRadioYN(\_AM_WGBACKLINKS_PROVIDER_ADD_TO_SITE, 'provider_add_site', 1));
         }
         // Form Select User
         $form->addElement(new \XoopsFormSelectUser( \_AM_WGBACKLINKS_PROVIDER_SUBMITTER, 'provider_submitter', false, $this->getVar('provider_submitter') ));
         // Form Text Date Select
         $providerDate_created = $this->isNew() ? 0 : $this->getVar('provider_date_created');
-        $form->addElement(new \XoopsFormTextDateSelect( \_AM_WGBACKLINKS_PROVIDER_DATE_CREATED, 'provider_date_created', '', $providerDate_created ));
+        $form->addElement(new \XoopsFormTextDateSelect(\_AM_WGBACKLINKS_PROVIDER_DATE_CREATED, 'provider_date_created', '', $providerDate_created ));
         // To Save
         $form->addElement(new \XoopsFormHidden('op', 'save'));
         $form->addElement(new \XoopsFormButtonTray('', _SUBMIT, 'submit', '', false));

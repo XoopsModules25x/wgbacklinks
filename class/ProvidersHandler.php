@@ -113,10 +113,10 @@ class ProvidersHandler extends \XoopsPersistableObjectHandler
      */
     private function getProvidersCriteria($criteriaProviders, $start, $limit, $sort, $order)
     {
-        $criteriaProviders->setStart( $start );
-        $criteriaProviders->setLimit( $limit );
-        $criteriaProviders->setSort( $sort );
-        $criteriaProviders->setOrder( $order );
+        $criteriaProviders->setStart($start);
+        $criteriaProviders->setLimit($limit);
+        $criteriaProviders->setSort($sort);
+        $criteriaProviders->setOrder($order);
         return $criteriaProviders;
     }
 

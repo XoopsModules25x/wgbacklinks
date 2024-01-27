@@ -125,7 +125,7 @@ switch ($op) {
             } else {
                 // an error occured
                 echo $result;
-                \redirect_header('clients.php?op=list&amp;error='.\_AM_WGBACKLINKS_PROVIDER_ERROR_ADD, 5, \_AM_WGBACKLINKS_PROVIDER_ERROR_ADD);
+                \redirect_header('clients.php?op=list&amp;error=' . \_AM_WGBACKLINKS_PROVIDER_ERROR_ADD, 5, \_AM_WGBACKLINKS_PROVIDER_ERROR_ADD);
             }
         } else {
             $GLOBALS['xoopsTpl']->assign('error', $clientsObj->getHtmlErrors());
@@ -168,7 +168,7 @@ switch ($op) {
                     // creating provider successful or provider already existing
                     \redirect_header('clients.php', 3, \_AM_WGBACKLINKS_FORM_DELETE_OK);
                 } else if ( $result == \_MA_WGBACKLINKS_EXCHANGE_ERR_INVALID_CKEY ) {
-                    \redirect_header('clients.php?op=list&amp;error='. \_AM_WGBACKLINKS_PROVIDER_ERROR_DELETE . "<br>" . \_MA_WGBACKLINKS_EXCHANGE_ERR_INVALID_CKEY, 10, \_AM_WGBACKLINKS_PROVIDER_ERROR_DELETE);
+                    \redirect_header('clients.php?op=list&amp;error=' . \_AM_WGBACKLINKS_PROVIDER_ERROR_DELETE . "<br>" . \_MA_WGBACKLINKS_EXCHANGE_ERR_INVALID_CKEY, 10, \_AM_WGBACKLINKS_PROVIDER_ERROR_DELETE);
                 } else {
                     // an error occured
                     $GLOBALS['xoopsTpl']->assign('error', $result);

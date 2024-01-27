@@ -23,7 +23,7 @@ declare(strict_types=1);
 require_once \dirname(__DIR__) . '/wgbacklinks/preloads/autoloader.php';
 
 // 
-$dirname  = \basename(__DIR__);
+$dirname = \basename(__DIR__);
 // ------------------- Informations ------------------- //
 $modversion['name']                 = \_MI_WGBACKLINKS_NAME;
 $modversion['version']              = '1.1.1';

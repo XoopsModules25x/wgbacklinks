@@ -50,10 +50,10 @@ if ($sitesCount > 0) {
 
 $GLOBALS['xoopsTpl']->assign('copyright', $copyright);
 // Keywords
-wgbacklinksMetaKeywords($helper->getConfig('keywords').', '. \implode(',', $keywords));
+wgbacklinksMetaKeywords($helper->getConfig('keywords') . ', ' . \implode(',', $keywords));
 unset($keywords);
 // Description
 wgbacklinksMetaDescription(\_MA_WGBACKLINKS_INDEX_DESC);
-$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', \WGBACKLINKS_URL.'/index.php');
+$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', \WGBACKLINKS_URL . '/index.php');
 
 include __DIR__ . '/footer.php';
