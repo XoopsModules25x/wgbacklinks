@@ -27,9 +27,9 @@ $dirname = \basename(__DIR__);
 // ------------------- Informations ------------------- //
 $modversion['name']                 = \_MI_WGBACKLINKS_NAME;
 $modversion['version']              = '1.1.1';
-$modversion['release']              = '2023-04-09';
-$modversion['release_date']         = '2023/04/09';
-$modversion['module_status']        = 'RC2';
+$modversion['release']              = '2025-06-07';
+$modversion['release_date']         = '2025/06/07'; //yyyy/mm/dd
+$modversion['module_status']        = 'Stable';
 $modversion['min_xoops']            = '2.5.11 Stable';
 $modversion['description']          = \_MI_WGBACKLINKS_DESC;
 $modversion['author']               = 'Goffy - Wedega.com';
