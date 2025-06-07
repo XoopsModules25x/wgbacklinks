@@ -98,8 +98,6 @@ class Helper extends \Xmf\Module\Helper
      */
     public function getHandler($name)
     {
-        $ret = false;
-
         $class = __NAMESPACE__ . '\\' . \ucfirst($name) . 'Handler';
         if (!\class_exists($class)) {
             throw new \RuntimeException("Class '$class' not found");
