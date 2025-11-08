@@ -26,11 +26,11 @@ require_once \dirname(__DIR__) . '/wgbacklinks/preloads/autoloader.php';
 $dirname = \basename(__DIR__);
 // ------------------- Informations ------------------- //
 $modversion['name']                 = \_MI_WGBACKLINKS_NAME;
-$modversion['version']              = '1.1.1';
+$modversion['version']              = '1.2.0';
 $modversion['release']              = '2025-06-07';
 $modversion['release_date']         = '2025/06/07'; //yyyy/mm/dd
-$modversion['module_status']        = 'Stable';
-$modversion['min_xoops']            = '2.5.11 Stable';
+$modversion['module_status']        = 'Beta';
+$modversion['min_xoops']            = '2.5.12 Beta8';
 $modversion['description']          = \_MI_WGBACKLINKS_DESC;
 $modversion['author']               = 'Goffy - Wedega.com';
 $modversion['author_mail']          = 'webmaster@wedega.com';
@@ -44,7 +44,7 @@ $modversion['release_info']         = 'release_info';
 $modversion['release_file']         = \XOOPS_URL . '/modules/wgbacklinks/docs/release_info file';
 $modversion['manual']               = 'link to manual file';
 $modversion['manual_file']          = \XOOPS_URL . '/modules/wgbacklinks/docs/install.txt';
-$modversion['min_php']              = '7.4';
+$modversion['min_php']              = '8.4';
 $modversion['min_admin']            = '1.1';
 $modversion['min_db']               = array('mysql' => '5.0.7', 'mysqli' => '5.0.7');
 $modversion['image']                = 'assets/images/wgbacklinks_logo.png';

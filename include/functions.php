@@ -22,24 +22,6 @@ declare(strict_types=1);
 
 use XoopsModules\Wgbacklinks\Helper;
 
-/***************Blocks**************
- * @param $cats
- * @return string
- */
-function wgbacklinks_block_addCatSelect($cats) {
-    if (\is_array($cats))
-    {
-        $cat_sql = '( '. current($cats);
-        \array_shift($cats);
-        foreach ($cats as $cat)
-        {
-            $cat_sql .= ','.$cat;
-        }
-        $cat_sql .= ')';
-    }
-    return $cat_sql;
-}
-
 function wgbacklinksMetaKeywords($content)
 {
     global $xoopsTpl, $xoTheme;

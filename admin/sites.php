@@ -40,8 +40,10 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('clients_count', $clientsCount);
         $GLOBALS['xoopsTpl']->assign('wgbacklinks_url', \WGBACKLINKS_URL);
         $GLOBALS['xoopsTpl']->assign('wgbacklinks_upload_url', \WGBACKLINKS_UPLOAD_URL);
+        $shared = [];
         // Table view clients
         if ($clientsCount > 0) {
+
             foreach (\array_keys($clientsAll) as $i) {
                 $client = $clientsAll[$i]->getValuesClients();
                 // share all sites with this client
@@ -51,7 +53,7 @@ switch ($op) {
                 
                 // Table view sites
                 if ($sitesCount > 0) {
-                    $shared = array();
+
                     foreach (\array_keys($sitesAll) as $j) {
                         $site = $sitesAll[$j]->getValuesSites();
                         // execute data exchange
