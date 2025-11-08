@@ -45,7 +45,7 @@ class ProvidersHandler extends \XoopsPersistableObjectHandler
      *
      * @return object
      */
-    public function create($isNew = true)
+    public function create($isNew = true): object
     {
         return parent::create($isNew);
     }
@@ -57,7 +57,7 @@ class ProvidersHandler extends \XoopsPersistableObjectHandler
      * @param null $fields
      * @return \XoopsObject|null reference to the {@link Get} object
      */
-    public function get($id = null, $fields = null)
+    public function get($id = null, $fields = null): ?\XoopsObject
     {
         return parent::get($id, $fields);
     }
@@ -67,7 +67,7 @@ class ProvidersHandler extends \XoopsPersistableObjectHandler
      *
      * @return integer reference to the {@link Get} object
      */
-    public function getInsertId()
+    public function getInsertId(): int
     {
         return $this->db->getInsertId();
     }
@@ -80,7 +80,7 @@ class ProvidersHandler extends \XoopsPersistableObjectHandler
      * @param string $order
      * @return int
      */
-    public function getCountProviders($start = 0, $limit = 0, $sort = 'provider_id ASC, provider_date_created', $order = 'ASC')
+    public function getCountProviders(int $start = 0, int $limit = 0, string $sort = 'provider_id ASC, provider_date_created', string $order = 'ASC'): int
     {
         $criteriaCountProviders = new \CriteriaCompo();
         $criteriaCountProviders = $this->getProvidersCriteria($criteriaCountProviders, $start, $limit, $sort, $order);
@@ -95,7 +95,7 @@ class ProvidersHandler extends \XoopsPersistableObjectHandler
      * @param string $order
      * @return array
      */
-    public function getAllProviders($start = 0, $limit = 0, $sort = 'provider_id ASC, provider_date_created', $order = 'ASC')
+    public function getAllProviders(int $start = 0, int $limit = 0, string $sort = 'provider_id ASC, provider_date_created', string $order = 'ASC'): array
     {
         $criteriaAllProviders = new \CriteriaCompo();
         $criteriaAllProviders = $this->getProvidersCriteria($criteriaAllProviders, $start, $limit, $sort, $order);
@@ -111,7 +111,7 @@ class ProvidersHandler extends \XoopsPersistableObjectHandler
      * @param $order
      * @return mixed
      */
-    private function getProvidersCriteria($criteriaProviders, $start, $limit, $sort, $order)
+    private function getProvidersCriteria($criteriaProviders, $start, $limit, $sort, $order): mixed
     {
         $criteriaProviders->setStart($start);
         $criteriaProviders->setLimit($limit);
@@ -127,7 +127,8 @@ class ProvidersHandler extends \XoopsPersistableObjectHandler
      * @param $client
      * @return string
      */
-    public function addClientToProvider($provider, $client) {
+    public function addClientToProvider(array $provider, $client): string
+    {
 
         global $xoopsUser;
 
@@ -156,7 +157,8 @@ class ProvidersHandler extends \XoopsPersistableObjectHandler
      * @param $client
      * @return string
      */
-    public function deleteClientFromProvider($provider, $client) {
+    public function deleteClientFromProvider(array $provider, $client): string
+    {
 
         $postdata = \http_build_query(
             array(
@@ -179,7 +181,8 @@ class ProvidersHandler extends \XoopsPersistableObjectHandler
      * @param array $provider
      * @return string
      */
-    public function checkProviderKey($provider) {
+    public function checkProviderKey(array $provider): string
+    {
 
         $postdata = \http_build_query(
             array(

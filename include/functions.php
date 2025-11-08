@@ -22,7 +22,7 @@ declare(strict_types=1);
 
 use XoopsModules\Wgbacklinks\Helper;
 
-function wgbacklinksMetaKeywords($content)
+function wgbacklinksMetaKeywords($content): void
 {
     global $xoopsTpl, $xoTheme;
     $myts = MyTextSanitizer::getInstance();
@@ -34,7 +34,7 @@ function wgbacklinksMetaKeywords($content)
     }
 }
 
-function wgbacklinksMetaDescription($content)
+function wgbacklinksMetaDescription($content): void
 {
     global $xoopsTpl, $xoTheme;
     $myts = MyTextSanitizer::getInstance();
@@ -56,7 +56,7 @@ function wgbacklinksMetaDescription($content)
  * @param string $type
  * @return string $type    string replacement for any blank case
  */
-function wgbacklinks_RewriteUrl($module, $array, $type = 'content')
+function wgbacklinks_RewriteUrl($module, $array, string $type = 'content'): string
 {
     $comment = '';
     $helper = Helper::getInstance();
@@ -138,7 +138,8 @@ function wgbacklinks_RewriteUrl($module, $array, $type = 'content')
  * @param string $type
  * @return string $url
  */
-function wgbacklinks_Filter($url, $type = '') {
+function wgbacklinks_Filter($url, string $type = ''): string
+{
 
     // Get regular expression from module setting. default setting is : `[^a-z0-9]`i
     $helper = Helper::getInstance();

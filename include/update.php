@@ -23,7 +23,7 @@ declare(strict_types=1);
  * @param      $module
  * @return bool|null
  */
-function xoops_module_update_wgbacklinks($module/*, $prev_version = null*/)
+function xoops_module_update_wgbacklinks($module/*, $prev_version = null*/): ?bool
 {
 
     /*

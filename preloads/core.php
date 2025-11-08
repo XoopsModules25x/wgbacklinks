@@ -22,7 +22,7 @@ class WgbacklinksCorePreload extends \XoopsPreloadItem
 {
     // to add PSR-4 autoloader
 
-    public static function eventCoreIncludeCommonEnd()
+    public static function eventCoreIncludeCommonEnd(): void
     {
         require __DIR__ . '/autoloader.php';
     }

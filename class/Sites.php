@@ -51,7 +51,7 @@ class Sites extends \XoopsObject
      * @static function &getInstance
      *
      */
-    public static function &getInstance()
+    public static function getInstance(): void
     {
         static $instance = false;
         if (!$instance) {
@@ -70,10 +70,10 @@ class Sites extends \XoopsObject
     /**
      * Get form
      *
-     * @param mixed $action
+     * @param false $action
      * @return \XoopsThemeForm
      */
-    public function getFormSites($action = false)
+    public function getFormSites(false $action = false): \XoopsThemeForm
     {
         global $xoopsUser;
         
@@ -118,7 +118,7 @@ class Sites extends \XoopsObject
      * @param null $maxDepth
      * @return array
      */
-    public function getValuesSites($keys = null, $format = null, $maxDepth = null)
+    public function getValuesSites($keys = null, $format = null, $maxDepth = null): array
     {
         $ret                 = $this->getValues($keys, $format, $maxDepth);
         $ret['id']           = $this->getVar('site_id');
@@ -153,7 +153,7 @@ class Sites extends \XoopsObject
      *
      * @return array
      */
-    public function toArraySites()
+    public function toArraySites(): array
     {
         $ret = array();
         $vars = $this->getVars();
