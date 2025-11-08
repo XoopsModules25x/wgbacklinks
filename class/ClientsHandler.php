@@ -45,7 +45,7 @@ class ClientsHandler extends \XoopsPersistableObjectHandler
      *
      * @return object
      */
-    public function create($isNew = true)
+    public function create($isNew = true): object
     {
         return parent::create($isNew);
     }
@@ -57,7 +57,7 @@ class ClientsHandler extends \XoopsPersistableObjectHandler
      * @param null $fields
      * @return \XoopsObject|null reference to the {@link Get} object
      */
-    public function get($id = null, $fields = null)
+    public function get($id = null, $fields = null): ?\XoopsObject
     {
         return parent::get($id, $fields);
     }
@@ -67,7 +67,7 @@ class ClientsHandler extends \XoopsPersistableObjectHandler
      *
      * @return integer reference to the {@link Get} object
      */
-    public function getInsertId()
+    public function getInsertId(): int
     {
         return $this->db->getInsertId();
     }
@@ -80,7 +80,7 @@ class ClientsHandler extends \XoopsPersistableObjectHandler
      * @param string $order
      * @return int
      */
-    public function getCountClients($start = 0, $limit = 0, $sort = 'client_id ASC, client_key', $order = 'ASC')
+    public function getCountClients(int $start = 0, int $limit = 0, string $sort = 'client_id ASC, client_key', string $order = 'ASC'): int
     {
         $criteriaCountClients = new \CriteriaCompo();
         $criteriaCountClients = $this->getClientsCriteria($criteriaCountClients, $start, $limit, $sort, $order);
@@ -95,7 +95,7 @@ class ClientsHandler extends \XoopsPersistableObjectHandler
      * @param string $order
      * @return array
      */
-    public function getAllClients($start = 0, $limit = 0, $sort = 'client_id ASC, client_key', $order = 'ASC')
+    public function getAllClients(int $start = 0, int $limit = 0, string $sort = 'client_id ASC, client_key', string $order = 'ASC'): array
     {
         $criteriaAllClients = new \CriteriaCompo();
         $criteriaAllClients = $this->getClientsCriteria($criteriaAllClients, $start, $limit, $sort, $order);
@@ -111,7 +111,7 @@ class ClientsHandler extends \XoopsPersistableObjectHandler
      * @param $order
      * @return mixed
      */
-    private function getClientsCriteria($criteriaClients, $start, $limit, $sort, $order)
+    private function getClientsCriteria($criteriaClients, $start, $limit, $sort, $order): mixed
     {
         $criteriaClients->setStart($start);
         $criteriaClients->setLimit($limit);
@@ -127,7 +127,8 @@ class ClientsHandler extends \XoopsPersistableObjectHandler
      * @param $client
      * @return string
      */
-    public function addProviderToClient($provider, $client) {
+    public function addProviderToClient(array $provider, $client): string
+    {
 
         global $xoopsUser;
            
@@ -155,7 +156,8 @@ class ClientsHandler extends \XoopsPersistableObjectHandler
      * @param $client
      * @return string
      */
-    public function deleteProviderFromClient($provider, $client) {
+    public function deleteProviderFromClient(array $provider, $client): string
+    {
         
         $postdata = \http_build_query(
             array(
@@ -177,7 +179,8 @@ class ClientsHandler extends \XoopsPersistableObjectHandler
      * @param array $client
      * @return string
      */
-    public function checkClientKey($client) {
+    public function checkClientKey(array $client): string
+    {
 
         $postdata = \http_build_query(
             array(

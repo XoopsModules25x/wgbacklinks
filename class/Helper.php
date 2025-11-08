@@ -37,11 +37,11 @@ class Helper extends \Xmf\Module\Helper
     /**
      * @var string
      */
-    protected $handler = null;
+    protected ?string $handler = null;
     /**
      * @var string
      */
-    protected $config = null;
+    protected ?string $config = null;
     /**
      * @var string
      */
@@ -49,7 +49,7 @@ class Helper extends \Xmf\Module\Helper
     /**
      * @var array
      */
-    protected $debugArray = array();
+    protected array $debugArray = array();
     /**
     *  @protected function constructor class
     *  @param mixed $debug
@@ -63,10 +63,10 @@ class Helper extends \Xmf\Module\Helper
 
     /**
      * @static function getInstance
-     * @param mixed $debug
+     * @param false $debug
      * @return Helper
      */
-    public static function getInstance($debug = false)
+    public static function getInstance(false $debug = false): Helper
     {
         static $instance;
         if (null === $instance) {
@@ -79,9 +79,9 @@ class Helper extends \Xmf\Module\Helper
     /**
      * @static function getModule
      *
-     * @return string
+     * @return XoopsModule
      */
-    public function &getModule()
+    public function &getModule(): ?\XoopsModule
     {
         if ($this->module == null) {
             $this->initModule();
@@ -95,8 +95,9 @@ class Helper extends \Xmf\Module\Helper
      * @param string $name name of handler to load
      *
      * @return bool|\XoopsObjectHandler|\XoopsPersistableObjectHandler
+     * @throws \Exception
      */
-    public function getHandler($name)
+    public function getHandler($name): \XoopsObjectHandler|bool|\XoopsPersistableObjectHandler
     {
         $class = __NAMESPACE__ . '\\' . \ucfirst($name) . 'Handler';
         if (!\class_exists($class)) {
@@ -115,15 +116,15 @@ class Helper extends \Xmf\Module\Helper
      * www.gsdesign.ro/blog/cut-html-string-without-breaking-the-tags
      * www.cakephp.org
      *
-     * @param string  $text         String to truncate.
+     * @param string $text         String to truncate.
      * @param integer $length       Length of returned string, including ellipsis.
-     * @param string  $ending       Ending to be appended to the trimmed string.
+     * @param string $ending       Ending to be appended to the trimmed string.
      * @param boolean $exact        If false, $text will not be cut mid-word
      * @param boolean $considerHtml If true, HTML tags would be handled correctly
      *
      * @return string Trimmed string.
      */
-    public function truncateHtml($text, $length = 200, $ending = '...', $exact = false, $considerHtml = true)
+    public function truncateHtml(string $text, int $length = 200, string $ending = '...', bool $exact = false, bool $considerHtml = true): string
     {
         if ($considerHtml) {
             // if the plain text is shorter than the maximum length, return the whole text
@@ -215,11 +216,11 @@ class Helper extends \Xmf\Module\Helper
         return $truncate;
     }
 
-    public function execExchangeData($url, $postdata)
+    public function execExchangeData($url, $postdata): string
     {
         $valid_url = \rtrim($url, '/');
 
-        if (\substr($valid_url, -17) != 'exchange-data.php') {
+        if (!str_ends_with($valid_url, 'exchange-data.php')) {
             $valid_url .= '/modules/wgbacklinks/exchange-data.php';
         }
         $error = "";

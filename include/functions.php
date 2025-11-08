@@ -22,25 +22,7 @@ declare(strict_types=1);
 
 use XoopsModules\Wgbacklinks\Helper;
 
-/***************Blocks**************
- * @param $cats
- * @return string
- */
-function wgbacklinks_block_addCatSelect($cats) {
-    if (\is_array($cats))
-    {
-        $cat_sql = '( '. current($cats);
-        \array_shift($cats);
-        foreach ($cats as $cat)
-        {
-            $cat_sql .= ','.$cat;
-        }
-        $cat_sql .= ')';
-    }
-    return $cat_sql;
-}
-
-function wgbacklinksMetaKeywords($content)
+function wgbacklinksMetaKeywords($content): void
 {
     global $xoopsTpl, $xoTheme;
     $myts = MyTextSanitizer::getInstance();
@@ -52,7 +34,7 @@ function wgbacklinksMetaKeywords($content)
     }
 }
 
-function wgbacklinksMetaDescription($content)
+function wgbacklinksMetaDescription($content): void
 {
     global $xoopsTpl, $xoTheme;
     $myts = MyTextSanitizer::getInstance();
@@ -74,7 +56,7 @@ function wgbacklinksMetaDescription($content)
  * @param string $type
  * @return string $type    string replacement for any blank case
  */
-function wgbacklinks_RewriteUrl($module, $array, $type = 'content')
+function wgbacklinks_RewriteUrl($module, $array, string $type = 'content'): string
 {
     $comment = '';
     $helper = Helper::getInstance();
@@ -156,7 +138,8 @@ function wgbacklinks_RewriteUrl($module, $array, $type = 'content')
  * @param string $type
  * @return string $url
  */
-function wgbacklinks_Filter($url, $type = '') {
+function wgbacklinks_Filter($url, string $type = ''): string
+{
 
     // Get regular expression from module setting. default setting is : `[^a-z0-9]`i
     $helper = Helper::getInstance();

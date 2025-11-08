@@ -45,7 +45,7 @@ class SitesHandler extends \XoopsPersistableObjectHandler
      *
      * @return object
      */
-    public function create($isNew = true)
+    public function create($isNew = true): object
     {
         return parent::create($isNew);
     }
@@ -57,7 +57,7 @@ class SitesHandler extends \XoopsPersistableObjectHandler
      * @param null $fields
      * @return \XoopsObject|null reference to the {@link Get} object
      */
-    public function get($id = null, $fields = null)
+    public function get($id = null, $fields = null): ?\XoopsObject
     {
         return parent::get($id, $fields);
     }
@@ -67,7 +67,7 @@ class SitesHandler extends \XoopsPersistableObjectHandler
      *
      * @return integer reference to the {@link Get} object
      */
-    public function getInsertId()
+    public function getInsertId(): int
     {
         return $this->db->getInsertId();
     }
@@ -80,7 +80,7 @@ class SitesHandler extends \XoopsPersistableObjectHandler
      * @param string $order
      * @return int
      */
-    public function getCountSites($start = 0, $limit = 0, $sort = 'site_id ASC, site_name', $order = 'ASC')
+    public function getCountSites(int $start = 0, int $limit = 0, string $sort = 'site_id ASC, site_name', string $order = 'ASC'): int
     {
         $criteriaCountSites = new \CriteriaCompo();
         $criteriaCountSites = $this->getSitesCriteria($criteriaCountSites, $start, $limit, $sort, $order);
@@ -95,7 +95,7 @@ class SitesHandler extends \XoopsPersistableObjectHandler
      * @param string $order
      * @return array
      */
-    public function getAllSites($start = 0, $limit = 0, $sort = 'site_id ASC, site_name', $order = 'ASC')
+    public function getAllSites(int $start = 0, int $limit = 0, string $sort = 'site_id ASC, site_name', string $order = 'ASC'): array
     {
         $criteriaAllSites = new \CriteriaCompo();
         $criteriaAllSites = $this->getSitesCriteria($criteriaAllSites, $start, $limit, $sort, $order);
@@ -112,7 +112,7 @@ class SitesHandler extends \XoopsPersistableObjectHandler
      * @param $order
      * @return mixed
      */
-    private function getSitesCriteria($criteriaSites, $start, $limit, $sort, $order)
+    private function getSitesCriteria($criteriaSites, $start, $limit, $sort, $order): mixed
     {
         $criteriaSites->setStart($start);
         $criteriaSites->setLimit($limit);
@@ -128,7 +128,8 @@ class SitesHandler extends \XoopsPersistableObjectHandler
      * @param $client
      * @return string
      */
-    public function shareSite($site, $client) {
+    public function shareSite(array $site, $client): string
+    {
 
         global $xoopsUser;
         

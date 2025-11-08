@@ -46,7 +46,7 @@ class Clients extends \XoopsObject
      * @static function &getInstance
      *
      */
-    public static function &getInstance()
+    public static function getInstance(): void
     {
         static $instance = false;
         if (!$instance) {
@@ -65,10 +65,10 @@ class Clients extends \XoopsObject
     /**
      * Get form
      *
-     * @param mixed $action
+     * @param false $action
      * @return \XoopsThemeForm
      */
-    public function getFormClients($action = false)
+    public function getFormClients(false $action = false): \XoopsThemeForm
     {
         global $xoopsUser;
         
@@ -104,7 +104,7 @@ class Clients extends \XoopsObject
      * @param null $maxDepth
      * @return array
      */
-    public function getValuesClients($keys = null, $format = null, $maxDepth = null)
+    public function getValuesClients($keys = null, $format = null, $maxDepth = null): array
     {
         $ret                 = $this->getValues($keys, $format, $maxDepth);
         $ret['id']           = $this->getVar('client_id');
@@ -121,7 +121,7 @@ class Clients extends \XoopsObject
      *
      * @return array
      */
-    public function toArrayClients()
+    public function toArrayClients(): array
     {
         $ret  = array();
         $vars = $this->getVars();

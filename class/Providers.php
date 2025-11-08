@@ -47,7 +47,7 @@ class Providers extends \XoopsObject
      * @static function &getInstance
      *
      */
-    public static function &getInstance()
+    public static function getInstance(): void
     {
         static $instance = false;
         if (!$instance) {
@@ -66,10 +66,10 @@ class Providers extends \XoopsObject
     /**
      * Get form
      *
-     * @param mixed $action
+     * @param false $action
      * @return \XoopsThemeForm
      */
-    public function getFormProviders($action = false)
+    public function getFormProviders(false $action = false): \XoopsThemeForm
     {
         if ($action === false) {
             $action = $_SERVER['REQUEST_URI'];
@@ -109,7 +109,7 @@ class Providers extends \XoopsObject
      * @param null $maxDepth
      * @return array
      */
-    public function getValuesProviders($keys = null, $format = null, $maxDepth = null)
+    public function getValuesProviders($keys = null, $format = null, $maxDepth = null): array
     {
         $ret                 = $this->getValues($keys, $format, $maxDepth);
         $ret['id']           = $this->getVar('provider_id');
@@ -126,7 +126,7 @@ class Providers extends \XoopsObject
      *
      * @return array
      */
-    public function toArrayProviders()
+    public function toArrayProviders(): array
     {
         $ret = array();
         $vars = $this->getVars();
