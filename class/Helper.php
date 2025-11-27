@@ -92,12 +92,12 @@ class Helper extends \Xmf\Module\Helper
     /**
      * Get an Object Handler
      *
-     * @param string $name name of handler to load
+     * @param $name name of handler to load
      *
      * @return bool|\XoopsObjectHandler|\XoopsPersistableObjectHandler
      * @throws \Exception
      */
-    public function getHandler($name): \XoopsObjectHandler|bool|\XoopsPersistableObjectHandler
+    public function getHandler($name)
     {
         $class = __NAMESPACE__ . '\\' . \ucfirst($name) . 'Handler';
         if (!\class_exists($class)) {
