@@ -92,7 +92,7 @@ class Helper extends \Xmf\Module\Helper
     /**
      * Get an Object Handler
      *
-     * @param $name name of handler to load
+     * @param string $name name of handler to load
      *
      * @return bool|\XoopsObjectHandler|\XoopsPersistableObjectHandler
      * @throws \Exception
