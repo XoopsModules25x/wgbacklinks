@@ -41,7 +41,7 @@ class ProvidersHandler extends \XoopsPersistableObjectHandler
     }
 
     /**
-     * @param bool $isNew
+     * @param $isNew
      *
      * @return object
      */
@@ -53,8 +53,8 @@ class ProvidersHandler extends \XoopsPersistableObjectHandler
     /**
      * retrieve a field
      *
-     * @param int $id field id
-     * @param null $fields
+     * @param $id field id
+     * @param $fields
      * @return \XoopsObject|null reference to the {@link Get} object
      */
     public function get($id = null, $fields = null): ?\XoopsObject

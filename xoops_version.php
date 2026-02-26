@@ -45,8 +45,8 @@ $modversion['release_file']         = \XOOPS_URL . '/modules/wgbacklinks/docs/re
 $modversion['manual']               = 'link to manual file';
 $modversion['manual_file']          = \XOOPS_URL . '/modules/wgbacklinks/docs/install.txt';
 $modversion['min_php']              = '8.4';
-$modversion['min_admin']            = '1.1';
-$modversion['min_db']               = array('mysql' => '5.0.7', 'mysqli' => '5.0.7');
+$modversion['min_admin']            = '1.2';
+$modversion['min_db']               = ['mysql' => '5.7.8', 'mysqli' => '5.7.8'];
 $modversion['image']                = 'assets/images/wgbacklinks_logo.png';
 $modversion['dirname']              = \basename(__DIR__);
 $modversion['dirmoduleadmin']       = 'Frameworks/moduleclasses/moduleadmin';

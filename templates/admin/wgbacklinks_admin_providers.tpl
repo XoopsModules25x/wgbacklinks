@@ -2,7 +2,7 @@
 <{include file='db:wgbacklinks_admin_header.tpl'}>
 
 <{if isset($providers_list)}>
-	<table class='table table-bordered'>
+	<table class='outer'>
         <thead>
             <tr class="head">
                 <th class="center"><{$smarty.const._AM_WGBACKLINKS_PROVIDER_ID}></th>
